@@ -8,7 +8,6 @@
 658ca3ce-235b-4822-a8af-c70c896e9b15.a7e5fe9b-41d2-4da1-b98e-eec37cb87f82.prompt=Enter Service Anywhere URL
 658ca3ce-235b-4822-a8af-c70c896e9b15.b3480edb-0f53-4cd8-a205-b57d65b31be6.description=<pre>This is a soft copy of 'Http Client' customized for the POST method (the input 'method'\='POST' should not be changed). Check the linked 'Http Client' operation.\n\nInputs\n    url - The web address to make the request to. This must be a standard URL as specified in RFC 3986. This is a required input.\nFormat\: scheme\://domain\:port/path?query_string\#fragment_id\nExamples\: https\://[fe80\:\:1260\:4bff\:fe49\:42fc]\:8080/my/path?key1\=val1&key2\=val2\#my_fragment\n    authType - The type of authentication used by this operation when trying to execute the request on the target server. The authentication is not preemptive\: a plain request not including authentication info will be made and only when the server responds with a 'WWW-Authenticate' header the client will send required headers. If the server needs no authentication but you specify one in this input the request will work nevertheless. The client cannot choose the authentication method and there is no fallback so you have to know which one you need. If the web application and proxy use different authentication types, these must be specified like in the Example model. \nDefault value\: basic\nValid values\: basic, digest, ntlm, kerberos, any, anonymous, "" or a list of valid values separated by comma.\nExample\: basic,digest\n    username - The user name used for authentication. For NTLM authentication, the required format is 'domain\\user' and if you only specify the 'user' it will append a dot like '.\\user' so that a local user on the target machine can be used. In order for all authentication schemes to work (except Kerberos) username is required.\n    password - The password used for authentication.\n    preemptiveAuth - If this field is 'true' authentication info will be sent in the first request. If this is 'false' a request with no authentication info will be made and if server responds with 401 and a header like WWW-Authenticate\: Basic realm\="myRealm" only then the authentication info will be sent.\nDefault value\: true\nValid values\: true, false\n    proxyHost - The proxy server used to access the web site.\n    proxyPort - The proxy server port. Default value\: 8080. Valid values\: -1, and positive integer values. When the value is '-1' the default port of the scheme, specified in the 'proxyHost', will be used.\n    proxyUsername - The user name used when connecting to the proxy. The 'authType' input will be used to choose authentication type. The 'Basic' and 'Digest' proxy authentication type are supported.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    trustAllRoots - Specifies whether to enable weak security over SSL/TSL. A certificate is trusted even if no trusted certification authority issued it.\nDefault value\: false\nValid values\: true, false\n    x509HostnameVerifier - Specifies the way the server hostname must match a domain name in the subject's Common Name (CN) or subjectAltName field of the X.509 certificate. The hostname verification system prevents communication with other hosts other than the ones you intended. This is done by checking that the hostname is in the subject alternative name extension of the certificate. This system is designed to ensure that, if an attacker(Man In The Middle) redirects traffic to his machine, the client will not accept the connection. If you set this input to "allow_all", this verification is ignored and you become vulnerable to security attacks. For the value "browser_compatible" the hostname verifier works the same way as Curl and Firefox. The hostname must match either the first CN, or any of the subject-alts. A wildcard can occur in the CN, and in any of the subject-alts. The only difference between "browser_compatible" and "strict" is that a wildcard (such as "*.foo.com") with "browser_compatible" matches all subdomains, including "a.b.foo.com". From the security perspective, to provide protection against possible Man-In-The-Middle attacks, we strongly recommend to use "strict" option.\nDefault value\: strict\nValid values\: strict, browser_compatible, allow_all\n    trustKeystore - The pathname of the Java TrustStore file. This contains certificates from other parties that you expect to communicate with, or from Certificate Authorities that you trust to identify other parties.  If the protocol (specified by the 'url') is not 'https' or if trustAllRoots is 'true' this input is ignored.\nDefault value\: <OO_Home>/java/lib/security/cacerts\nFormat\: Java KeyStore (JKS)\n    trustPassword - The password associated with the TrustStore file. If trustAllRoots is false and trustKeystore is empty, trustPassword default will be supplied.\nDefault value\: changeit\n    keystore - The pathname of the Java KeyStore file. You only need this if the server requires client authentication. If the protocol (specified by the 'url') is not 'https' or if trustAllRoots is 'true' this input is ignored.\nDefault value\: <OO_Home>/java/lib/security/cacerts\nFormat\: Java KeyStore (JKS)\n    keystorePassword - The password associated with the KeyStore file. If trustAllRoots is false and keystore is empty, keystorePassword default will be supplied.\nDefault value\: changeit\n    connectTimeout - The time to wait for a connection to be established, in seconds. A timeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\nExamples\: 10, 20\n    socketTimeout - The timeout for waiting for data (a maximum period inactivity between two consecutive data packets), in seconds. A socketTimeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\n    useCookies - Specifies whether to enable cookie tracking or not. Cookies are stored between consecutive calls in a serializable session object therefore they will be available on a branch level (same subflow, same lane). If you specify a non-boolean value, the default value is used.\nDefault value\: true\nValid values\: true, false\n    keepAlive - Specifies whether to create a shared connection that will be used in subsequent calls. If keepAlive is false, the already open connection will be used and after execution it will close it. The operation will use a connection pool stored in a GlobalSessionObject that will be available throughout the execution (the flow and subflows, between parallel split lanes).\nDefault value\: true\nValid values\: true, false\n    connectionsMaxPerRoute - The maximum limit of connections on a per route basis. The default will create no more than 2 concurrent connections per given route.\nDefault value\: 2\n    connectionsMaxTotal - The maximum limit of connections in total. The default will create no more than 2 concurrent connections in total.\nDefault value\: 20\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: According to HTTP standard for headers (RFC 2616).\nExamples\: Accept\:text/plain\n    sourceFile - The absolute path of a file on disk from where to read the entity for the http request. This will be read using 'requestCharacterSet' or 'contentType' input (see below). This should not be provided for method\=GET, HEAD, TRACE\nExamples\: C\:\\temp\\sourceFile.txt\n    body - The string to include in body for HTTP POST operation. If both sourceFile and body will be provided, the body input has priority over sourceFile. This should not be provided for method\=GET, HEAD, TRACE\n    contentType - The content type that should be set in the request header, representing the MIME-type of the data in the message body.\nDefault value\: "" (empty)\nExamples\: "text/html", "application/x-www-form-urlencoded"\n    requestCharacterSet - The character encoding to be used for the HTTP request body. If contentType is empty, the requestCharacterSet will use the default value. If contentType will include charset (ex.\: "application/json; charset\=UTF-8"), the requestCharacterSet value will overwrite the charset value from contentType input. This should not be provided for method\=GET, HEAD,TRACE\nDefault value\: ISO-8859-1\n    destinationFile - The absolute path of a file on disk where to save the entity returned by the response. 'returnResult' will no longer be populated with the entity if this is specified. You should not use this for method\=HEAD or OPTIONS.\tExample\: C\:\\temp\\destinationFile.txt\n    responseCharacterSet - The character encoding to be used for the HTTP response. If responseCharacterSet is empty, the charset from the 'Content-Type' HTTP response header will be used. If responseCharacterSet is empty and the charset from the HTTP response Content-Type header is empty, the default value will be used. You should not use this for method\=HEAD or OPTIONS.\nDefault value\: ISO-8859-1\n    chunkedRequestEntity - Data is sent in a series of "chunks". It uses the Transfer-Encoding HTTP header in place of the Content-Length header. Generally it is recommended to let HttpClient choose the most appropriate transfer encoding based on the properties of the HTTP message being transferred. It is possible, however, to inform HttpClient that chunk coding is preferred by setting this input to "true". Please note that HttpClient will use this flag as a hint only. This value will be ignored when using HTTP protocol versions that do not support chunk coding, such as HTTP/1.0. This setting is ignored for multipart post entities.\nDefault value\: \nValid values\: true, false\n    method - The HTTP method used. This is a required input.\n\nOutputs\n    returnResult - This will contain the response entity (unless 'destinationFile' is specified). In case of an error this output will contain the error message.\n    exception - In case of success response, this result is empty. In case of failure response, this result contains the java stack trace of the runtime exception.\n    statusCode - The HTTP status code.\nFormat\: 1xx (Informational - Request received, continuing process), 2xx (Success - The action was successfully received, understood, and accepted), 3xx (Redirection - Further action must be taken in order to complete the request), 4xx (Client Error - The request contains bad syntax or cannot be fulfilled), 5xx Server Error - The server failed to fulfil an apparently valid request)\nExamples\: 200, 404\n    finalLocation - The final location after redirects.\nFormat\: URL\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: According to HTTP standard for headers (RFC 2616).\n    protocolVersion - The HTTP protocol version.\nExamples\: HTTP/1.1\n    reasonPhrase - The reason phrase from the origin HTTP response. This depends on the status code and are according to RFC 1945 and RFC 2048\nExamples\: (HTTP 1.0)\: OK, Created, Accepted, No Content, Moved Permanently, Moved Temporarily, Not Modified, Bad Request, Unauthorized, Forbidden, Not Found, Internal Server Error, Not Implemented, Bad Gateway, Service Unavailable\tValues (HTTP 1.1)\: Continue, Temporary Redirect, Method Not Allowed, Conflict, Precondition Failed, Request Too Long, Request-URI Too Long, Unsupported Media Type, Multiple Choices, See Other, Use Proxy, Payment Required, Not Acceptable, Proxy Authentication Required, Request Timeout, Switching Protocols, Non Authoritative Information, Reset Content, Partial Content, Gateway Timeout, Http Version Not Supported, Gone, Length Required, Requested Range Not Satisfiable, Expectation Failed\n    returnCode - The returnCode of the operation\: 0 for success, -1 for failure.\n\nResponses\n    success - The operation completed without a runtime exception. So it will go to success for any http codes even those in the 400-599 range.\n    failure - A runtime exception occurred. This may be due to incorrectly formatted inputs (authType, contentType, headers, method, proxy, queryParams, requestCharacterSet, responseCharacterSet, truststore, url), or failed ntlm or Kerberos authentication.\n\nNotes\nCheck the "v2.0" folder description for more help.\n</pre>\n
 658ca3ce-235b-4822-a8af-c70c896e9b15.bb4acb81-0d3e-455b-bb6b-e8615eee500b.prompt=Enter Entity type
-658ca3ce-235b-4822-a8af-c70c896e9b15.bbc397bf-ca8d-4558-9810-9b24a1f1ba88.description=<pre>\nThis operation takes a reference to JSON (in the form of a string) and runs a specified JSON Path query on it. It returns the results as a JSON Object. \n\nInputs\:\n    json - The JSON in the form of a string.\n    jsonPathQuery - The JSON Path query to run. See details and examples in the Notes section below.\n\nResults\:\n    returnResult - This is the primary output. It contains the resulted JSON from the given path.\n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n\nNotes\:\n1.Query syntax\:\nJSONPath \t\tDescription\n------------                           -------------     \n$ \t\tThe root object/element\n@ \t\tThe current object/element\n. or [] \t\tChild operator\nn/a \t\tParent operator\n.. \t\tRecursive descent. JSONPath borrows this syntax from E4X.\n* \t\tWildcard. All objects/elements regardless of their names.\nn/a \t\tAttribute access. JSON structures do not have attributes.\n[] \t\tSubscript operator. XPath uses it to iterate over element collections and for predicates. In Javascript and JSON it is the native array operator.\n[,] \t\tUnion operator in XPath results in a combination of node sets. JSONPath allows alternate names or array indices as a set.\n[start\:end\:step] \tArray slice operator borrowed from ES4.\n?() \t\tApplies a filter (script) expression.\n() \t\tSript expression, using the underlying script engine.\n\n2.Examples\:\nThe examples below use the following JSON string value\:\n{\n    "store"\: {\n        "book"\: [\n            {\n                "category"\: "reference",\n                "author"\: "Nigel Rees",\n                "title"\: "Sayings of the Century",\n                "price"\: 8.95\n            },\n            {\n                "category"\: "fiction",\n                "author"\: "Evelyn Waugh",\n                "title"\: "Sword of Honour",\n                "price"\: 12.99\n            },\n            {\n                "category"\: "fiction",\n                "author"\: "Herman Melville",\n                "title"\: "Moby Dick",\n                "isbn"\: "0-553-21311-3",\n                "price"\: 8.99\n            },\n            {\n                "category"\: "fiction",\n                "author"\: "J. R. R. Tolkien",\n                "title"\: "The Lord of the Rings",\n                "isbn"\: "0-395-19395-8",\n                "price"\: 22.99\n            }\n        ],\n        "bicycle"\: {\n            "color"\: "red",\n            "price"\: null\n        }\n    },\n    "expensive"\: "10"\n}\n\nJSONPath \t\t\tResult\n------------                                                ---------\n$.store.book[*].author \t\tThe authors of all books in the store\n$...author \t\t\tAll authors\: ["Nigel Rees","Evelyn Waugh","Herman Melville","J. R. R. Tolkien"]\n$.store.* \t\t\tAll items in store, which are some books and a red bicycle.\n$.store..price \t\tThe price of everything in the store\n$..book[2] \t\t\tThe third book\n$..book[(@.length-1)] or $..book[-1\:] \tThe last book in order\n$..book[0,1] or $..book[\:2] \tThe first two books\n$..book[?(@.isbn)] \t\tFilter all books with isbn number\n$..book[?(@.price<10)] \t\tFilter all books wholse price is less than 10\n$..* \t\t\tAll Elements in XML document. All members of JSON structure. \n$.store.book[0]\t\tReturns the details of the first book\: reference,Nigel Rees,Sayings of the Century,8.95\n$.store.bicycle\t\t\tReturns the details of the bicycle including null in JSON format\: {"color"\:"red","price"\:null}\n\n</pre>
 658ca3ce-235b-4822-a8af-c70c896e9b15.c6e32d4d-c4e8-423e-8e75-a5755bfd3eb4.prompt=Enter the query filter
 658ca3ce-235b-4822-a8af-c70c896e9b15.description=<pre>\nFetch the details of multiple entities from Micro Focus Service Management Automation X, with the fields & the filter specified as inputs.\n\nInputs\:\n    sawUrl - The Micro Focus SMAX URL.\nExamples\: scheme\://{serverAddress}.\n    ssoToken - The SSO token for the session. Use the "Get SSO Token" utility to retrieve it.\n    tenantId - The Micro Focus SMAX tenant Id.\n    entityType - The entity type to be queried.\n    query - The query filter\nExamples\: IdentityCard > 100 or FirstName \= 'EmployeeFirst11' \t\n    fields - The properties or sub-structure of a data resource should be returned by a service.\n    size - The maximum number of resources requested to be returned\t\n    skip - How many resources should be skipped by specifying the starting index of the returned result. When not specified, its default value is zero, such that the first resource returned from the data-store is the first resource returned by the queried service\n    proxyHost - The proxy server used to access the web site.\n    proxyPort - The proxy server port. Default value\: 8080. Valid values\: -1, and positive integer values. When the value is '-1' the default port of the scheme, specified in the 'proxyHost', will be used.\n    proxyUsername - The user name used when connecting to the proxy. The 'authType' input will be used to choose authentication type. The 'Basic' and 'Digest' proxy authentication type are supported.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    trustAllRoots - Specifies whether to enable weak security over SSL/TSL. A certificate is trusted even if no trusted certification authority issued it.\nDefault value\: false\nValid values\: true, false\n    x509HostnameVerifier - Specifies the way the server hostname must match a domain name in the subject's Common Name (CN) or subjectAltName field of the X.509 certificate. The hostname verification system prevents communication with other hosts other than the ones you intended. This is done by checking that the hostname is in the subject alternative name extension of the certificate. This system is designed to ensure that, if an attacker(Man In The Middle) redirects traffic to his machine, the client will not accept the connection. If you set this input to "allow_all", this verification is ignored and you become vulnerable to security attacks. For the value "browser_compatible" the hostname verifier works the same way as Curl and Firefox. The hostname must match either the first CN, or any of the subject-alts. A wildcard can occur in the CN, and in any of the subject-alts. The only difference between "browser_compatible" and "strict" is that a wildcard (such as "*.foo.com") with "browser_compatible" matches all subdomains, including "a.b.foo.com". From the security perspective, to provide protection against possible Man-In-The-Middle attacks, we strongly recommend to use "strict" option.\nDefault value\: strict\nValid values\: strict, browser_compatible, allow_all\n    trustKeystore - The pathname of the Java TrustStore file. This contains certificates from other parties that you expect to communicate with, or from Certificate Authorities that you trust to identify other parties.  If the protocol (specified by the 'url') is not 'https' or if trustAllRoots is 'true' this input is ignored.\nDefault value\: <OO_Home>/java/lib/security/cacerts\nFormat\: Java KeyStore (JKS)\n    trustPassword - The password associated with the TrustStore file. If trustAllRoots is false and trustKeystore is empty, trustPassword default will be supplied.\nDefault value\: changeit\n    connectTimeout - The time to wait for a connection to be established, in seconds. A timeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\nExamples\: 10, 20\n    socketTimeout - The timeout for waiting for data (a maximum period inactivity between two consecutive data packets), in seconds. A socketTimeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\n    useCookies - Specifies whether to enable cookie tracking or not. Cookies are stored between consecutive calls in a serializable session object therefore they will be available on a branch level (same subflow, same lane). If you specify a non-boolean value, the default value is used.\nDefault value\: true\nValid values\: true, false\n    keepAlive - Specifies whether to create a shared connection that will be used in subsequent calls. If keepAlive is false, the already open connection will be used and after execution it will close it. The operation will use a connection pool stored in a GlobalSessionObject that will be available throughout the execution (the flow and subflows, between parallel split lanes).\nDefault value\: true\nValid values\: true, false\n    connectionsMaxPerRoute - The maximum limit of connections on a per route basis. The default will create no more than 2 concurrent connections per given route.\nDefault value\: 2\n    connectionsMaxTotal - The maximum limit of connections in total. The default will create no more than 2 concurrent connections in total.\nDefault value\: 20\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: According to HTTP standard for headers (RFC 2616).\nExamples\: Accept\:text/plain\n   contentType - The content type that should be set in the request header, representing the MIME-type of the data in the message body.\nDefault value\: "" (empty)\nExamples\: "text/html", "application/x-www-form-urlencoded"\n    requestCharacterSet - The character encoding to be used for the HTTP request body. If contentType is empty, the requestCharacterSet will use the default value. If contentType will include charset (ex.\: "application/json; charset\=UTF-8"), the requestCharacterSet value will overwrite the charset value from contentType input. This should not be provided for method\=GET, HEAD,TRACE\nDefault value\: ISO-8859-1\n    responseCharacterSet - The character encoding to be used for the HTTP response. If responseCharacterSet is empty, the charset from the 'Content-Type' HTTP response header will be used. If responseCharacterSet is empty and the charset from the HTTP response Content-Type header is empty, the default value will be used. You should not use this for method\=HEAD or OPTIONS.\nDefault value\: ISO-8859-1\n\nOutputs\: \n    entityJSON - The retrieved entities as JSON\n    errorJSON - The retrieved entity error as JSON.\n    returnResult - The entire HTTP result as JSON. This is the only output that gets populated if HTTP status is not 200.\n    opStatus - The meta completion_status retrieved from Service Management Automation X.\n    resultCount - the number of the results.\n\nResponses\n    success - the operation completed successfully.\n    failure - an error occurred.\n</pre>
 658ca3ce-235b-4822-a8af-c70c896e9b15.ed43cabe-6ea2-4674-a83d-f5b9e1ef73a0.prompt=SSO Token
@@ -514,7 +513,7 @@ if (statusCode != 200){
           <isPersisted>true</isPersisted>
           <inputSymbol>url</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>${sawUrl}/rest/${tenantId}/ems/${entityType}/aggregations?filter=${query}&amp;layout=${fields}</value>
+          <value>${sawUrl}/rest/${tenantId}/ems/${entityType}?filter=${query}&amp;layout=${fields}</value>
           <record>false</record>
         </staticBinding>
         <staticBinding id="7d694e21-b643-4f5e-863a-734eb1ebbeff">
@@ -834,7 +833,7 @@ if (statusCode != 200){
             <y>-17.591776495881078</y>
           </labelPosition>
         </transition>
-        <transition id="1e2284bc-f94d-4f5c-bbb3-12372444b548">
+        <transition id="f7c97b2d-a53b-4ce7-82db-ba9218e012cc">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -843,7 +842,7 @@ if (statusCode != 200){
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>bbc397bf-ca8d-4558-9810-9b24a1f1ba88</refId>
+            <refId>a9a1f7d7-361c-41af-95b5-707ba651602b</refId>
           </destination>
           <source>
             <refId>b3480edb-0f53-4cd8-a205-b57d65b31be6</refId>
@@ -854,8 +853,8 @@ if (statusCode != 200){
               <y>136.0</y>
             </point>
             <point>
-              <x>287.0</x>
-              <y>135.0</y>
+              <x>260.0</x>
+              <y>124.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -965,6 +964,12 @@ if (statusCode != 200){
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
+      <iconSpec id="56bdf45f-36b4-4e95-a5f4-99f11cf36bbb">
+        <baseIcon>return_failure.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>true</readOnly>
+        <layers/>
+      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>
@@ -1009,7 +1014,7 @@ if (statusCode != 200){
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="02b0c493-28ed-4e23-b27b-8e6e8fe69544">
+      <iconSpec id="9d437879-4891-4b83-9456-1c3896e48a22">
         <baseIcon>return_success.png</baseIcon>
         <basePath>System</basePath>
         <readOnly>true</readOnly>
@@ -1050,18 +1055,18 @@ if (statusCode != 200){
       <returnStepType>RESOLVED</returnStepType>
       <assignments/>
     </returnStep>
-    <step id="bbc397bf-ca8d-4558-9810-9b24a1f1ba88">
-      <annotation>658ca3ce-235b-4822-a8af-c70c896e9b15.bbc397bf-ca8d-4558-9810-9b24a1f1ba88.description</annotation>
-      <name>JSON Path</name>
+    <step id="34a4396c-baf1-4229-ab56-c5d64d175359">
+      <annotation></annotation>
+      <name>Get Array of Entities</name>
       <bounds>
-        <x>237.0</x>
-        <y>101.0</y>
+        <x>396.0</x>
+        <y>94.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="17645c13-3ba5-424f-a80b-9200ac08ec5e">
-        <baseIcon>document_xml.png</baseIcon>
-        <basePath>/Operating System/</basePath>
+      <iconSpec id="acc92b67-e051-423a-afb0-315d4c566bd9">
+        <baseIcon>text_code_javascript.png</baseIcon>
+        <basePath>/Others/</basePath>
         <readOnly>false</readOnly>
         <layers/>
       </iconSpec>
@@ -1078,7 +1083,7 @@ if (statusCode != 200){
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="b3861aa8-65ff-4e57-9385-ebc9152c0416">
+        <staticBinding id="4811e75c-b15f-4486-9c84-64ac1349f22d">
           <annotation></annotation>
           <fromContextKey>resultJSON</fromContextKey>
           <assignFromContext>true</assignFromContext>
@@ -1087,29 +1092,30 @@ if (statusCode != 200){
           <isList>false</isList>
           <required>true</required>
           <isPersisted>true</isPersisted>
-          <inputSymbol>json</inputSymbol>
+          <inputSymbol>object</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <userInputBinding id="16361d35-c21d-4b50-8f83-c9cd6198bfcf">
+          <annotation></annotation>
+          <fromContextKey>subkey</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>key</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
           <prompt></prompt>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="b0a0a636-9225-4c42-9216-455a0fa68280">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>jsonPathQuery</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>$.Results..Id[?($.Results.Properties.ChatStatus=&quot;ChatStatusNone&quot;)]</value>
-          <record>false</record>
-        </staticBinding>
       </bindings>
       <transitions>
-        <transition id="0b4f3cba-19b6-42c1-b931-cede6d540abe">
+        <transition id="6b06552e-78b3-438f-9b6c-73ea95a3585b">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -1121,12 +1127,12 @@ if (statusCode != 200){
             <refId>1d423a50-49b0-4b64-b823-e24ad729c98a</refId>
           </destination>
           <source>
-            <refId>bbc397bf-ca8d-4558-9810-9b24a1f1ba88</refId>
+            <refId>34a4396c-baf1-4229-ab56-c5d64d175359</refId>
           </source>
           <positions>
             <point>
-              <x>287.0</x>
-              <y>135.0</y>
+              <x>446.0</x>
+              <y>128.0</y>
             </point>
             <point>
               <x>622.0</x>
@@ -1138,7 +1144,7 @@ if (statusCode != 200){
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="7a45428a-1db6-42ce-9fe6-c4b45a16147c">
+        <transition id="40d90398-9f9b-4dee-a672-b58bbd345d7a">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -1150,12 +1156,12 @@ if (statusCode != 200){
             <refId>10d2897b-ab9a-4844-9814-4abda8509491</refId>
           </destination>
           <source>
-            <refId>bbc397bf-ca8d-4558-9810-9b24a1f1ba88</refId>
+            <refId>34a4396c-baf1-4229-ab56-c5d64d175359</refId>
           </source>
           <positions>
             <point>
-              <x>287.0</x>
-              <y>135.0</y>
+              <x>446.0</x>
+              <y>128.0</y>
             </point>
             <point>
               <x>276.0</x>
@@ -1170,9 +1176,178 @@ if (statusCode != 200){
       </transitions>
       <properties/>
       <opRef>
-        <refId>dc278be5-3c54-4640-bc57-971e9a1b15c5</refId>
+        <refId>61fc6fd2-7d5c-4d5c-aaa9-71c8250310f2</refId>
       </opRef>
-      <assignments/>
+      <assignments>
+        <flowVariableAssignment id="411c5394-cb56-4899-bde4-b26de298067f">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>total</contextKey>
+          <expression id="d7446e6e-7093-4870-b0fe-bb13c4c74ffe">
+            <annotation></annotation>
+            <name>Result Field: returnResult</name>
+            <fieldName>returnResult</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="68ba1c0d-72fe-494e-bee5-1ea23618104f">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>entityJSON</contextKey>
+          <expression id="6076f98e-9e49-45b5-8790-c2dc14659ef2">
+            <annotation></annotation>
+            <name>Result Field: Result</name>
+            <fieldName>Result</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="a9a1f7d7-361c-41af-95b5-707ba651602b">
+      <annotation></annotation>
+      <name>Get Array of Entities</name>
+      <bounds>
+        <x>242.0</x>
+        <y>63.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="3c155cf9-9037-476c-87e8-9c622356ed8d">
+        <baseIcon>text_code_javascript.png</baseIcon>
+        <basePath>/Others/</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="e32d0f24-c75e-4071-ad65-c2f4a97c62d2">
+          <annotation></annotation>
+          <fromContextKey>resultJSON</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>object</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <userInputBinding id="9cd9d0d0-4ef9-4e72-bb1b-5186b8d6164f">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>key</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
+      </bindings>
+      <transitions>
+        <transition id="faeab089-409d-449f-badf-ab0aa1f790c5">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>34a4396c-baf1-4229-ab56-c5d64d175359</refId>
+          </destination>
+          <source>
+            <refId>a9a1f7d7-361c-41af-95b5-707ba651602b</refId>
+          </source>
+          <positions>
+            <point>
+              <x>260.0</x>
+              <y>124.0</y>
+            </point>
+            <point>
+              <x>440.0</x>
+              <y>124.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="9180ea2f-3170-43fc-926c-56e293e7320d">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>10d2897b-ab9a-4844-9814-4abda8509491</refId>
+          </destination>
+          <source>
+            <refId>a9a1f7d7-361c-41af-95b5-707ba651602b</refId>
+          </source>
+          <positions>
+            <point>
+              <x>260.0</x>
+              <y>124.0</y>
+            </point>
+            <point>
+              <x>276.0</x>
+              <y>313.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>61fc6fd2-7d5c-4d5c-aaa9-71c8250310f2</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="c8553a85-bc6c-4e83-9d7a-04f0972e1e98">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>resultJSON</contextKey>
+          <expression id="e1235b4f-3bd7-416a-a91d-7295086c182d">
+            <annotation></annotation>
+            <name>Result Field: returnResult</name>
+            <fieldName>returnResult</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
       <throttleSize>0</throttleSize>
     </step>
   </steps>

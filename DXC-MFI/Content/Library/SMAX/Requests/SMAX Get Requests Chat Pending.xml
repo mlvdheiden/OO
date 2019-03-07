@@ -11,7 +11,7 @@
 993a3138-6710-4f5d-9ebe-9aacc77eee82.description=Actual static data\:\n\n"auth"\: "AUTH\=SAML",\n  "bvd-url"\: "https\://10.0.0.187\:7443/api/submit/9d810479f88f464095d59f1593d5f8d5/dims/",\n  "password"\: "5maX20/901",\n  "tenant"\: "TENANTID\=751395744",\n  "tenantid"\: "900146436",\n  "url"\: "https\://us2-smax.saas.microfocus.com",\n  "user"\: "IU_MarkusV"\n}
 ]]></descriptionCdata>
   <annotation>993a3138-6710-4f5d-9ebe-9aacc77eee82.description</annotation>
-  <name>SMAX Get Requests Chat Totals</name>
+  <name>SMAX Get Requests Chat Pending</name>
   <categories/>
   <inputs>
     <staticBinding id="cdce75c4-3d22-4bd7-abee-b54e8712d3ae">
@@ -223,7 +223,7 @@
         <userInputBinding id="11b77d74-20ae-4fa5-81e6-772e1dfe86ca">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
+          <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
           <required>true</required>
@@ -238,7 +238,7 @@
         <staticBinding id="94c0a555-27de-4d48-b9dc-3f8944f28ef1">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
+          <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
           <required>false</required>
@@ -251,7 +251,7 @@
         <userInputBinding id="cf39b9a2-4bd5-489b-ac52-6133d178d56f">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
+          <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
           <required>true</required>
@@ -266,7 +266,7 @@
         <userInputBinding id="9df74295-8085-4286-abc0-3aa316a05144">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
+          <assignToContext>true</assignToContext>
           <inputType>ENCRYPTED</inputType>
           <isList>false</isList>
           <required>true</required>
@@ -597,6 +597,12 @@
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
+      <iconSpec id="79be1918-8c4b-489d-badb-ea9b1742eaa1">
+        <baseIcon>return_success.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>true</readOnly>
+        <layers/>
+      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>
@@ -641,6 +647,12 @@
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
+      <iconSpec id="ae6224dc-78bd-4a53-9da9-2d14ed54671d">
+        <baseIcon>return_failure.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>true</readOnly>
+        <layers/>
+      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>
@@ -726,7 +738,7 @@
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="b99ffeaf-7a6c-4936-8d55-1a6bf4e45afa">
+        <staticBinding id="600fd506-21f5-4bc0-96a3-91f8858ecb7e">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -736,11 +748,9 @@
           <isPersisted>true</isPersisted>
           <inputSymbol>key</inputSymbol>
           <listDelimiter>,</listDelimiter>
+          <value></value>
           <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
+        </staticBinding>
         <staticBinding id="425e5f4d-4f1e-4f31-9049-a94ac4f349a0">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
@@ -798,7 +808,7 @@
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="e2631404-c6de-473f-be97-97bc94a2d6b3">
+        <staticBinding id="17af7c66-9635-4c42-93ff-17649d198ade">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -808,11 +818,9 @@
           <isPersisted>true</isPersisted>
           <inputSymbol>query</inputSymbol>
           <listDelimiter>,</listDelimiter>
+          <value></value>
           <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
+        </staticBinding>
         <userInputBinding id="1f6d237e-4463-44b2-a598-944bdc466f5c">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
@@ -1144,7 +1152,22 @@
       <opRef>
         <refId>658ca3ce-235b-4822-a8af-c70c896e9b15</refId>
       </opRef>
-      <assignments/>
+      <assignments>
+        <flowVariableAssignment id="729f4bec-0943-48e1-b032-78d3bd1eed49">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>pending</contextKey>
+          <expression id="71672730-9c0c-4e9c-9ac1-3ed662ce7f60">
+            <annotation></annotation>
+            <name>Result Field: Result</name>
+            <fieldName>Result</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
       <throttleSize>0</throttleSize>
     </step>
   </steps>

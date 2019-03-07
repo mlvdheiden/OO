@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<flow id="89d7b098-e00d-4a99-bf6e-4daa3aaa961c">
-  <descriptionCdata><![CDATA[89d7b098-e00d-4a99-bf6e-4daa3aaa961c.096e4967-5f82-4ae5-9154-261ef87c3f9c.description=<pre>\nFetch the details of multiple entities from Micro Focus Service Management Automation X, with the fields & the filter specified as inputs.\n\nInputs\:\n    sawUrl - The Micro Focus SMAX URL.\nExamples\: scheme\://{serverAddress}.\n    ssoToken - The SSO token for the session. Use the "Get SSO Token" utility to retrieve it.\n    tenantId - The Micro Focus SMAX tenant Id.\n    entityType - The entity type to be queried.\n    query - The query filter\nExamples\: IdentityCard > 100 or FirstName \= 'EmployeeFirst11' \t\n    fields - The properties or sub-structure of a data resource should be returned by a service.\n    size - The maximum number of resources requested to be returned\t\n    skip - How many resources should be skipped by specifying the starting index of the returned result. When not specified, its default value is zero, such that the first resource returned from the data-store is the first resource returned by the queried service\n    proxyHost - The proxy server used to access the web site.\n    proxyPort - The proxy server port. Default value\: 8080. Valid values\: -1, and positive integer values. When the value is '-1' the default port of the scheme, specified in the 'proxyHost', will be used.\n    proxyUsername - The user name used when connecting to the proxy. The 'authType' input will be used to choose authentication type. The 'Basic' and 'Digest' proxy authentication type are supported.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    trustAllRoots - Specifies whether to enable weak security over SSL/TSL. A certificate is trusted even if no trusted certification authority issued it.\nDefault value\: false\nValid values\: true, false\n    x509HostnameVerifier - Specifies the way the server hostname must match a domain name in the subject's Common Name (CN) or subjectAltName field of the X.509 certificate. The hostname verification system prevents communication with other hosts other than the ones you intended. This is done by checking that the hostname is in the subject alternative name extension of the certificate. This system is designed to ensure that, if an attacker(Man In The Middle) redirects traffic to his machine, the client will not accept the connection. If you set this input to "allow_all", this verification is ignored and you become vulnerable to security attacks. For the value "browser_compatible" the hostname verifier works the same way as Curl and Firefox. The hostname must match either the first CN, or any of the subject-alts. A wildcard can occur in the CN, and in any of the subject-alts. The only difference between "browser_compatible" and "strict" is that a wildcard (such as "*.foo.com") with "browser_compatible" matches all subdomains, including "a.b.foo.com". From the security perspective, to provide protection against possible Man-In-The-Middle attacks, we strongly recommend to use "strict" option.\nDefault value\: strict\nValid values\: strict, browser_compatible, allow_all\n    trustKeystore - The pathname of the Java TrustStore file. This contains certificates from other parties that you expect to communicate with, or from Certificate Authorities that you trust to identify other parties.  If the protocol (specified by the 'url') is not 'https' or if trustAllRoots is 'true' this input is ignored.\nDefault value\: <OO_Home>/java/lib/security/cacerts\nFormat\: Java KeyStore (JKS)\n    trustPassword - The password associated with the TrustStore file. If trustAllRoots is false and trustKeystore is empty, trustPassword default will be supplied.\nDefault value\: changeit\n    connectTimeout - The time to wait for a connection to be established, in seconds. A timeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\nExamples\: 10, 20\n    socketTimeout - The timeout for waiting for data (a maximum period inactivity between two consecutive data packets), in seconds. A socketTimeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\n    useCookies - Specifies whether to enable cookie tracking or not. Cookies are stored between consecutive calls in a serializable session object therefore they will be available on a branch level (same subflow, same lane). If you specify a non-boolean value, the default value is used.\nDefault value\: true\nValid values\: true, false\n    keepAlive - Specifies whether to create a shared connection that will be used in subsequent calls. If keepAlive is false, the already open connection will be used and after execution it will close it. The operation will use a connection pool stored in a GlobalSessionObject that will be available throughout the execution (the flow and subflows, between parallel split lanes).\nDefault value\: true\nValid values\: true, false\n    connectionsMaxPerRoute - The maximum limit of connections on a per route basis. The default will create no more than 2 concurrent connections per given route.\nDefault value\: 2\n    connectionsMaxTotal - The maximum limit of connections in total. The default will create no more than 2 concurrent connections in total.\nDefault value\: 20\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: According to HTTP standard for headers (RFC 2616).\nExamples\: Accept\:text/plain\n   contentType - The content type that should be set in the request header, representing the MIME-type of the data in the message body.\nDefault value\: "" (empty)\nExamples\: "text/html", "application/x-www-form-urlencoded"\n    requestCharacterSet - The character encoding to be used for the HTTP request body. If contentType is empty, the requestCharacterSet will use the default value. If contentType will include charset (ex.\: "application/json; charset\=UTF-8"), the requestCharacterSet value will overwrite the charset value from contentType input. This should not be provided for method\=GET, HEAD,TRACE\nDefault value\: ISO-8859-1\n    responseCharacterSet - The character encoding to be used for the HTTP response. If responseCharacterSet is empty, the charset from the 'Content-Type' HTTP response header will be used. If responseCharacterSet is empty and the charset from the HTTP response Content-Type header is empty, the default value will be used. You should not use this for method\=HEAD or OPTIONS.\nDefault value\: ISO-8859-1\n\nOutputs\: \n    entityJSON - The retrieved entities as JSON\n    errorJSON - The retrieved entity error as JSON.\n    returnResult - The entire HTTP result as JSON. This is the only output that gets populated if HTTP status is not 200.\n    opStatus - The meta completion_status retrieved from Service Management Automation X.\n    resultCount - the number of the results.\n\nResponses\n    success - the operation completed successfully.\n    failure - an error occurred.\n</pre>
-89d7b098-e00d-4a99-bf6e-4daa3aaa961c.2ec81611-a823-4100-8797-f1041f06a27f.prompt=SSO Token
-89d7b098-e00d-4a99-bf6e-4daa3aaa961c.4d1a5e6b-c00a-4328-8496-0df4d2c1ea2c.prompt=Enter Service Anywhere URL
-89d7b098-e00d-4a99-bf6e-4daa3aaa961c.7c7d6421-1296-4a61-b868-57fa60de3867.prompt=Enter password
-89d7b098-e00d-4a99-bf6e-4daa3aaa961c.9c6928d8-8161-43b0-98f0-5f40815f1d52.description=<pre>\nGets an SSO Token from Micro Focus Service Management Automation X.\n\nInputs\:\n    sawUrl - The Service Management Automation X URL to make the request to. This is a required input.\nExamples\: scheme\://{serverAddress}.\n    username - The user name used for authentication.\n    password - The password used for authentication.\n    proxyHost - The proxy server used to access the web site.\n    proxyPort - The proxy server port. Default value\: 8080. Valid values\: -1, and positive integer values. When the value is '-1' the default port of the scheme, specified in the 'proxyHost', will be used.\n    proxyUsername - The user name used when connecting to the proxy. The 'authType' input will be used to choose authentication type. The 'Basic' and 'Digest' proxy authentication type are supported.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    trustAllRoots - Specifies whether to enable weak security over SSL/TSL. A certificate is trusted even if no trusted certification authority issued it.\nDefault value\: false\nValid values\: true, false\n    x509HostnameVerifier - Specifies the way the server hostname must match a domain name in the subject's Common Name (CN) or subjectAltName field of the X.509 certificate. The hostname verification system prevents communication with other hosts other than the ones you intended. This is done by checking that the hostname is in the subject alternative name extension of the certificate. This system is designed to ensure that, if an attacker(Man In The Middle) redirects traffic to his machine, the client will not accept the connection. If you set this input to "allow_all", this verification is ignored and you become vulnerable to security attacks. For the value "browser_compatible" the hostname verifier works the same way as Curl and Firefox. The hostname must match either the first CN, or any of the subject-alts. A wildcard can occur in the CN, and in any of the subject-alts. The only difference between "browser_compatible" and "strict" is that a wildcard (such as "*.foo.com") with "browser_compatible" matches all subdomains, including "a.b.foo.com". From the security perspective, to provide protection against possible Man-In-The-Middle attacks, we strongly recommend to use "strict" option.\nDefault value\: strict\nValid values\: strict, browser_compatible, allow_all\n    trustKeystore - The pathname of the Java TrustStore file. This contains certificates from other parties that you expect to communicate with, or from Certificate Authorities that you trust to identify other parties.  If the protocol (specified by the 'url') is not 'https' or if trustAllRoots is 'true' this input is ignored.\nDefault value\: <OO_Home>/java/lib/security/cacerts\nFormat\: Java KeyStore (JKS)\n    trustPassword - The password associated with the TrustStore file. If trustAllRoots is false and trustKeystore is empty, trustPassword default will be supplied.\nDefault value\: changeit\n    connectTimeout - The time to wait for a connection to be established, in seconds. A timeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\nExamples\: 10, 20\n    socketTimeout - The timeout for waiting for data (a maximum period inactivity between two consecutive data packets), in seconds. A socketTimeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\n    useCookies - Specifies whether to enable cookie tracking or not. Cookies are stored between consecutive calls in a serializable session object therefore they will be available on a branch level (same subflow, same lane). If you specify a non-boolean value, the default value is used.\nDefault value\: true\nValid values\: true, false\n    keepAlive - Specifies whether to create a shared connection that will be used in subsequent calls. If keepAlive is false, the already open connection will be used and after execution it will close it. The operation will use a connection pool stored in a GlobalSessionObject that will be available throughout the execution (the flow and subflows, between parallel split lanes).\nDefault value\: true\nValid values\: true, false\n    connectionsMaxPerRoute - The maximum limit of connections on a per route basis. The default will create no more than 2 concurrent connections per given route.\nDefault value\: 2\n    connectionsMaxTotal - The maximum limit of connections in total. The default will create no more than 2 concurrent connections in total.\nDefault value\: 20\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: According to HTTP standard for headers (RFC 2616).\nExamples\: Accept\:text/plain\n   contentType - The content type that should be set in the request header, representing the MIME-type of the data in the message body.\nDefault value\: "" (empty)\nExamples\: "text/html", "application/x-www-form-urlencoded"\n    requestCharacterSet - The character encoding to be used for the HTTP request body. If contentType is empty, the requestCharacterSet will use the default value. If contentType will include charset (ex.\: "application/json; charset\=UTF-8"), the requestCharacterSet value will overwrite the charset value from contentType input. This should not be provided for method\=GET, HEAD,TRACE\nDefault value\: ISO-8859-1\n    responseCharacterSet - The character encoding to be used for the HTTP response. If responseCharacterSet is empty, the charset from the 'Content-Type' HTTP response header will be used. If responseCharacterSet is empty and the charset from the HTTP response Content-Type header is empty, the default value will be used. You should not use this for method\=HEAD or OPTIONS.\nDefault value\: ISO-8859-1\n\nResults\n    ssoToken - This ssoToken retrieved by the request.\n    statusCode - The HTTP status code.\nFormat\: 1xx (Informational - Request received, continuing process), 2xx (Success - The action was successfully received, understood, and accepted), 3xx (Redirection - Further action must be taken in order to complete the request), 4xx (Client Error - The request contains bad syntax or cannot be fulfilled), 5xx Server Error - The server failed to fulfil an apparently valid request)\nExamples\: 200, 404\n    exception - In case of success response, this result is empty. In case of failure response, this result contains the java stack trace of the runtime exception.\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\n\nResponses\n    success - the operation completed successfully.\n    failure - an error occurred.\n\nNotes\:\n1. Currently, Service Management Automation X does not support 2-way SSL certificates authentication.\n</pre>
-89d7b098-e00d-4a99-bf6e-4daa3aaa961c.a84393f4-0bbd-4dfe-b77a-491e7c5af3f0.prompt=Enter username
-89d7b098-e00d-4a99-bf6e-4daa3aaa961c.description=Actual static data\:\n\n"auth"\: "AUTH\=SAML",\n  "bvd-url"\: "https\://10.0.0.187\:7443/api/submit/9d810479f88f464095d59f1593d5f8d5/dims/",\n  "password"\: "5maX20/901",\n  "tenant"\: "TENANTID\=751395744",\n  "tenantid"\: "900146436",\n  "url"\: "https\://us2-smax.saas.microfocus.com",\n  "user"\: "IU_MarkusV"\n}
-89d7b098-e00d-4a99-bf6e-4daa3aaa961c.fc58ad4e-ff82-43e1-9441-311fb5ce8543.prompt=Enter TENANT id
+<flow id="bd410b75-7ed1-41d6-b384-36fb70317fa3">
+  <descriptionCdata><![CDATA[bd410b75-7ed1-41d6-b384-36fb70317fa3.1dcec68e-75d3-40fb-a888-69e01a1ba8ba.prompt=Enter Service Anywhere URL
+bd410b75-7ed1-41d6-b384-36fb70317fa3.236bc356-aac5-4657-bf33-d2ce79553a1c.description=<pre>\nFetch the details of multiple entities from Micro Focus Service Management Automation X, with the fields & the filter specified as inputs.\n\nInputs\:\n    sawUrl - The Micro Focus SMAX URL.\nExamples\: scheme\://{serverAddress}.\n    ssoToken - The SSO token for the session. Use the "Get SSO Token" utility to retrieve it.\n    tenantId - The Micro Focus SMAX tenant Id.\n    entityType - The entity type to be queried.\n    query - The query filter\nExamples\: IdentityCard > 100 or FirstName \= 'EmployeeFirst11' \t\n    fields - The properties or sub-structure of a data resource should be returned by a service.\n    size - The maximum number of resources requested to be returned\t\n    skip - How many resources should be skipped by specifying the starting index of the returned result. When not specified, its default value is zero, such that the first resource returned from the data-store is the first resource returned by the queried service\n    proxyHost - The proxy server used to access the web site.\n    proxyPort - The proxy server port. Default value\: 8080. Valid values\: -1, and positive integer values. When the value is '-1' the default port of the scheme, specified in the 'proxyHost', will be used.\n    proxyUsername - The user name used when connecting to the proxy. The 'authType' input will be used to choose authentication type. The 'Basic' and 'Digest' proxy authentication type are supported.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    trustAllRoots - Specifies whether to enable weak security over SSL/TSL. A certificate is trusted even if no trusted certification authority issued it.\nDefault value\: false\nValid values\: true, false\n    x509HostnameVerifier - Specifies the way the server hostname must match a domain name in the subject's Common Name (CN) or subjectAltName field of the X.509 certificate. The hostname verification system prevents communication with other hosts other than the ones you intended. This is done by checking that the hostname is in the subject alternative name extension of the certificate. This system is designed to ensure that, if an attacker(Man In The Middle) redirects traffic to his machine, the client will not accept the connection. If you set this input to "allow_all", this verification is ignored and you become vulnerable to security attacks. For the value "browser_compatible" the hostname verifier works the same way as Curl and Firefox. The hostname must match either the first CN, or any of the subject-alts. A wildcard can occur in the CN, and in any of the subject-alts. The only difference between "browser_compatible" and "strict" is that a wildcard (such as "*.foo.com") with "browser_compatible" matches all subdomains, including "a.b.foo.com". From the security perspective, to provide protection against possible Man-In-The-Middle attacks, we strongly recommend to use "strict" option.\nDefault value\: strict\nValid values\: strict, browser_compatible, allow_all\n    trustKeystore - The pathname of the Java TrustStore file. This contains certificates from other parties that you expect to communicate with, or from Certificate Authorities that you trust to identify other parties.  If the protocol (specified by the 'url') is not 'https' or if trustAllRoots is 'true' this input is ignored.\nDefault value\: <OO_Home>/java/lib/security/cacerts\nFormat\: Java KeyStore (JKS)\n    trustPassword - The password associated with the TrustStore file. If trustAllRoots is false and trustKeystore is empty, trustPassword default will be supplied.\nDefault value\: changeit\n    connectTimeout - The time to wait for a connection to be established, in seconds. A timeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\nExamples\: 10, 20\n    socketTimeout - The timeout for waiting for data (a maximum period inactivity between two consecutive data packets), in seconds. A socketTimeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\n    useCookies - Specifies whether to enable cookie tracking or not. Cookies are stored between consecutive calls in a serializable session object therefore they will be available on a branch level (same subflow, same lane). If you specify a non-boolean value, the default value is used.\nDefault value\: true\nValid values\: true, false\n    keepAlive - Specifies whether to create a shared connection that will be used in subsequent calls. If keepAlive is false, the already open connection will be used and after execution it will close it. The operation will use a connection pool stored in a GlobalSessionObject that will be available throughout the execution (the flow and subflows, between parallel split lanes).\nDefault value\: true\nValid values\: true, false\n    connectionsMaxPerRoute - The maximum limit of connections on a per route basis. The default will create no more than 2 concurrent connections per given route.\nDefault value\: 2\n    connectionsMaxTotal - The maximum limit of connections in total. The default will create no more than 2 concurrent connections in total.\nDefault value\: 20\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: According to HTTP standard for headers (RFC 2616).\nExamples\: Accept\:text/plain\n   contentType - The content type that should be set in the request header, representing the MIME-type of the data in the message body.\nDefault value\: "" (empty)\nExamples\: "text/html", "application/x-www-form-urlencoded"\n    requestCharacterSet - The character encoding to be used for the HTTP request body. If contentType is empty, the requestCharacterSet will use the default value. If contentType will include charset (ex.\: "application/json; charset\=UTF-8"), the requestCharacterSet value will overwrite the charset value from contentType input. This should not be provided for method\=GET, HEAD,TRACE\nDefault value\: ISO-8859-1\n    responseCharacterSet - The character encoding to be used for the HTTP response. If responseCharacterSet is empty, the charset from the 'Content-Type' HTTP response header will be used. If responseCharacterSet is empty and the charset from the HTTP response Content-Type header is empty, the default value will be used. You should not use this for method\=HEAD or OPTIONS.\nDefault value\: ISO-8859-1\n\nOutputs\: \n    entityJSON - The retrieved entities as JSON\n    errorJSON - The retrieved entity error as JSON.\n    returnResult - The entire HTTP result as JSON. This is the only output that gets populated if HTTP status is not 200.\n    opStatus - The meta completion_status retrieved from Service Management Automation X.\n    resultCount - the number of the results.\n\nResponses\n    success - the operation completed successfully.\n    failure - an error occurred.\n</pre>
+bd410b75-7ed1-41d6-b384-36fb70317fa3.248d4cd3-d067-4916-b4db-961473d9a9fa.description=<pre>\nGets an SSO Token from Micro Focus Service Management Automation X.\n\nInputs\:\n    sawUrl - The Service Management Automation X URL to make the request to. This is a required input.\nExamples\: scheme\://{serverAddress}.\n    username - The user name used for authentication.\n    password - The password used for authentication.\n    proxyHost - The proxy server used to access the web site.\n    proxyPort - The proxy server port. Default value\: 8080. Valid values\: -1, and positive integer values. When the value is '-1' the default port of the scheme, specified in the 'proxyHost', will be used.\n    proxyUsername - The user name used when connecting to the proxy. The 'authType' input will be used to choose authentication type. The 'Basic' and 'Digest' proxy authentication type are supported.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    trustAllRoots - Specifies whether to enable weak security over SSL/TSL. A certificate is trusted even if no trusted certification authority issued it.\nDefault value\: false\nValid values\: true, false\n    x509HostnameVerifier - Specifies the way the server hostname must match a domain name in the subject's Common Name (CN) or subjectAltName field of the X.509 certificate. The hostname verification system prevents communication with other hosts other than the ones you intended. This is done by checking that the hostname is in the subject alternative name extension of the certificate. This system is designed to ensure that, if an attacker(Man In The Middle) redirects traffic to his machine, the client will not accept the connection. If you set this input to "allow_all", this verification is ignored and you become vulnerable to security attacks. For the value "browser_compatible" the hostname verifier works the same way as Curl and Firefox. The hostname must match either the first CN, or any of the subject-alts. A wildcard can occur in the CN, and in any of the subject-alts. The only difference between "browser_compatible" and "strict" is that a wildcard (such as "*.foo.com") with "browser_compatible" matches all subdomains, including "a.b.foo.com". From the security perspective, to provide protection against possible Man-In-The-Middle attacks, we strongly recommend to use "strict" option.\nDefault value\: strict\nValid values\: strict, browser_compatible, allow_all\n    trustKeystore - The pathname of the Java TrustStore file. This contains certificates from other parties that you expect to communicate with, or from Certificate Authorities that you trust to identify other parties.  If the protocol (specified by the 'url') is not 'https' or if trustAllRoots is 'true' this input is ignored.\nDefault value\: <OO_Home>/java/lib/security/cacerts\nFormat\: Java KeyStore (JKS)\n    trustPassword - The password associated with the TrustStore file. If trustAllRoots is false and trustKeystore is empty, trustPassword default will be supplied.\nDefault value\: changeit\n    connectTimeout - The time to wait for a connection to be established, in seconds. A timeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\nExamples\: 10, 20\n    socketTimeout - The timeout for waiting for data (a maximum period inactivity between two consecutive data packets), in seconds. A socketTimeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\n    useCookies - Specifies whether to enable cookie tracking or not. Cookies are stored between consecutive calls in a serializable session object therefore they will be available on a branch level (same subflow, same lane). If you specify a non-boolean value, the default value is used.\nDefault value\: true\nValid values\: true, false\n    keepAlive - Specifies whether to create a shared connection that will be used in subsequent calls. If keepAlive is false, the already open connection will be used and after execution it will close it. The operation will use a connection pool stored in a GlobalSessionObject that will be available throughout the execution (the flow and subflows, between parallel split lanes).\nDefault value\: true\nValid values\: true, false\n    connectionsMaxPerRoute - The maximum limit of connections on a per route basis. The default will create no more than 2 concurrent connections per given route.\nDefault value\: 2\n    connectionsMaxTotal - The maximum limit of connections in total. The default will create no more than 2 concurrent connections in total.\nDefault value\: 20\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: According to HTTP standard for headers (RFC 2616).\nExamples\: Accept\:text/plain\n   contentType - The content type that should be set in the request header, representing the MIME-type of the data in the message body.\nDefault value\: "" (empty)\nExamples\: "text/html", "application/x-www-form-urlencoded"\n    requestCharacterSet - The character encoding to be used for the HTTP request body. If contentType is empty, the requestCharacterSet will use the default value. If contentType will include charset (ex.\: "application/json; charset\=UTF-8"), the requestCharacterSet value will overwrite the charset value from contentType input. This should not be provided for method\=GET, HEAD,TRACE\nDefault value\: ISO-8859-1\n    responseCharacterSet - The character encoding to be used for the HTTP response. If responseCharacterSet is empty, the charset from the 'Content-Type' HTTP response header will be used. If responseCharacterSet is empty and the charset from the HTTP response Content-Type header is empty, the default value will be used. You should not use this for method\=HEAD or OPTIONS.\nDefault value\: ISO-8859-1\n\nResults\n    ssoToken - This ssoToken retrieved by the request.\n    statusCode - The HTTP status code.\nFormat\: 1xx (Informational - Request received, continuing process), 2xx (Success - The action was successfully received, understood, and accepted), 3xx (Redirection - Further action must be taken in order to complete the request), 4xx (Client Error - The request contains bad syntax or cannot be fulfilled), 5xx Server Error - The server failed to fulfil an apparently valid request)\nExamples\: 200, 404\n    exception - In case of success response, this result is empty. In case of failure response, this result contains the java stack trace of the runtime exception.\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\n\nResponses\n    success - the operation completed successfully.\n    failure - an error occurred.\n\nNotes\:\n1. Currently, Service Management Automation X does not support 2-way SSL certificates authentication.\n</pre>
+bd410b75-7ed1-41d6-b384-36fb70317fa3.3cc79ec1-27f7-469f-8699-4a68ec28a170.prompt=SSO Token
+bd410b75-7ed1-41d6-b384-36fb70317fa3.9ea5f684-e7b8-49ae-867b-611298118418.prompt=Enter Service Anywhere URL
+bd410b75-7ed1-41d6-b384-36fb70317fa3.9fa219d2-d89c-490c-a916-9a8b1e0d7995.prompt=Enter TENANT id
+bd410b75-7ed1-41d6-b384-36fb70317fa3.b3b31c74-1b74-43f1-a928-fa546639b22a.prompt=Enter username
+bd410b75-7ed1-41d6-b384-36fb70317fa3.d82b0ad0-5510-4351-b1eb-3dd0af3e1a09.prompt=Enter password
+bd410b75-7ed1-41d6-b384-36fb70317fa3.description=Actual static data\:\n\n"auth"\: "AUTH\=SAML",\n  "bvd-url"\: "https\://10.0.0.187\:7443/api/submit/9d810479f88f464095d59f1593d5f8d5/dims/",\n  "password"\: "5maX20/901",\n  "tenant"\: "TENANTID\=751395744",\n  "tenantid"\: "900146436",\n  "url"\: "https\://us2-smax.saas.microfocus.com",\n  "user"\: "IU_MarkusV"\n}
 ]]></descriptionCdata>
-  <annotation>89d7b098-e00d-4a99-bf6e-4daa3aaa961c.description</annotation>
-  <name>SMAX Get Requests Total</name>
+  <annotation>bd410b75-7ed1-41d6-b384-36fb70317fa3.description</annotation>
+  <name>SMAX Get Requests Chat Aborted</name>
   <categories/>
   <inputs>
-    <staticBinding id="e8f56385-b33d-4a89-bb2e-4c4285736b43">
+    <userInputBinding id="5c83f652-7da2-4eae-a7ec-94420532f889">
       <annotation></annotation>
       <assignFromContext>true</assignFromContext>
       <assignToContext>true</assignToContext>
@@ -23,12 +24,14 @@
       <isPersisted>true</isPersisted>
       <inputSymbol>sawUrl</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>${sawURL}</value>
       <record>false</record>
-    </staticBinding>
-    <staticBinding id="2df0c715-60e1-450e-be12-c97151c40a27">
+      <prompt></prompt>
+      <isMultiSelect>false</isMultiSelect>
+      <sourceDelimiter>|</sourceDelimiter>
+    </userInputBinding>
+    <staticBinding id="4fa4de1f-7a84-4c6e-834a-6e25fa9cb16e">
       <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
+      <assignFromContext>true</assignFromContext>
       <assignToContext>true</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -36,12 +39,12 @@
       <isPersisted>true</isPersisted>
       <inputSymbol>key</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>meta</value>
+      <value>Results</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="ab4cec84-13d1-4d40-974b-314ab45e6543">
+    <staticBinding id="10c28de6-2f42-46c7-b75f-30610a85fa5d">
       <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
+      <assignFromContext>true</assignFromContext>
       <assignToContext>true</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -49,10 +52,10 @@
       <isPersisted>true</isPersisted>
       <inputSymbol>subkey</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>total_count</value>
+      <value>ChatStatus</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="b6d5a0ca-7ea0-4378-a48e-8496406ff2f6">
+    <staticBinding id="e5628fd1-3ff7-40c3-9bd4-5c7e99e32d82">
       <annotation></annotation>
       <assignFromContext>false</assignFromContext>
       <assignToContext>true</assignToContext>
@@ -62,10 +65,10 @@
       <isPersisted>true</isPersisted>
       <inputSymbol>fields</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>Id,ChatStatus</value>
+      <value>ChatStatus,Count(Id)</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="970ee7c8-7c2b-40ef-acaa-d43b657daadd">
+    <staticBinding id="98338398-33fe-473a-8448-66d802df38e3">
       <annotation></annotation>
       <assignFromContext>false</assignFromContext>
       <assignToContext>true</assignToContext>
@@ -75,13 +78,13 @@
       <isPersisted>true</isPersisted>
       <inputSymbol>query</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>Active=true</value>
+      <value>Active=true&amp;group=ChatStatus</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="aa3f3a8e-8b57-4500-97a3-8f0d5eb02243">
+    <staticBinding id="05b1a733-0f9d-44c5-af82-0bfc6f817963">
       <annotation></annotation>
       <assignFromContext>false</assignFromContext>
-      <assignToContext>true</assignToContext>
+      <assignToContext>false</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
       <required>false</required>
@@ -91,10 +94,10 @@
       <value>Request</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="19599c9c-ce81-44af-979e-9e1d37e48ef6">
+    <staticBinding id="6fe4b2ad-8f32-451f-8bce-61cc56e01e62">
       <annotation></annotation>
       <assignFromContext>false</assignFromContext>
-      <assignToContext>true</assignToContext>
+      <assignToContext>false</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
       <required>false</required>
@@ -102,53 +105,53 @@
       <inputSymbol>body</inputSymbol>
       <listDelimiter>,</listDelimiter>
       <value>{
-	&quot;Login&quot;:&quot;${sawUsername}&quot; ,
-	&quot;Password&quot;:&quot;${sawPassword}&quot;
+	&quot;Login&quot;:&quot;${username}&quot; ,
+	&quot;Password&quot;:&quot;${password}&quot;
 }</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="752af3a2-8e3f-4e77-bba0-638cc5b4e61d">
+    <staticBinding id="fb8f50a5-f23c-4892-80ce-acf3a817220f">
       <annotation></annotation>
       <assignFromContext>true</assignFromContext>
-      <assignToContext>true</assignToContext>
+      <assignToContext>false</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
       <required>false</required>
       <isPersisted>true</isPersisted>
       <inputSymbol>tenantId</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>${sawTenantId}</value>
+      <value>751395744</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="40c20028-c6a7-4280-9487-75b5a4232363">
+    <staticBinding id="f99aabdc-e2da-4433-bb50-01dd8b4544d3">
       <annotation></annotation>
       <assignFromContext>true</assignFromContext>
-      <assignToContext>true</assignToContext>
+      <assignToContext>false</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
       <required>false</required>
       <isPersisted>true</isPersisted>
       <inputSymbol>username</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>$sawUsername}</value>
+      <value>IU_MarkusV</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="4fa3ea8c-61f6-4177-8784-293ebf05a7e1">
+    <staticBinding id="88cafe09-9e0b-4d93-86b4-04c219a8ce52">
       <annotation></annotation>
       <assignFromContext>true</assignFromContext>
-      <assignToContext>true</assignToContext>
+      <assignToContext>false</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
       <required>false</required>
       <isPersisted>true</isPersisted>
       <inputSymbol>password</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>${sawPassword}</value>
+      <value>5maX20/901</value>
       <record>false</record>
     </staticBinding>
   </inputs>
   <possibleResponses>
-    <opResponse id="157b9276-5a37-4b3a-bea9-74c079ff8920">
+    <opResponse id="ecb5f6bb-31ee-4a07-a597-a4e0b348a700">
       <annotation></annotation>
       <name>success</name>
       <isDefault>true</isDefault>
@@ -156,7 +159,7 @@
       <type>RESOLVED</type>
       <matchRules/>
     </opResponse>
-    <opResponse id="9929fc56-8c84-447c-bc77-b871a8572edd">
+    <opResponse id="f16c5630-241c-47fb-b780-567c1b984f2d">
       <annotation></annotation>
       <name>failure</name>
       <isDefault>false</isDefault>
@@ -165,23 +168,15 @@
       <matchRules/>
     </opResponse>
   </possibleResponses>
-  <availableResultExpressions>
-    <expression id="97070432-1fa4-44f3-a2eb-a8c754da318c">
-      <annotation></annotation>
-      <name>total</name>
-      <fieldName>total</fieldName>
-      <sourceType>RAWRESULT</sourceType>
-      <filters/>
-    </expression>
-  </availableResultExpressions>
-  <resultExpression id="6f748fdc-65e6-486e-bc60-22639d4fe26e">
+  <availableResultExpressions/>
+  <resultExpression id="61cd60fb-5361-4ca4-9553-df56e16a793e">
     <annotation></annotation>
     <name>FailureMessage</name>
     <fieldName>FailureMessage</fieldName>
     <sourceType>RAWRESULT</sourceType>
     <filters/>
   </resultExpression>
-  <iconSpec id="ea38a22c-1406-4dbf-b3ac-eae3773418e6">
+  <iconSpec id="93ab7d0e-763f-4acd-85ab-8c25202927ed">
     <baseIcon>flow.png</baseIcon>
     <basePath>System</basePath>
     <readOnly>false</readOnly>
@@ -192,8 +187,8 @@
   <compatibleRuntimeContext>false</compatibleRuntimeContext>
   <historyCheckPointFlow>true</historyCheckPointFlow>
   <steps>
-    <step id="9c6928d8-8161-43b0-98f0-5f40815f1d52">
-      <annotation>89d7b098-e00d-4a99-bf6e-4daa3aaa961c.9c6928d8-8161-43b0-98f0-5f40815f1d52.description</annotation>
+    <step id="248d4cd3-d067-4916-b4db-961473d9a9fa">
+      <annotation>bd410b75-7ed1-41d6-b384-36fb70317fa3.248d4cd3-d067-4916-b4db-961473d9a9fa.description</annotation>
       <name>SMAX Get SSO Token for Tenant</name>
       <bounds>
         <x>94.0</x>
@@ -201,12 +196,12 @@
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="b577e3ad-2a5b-4477-a33b-a8b9dc64309e">
+      <iconSpec id="9aa9a487-c2c0-4e52-ac5b-26d1141c7d2b">
         <baseIcon>multi.png</baseIcon>
         <basePath>/Others/</basePath>
         <readOnly>false</readOnly>
         <layers>
-          <iconSpec id="0ce803a7-b063-4b55-a8c7-0ccec127be6f">
+          <iconSpec id="4731adaa-54f4-4774-b6d4-f67811da57f6">
             <baseIcon>information2.png</baseIcon>
             <basePath>/Annotations/</basePath>
             <readOnly>false</readOnly>
@@ -227,10 +222,10 @@
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="4d1a5e6b-c00a-4328-8496-0df4d2c1ea2c">
+        <userInputBinding id="9ea5f684-e7b8-49ae-867b-611298118418">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
+          <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
           <required>true</required>
@@ -238,14 +233,14 @@
           <inputSymbol>sawUrl</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-          <prompt>89d7b098-e00d-4a99-bf6e-4daa3aaa961c.4d1a5e6b-c00a-4328-8496-0df4d2c1ea2c.prompt</prompt>
+          <prompt>bd410b75-7ed1-41d6-b384-36fb70317fa3.9ea5f684-e7b8-49ae-867b-611298118418.prompt</prompt>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="6e45c17f-898c-4257-abbe-792b65239304">
+        <staticBinding id="f9157df0-2f69-4eb4-ab65-83395b44bc73">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
+          <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
           <required>false</required>
@@ -255,10 +250,10 @@
           <value></value>
           <record>false</record>
         </staticBinding>
-        <userInputBinding id="a84393f4-0bbd-4dfe-b77a-491e7c5af3f0">
+        <userInputBinding id="b3b31c74-1b74-43f1-a928-fa546639b22a">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
+          <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
           <required>true</required>
@@ -266,14 +261,14 @@
           <inputSymbol>username</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-          <prompt>89d7b098-e00d-4a99-bf6e-4daa3aaa961c.a84393f4-0bbd-4dfe-b77a-491e7c5af3f0.prompt</prompt>
+          <prompt>bd410b75-7ed1-41d6-b384-36fb70317fa3.b3b31c74-1b74-43f1-a928-fa546639b22a.prompt</prompt>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="7c7d6421-1296-4a61-b868-57fa60de3867">
+        <userInputBinding id="d82b0ad0-5510-4351-b1eb-3dd0af3e1a09">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
+          <assignToContext>true</assignToContext>
           <inputType>ENCRYPTED</inputType>
           <isList>false</isList>
           <required>true</required>
@@ -281,11 +276,11 @@
           <inputSymbol>password</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-          <prompt>89d7b098-e00d-4a99-bf6e-4daa3aaa961c.7c7d6421-1296-4a61-b868-57fa60de3867.prompt</prompt>
+          <prompt>bd410b75-7ed1-41d6-b384-36fb70317fa3.d82b0ad0-5510-4351-b1eb-3dd0af3e1a09.prompt</prompt>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="9a1f4657-03d8-422b-81de-d215751b7daa">
+        <staticBinding id="85fcf86d-de3f-41e1-9510-885fb6ab628a">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -297,7 +292,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="efe2c018-19d8-4b37-8e44-8b85338987eb">
+        <staticBinding id="6641b902-f55a-489b-9f55-0dced22d23d3">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -310,7 +305,7 @@
           <value>8080</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="48e2debb-f900-4309-b7fc-c1932118df74">
+        <staticBinding id="4ca461c5-6f4a-4744-9242-9e43af48fc0d">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -322,7 +317,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="2b4f4d5c-903f-4f60-833f-9bde5d97c65a">
+        <staticBinding id="eac1f5e5-8563-408e-af30-6ee3071815f9">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -334,7 +329,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="078568b5-4436-4b46-b7bc-9fb90255c4a3">
+        <staticBinding id="0fe1868c-6014-4a0a-b64a-2968911ef2df">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -347,7 +342,7 @@
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="25ab07e8-b5ff-4758-9590-ea1b1c14f3a6">
+        <staticBinding id="dcb17605-be2e-404d-ae67-51ba748f715c">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -360,7 +355,7 @@
           <value>strict</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="13a75d4f-1c87-4e0a-9982-3cb9f4f44cc0">
+        <staticBinding id="4f5b7baf-bc3e-49e9-a4e4-210807b8ea1d">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -372,7 +367,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="05356b64-666e-4443-b059-6e5a17d864d6">
+        <staticBinding id="c733d985-6d19-41c6-bd20-99ca71ec3d47">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -385,7 +380,7 @@
           <value>changeit</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="1527d876-ab72-489e-8a0a-c99d3d1dcdd6">
+        <staticBinding id="e46aeb68-14d9-4860-8c83-207df2142100">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -398,7 +393,7 @@
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="b4d9aca1-02c1-437f-9921-eb2768a9de56">
+        <staticBinding id="1109f0fd-2f39-4828-90f6-16ee43ab62f9">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -411,7 +406,7 @@
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="8385c85b-ca80-4a2a-bddb-28b1115e601f">
+        <staticBinding id="301e4c22-0474-44c9-ac11-4076aef10a64">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -424,7 +419,7 @@
           <value>true</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="ec85f560-e2b3-4ecd-8129-95f5e84cd505">
+        <staticBinding id="d46e4706-a57a-4a20-aff7-223f18ff95b8">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -437,7 +432,7 @@
           <value>true</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="ba4ae5bc-0b3c-4c5a-ad8e-1988b3899476">
+        <staticBinding id="872cd0a5-9422-4a11-b055-dc8668eddd60">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -450,7 +445,7 @@
           <value>2</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="1e6623bc-1018-4059-8f75-a80e649b3833">
+        <staticBinding id="66abf10c-512c-42d0-a75c-9b3b7a0944f0">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -463,7 +458,7 @@
           <value>20</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="dfdd1619-7a64-4b06-a326-6dcfac081650">
+        <staticBinding id="4b81f498-7e62-449c-860a-fa98fd388d09">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -475,7 +470,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="913c0f8d-2305-40ff-b49f-226dfbcdbb23">
+        <staticBinding id="25b45cc9-a14a-4219-ba7f-fec1a1a7d480">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -487,7 +482,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="cecc956e-4780-4c9b-b005-372a94c9a382">
+        <staticBinding id="943ff0cb-abeb-413e-8ad2-c56a762e2f1d">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -500,7 +495,7 @@
           <value>ISO-8859-1</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="e98b76fa-b935-4fd0-aecb-07d0cdb9f5d3">
+        <staticBinding id="c577da3a-d268-4da8-920b-cf4db87ca1de">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -514,7 +509,7 @@
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="13d14a9d-386e-45f5-a588-b2fa58611fbc">
+        <transition id="390e9299-9e62-40e1-82e6-38d2334dc2a7">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -523,10 +518,10 @@
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>e5e0830b-eca9-40bf-a5aa-f51624f0daf0</refId>
+            <refId>e5262b88-8c29-4122-b728-ac5cc37b6dd7</refId>
           </destination>
           <source>
-            <refId>9c6928d8-8161-43b0-98f0-5f40815f1d52</refId>
+            <refId>248d4cd3-d067-4916-b4db-961473d9a9fa</refId>
           </source>
           <positions>
             <point>
@@ -543,7 +538,7 @@
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="e6648f14-cbca-4384-82ac-de5bb4c78067">
+        <transition id="5407d7b1-6466-4d4f-a716-7003c4366859">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -552,10 +547,10 @@
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>096e4967-5f82-4ae5-9154-261ef87c3f9c</refId>
+            <refId>236bc356-aac5-4657-bf33-d2ce79553a1c</refId>
           </destination>
           <source>
-            <refId>9c6928d8-8161-43b0-98f0-5f40815f1d52</refId>
+            <refId>248d4cd3-d067-4916-b4db-961473d9a9fa</refId>
           </source>
           <positions>
             <point>
@@ -563,8 +558,8 @@
               <y>73.0</y>
             </point>
             <point>
-              <x>361.0</x>
-              <y>70.0</y>
+              <x>517.0</x>
+              <y>208.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -578,13 +573,13 @@
         <refId>13e3d29a-6db7-4219-a669-53a1313d8125</refId>
       </opRef>
       <assignments>
-        <flowVariableAssignment id="97959060-2efb-4b7b-947e-eb269430c200">
+        <flowVariableAssignment id="b392c971-1ff4-485c-ac90-1de80384f2c0">
           <annotation></annotation>
           <name>assignment</name>
           <action>OVERWRITE</action>
           <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
           <contextKey>ssoToken</contextKey>
-          <expression id="c9966101-2afc-4d3d-b40a-7bc987145844">
+          <expression id="2a20eb0a-cb9c-4462-a275-6f41249091ff">
             <annotation></annotation>
             <name>Result Field: ssoToken</name>
             <fieldName>ssoToken</fieldName>
@@ -595,7 +590,7 @@
       </assignments>
       <throttleSize>0</throttleSize>
     </step>
-    <returnStep id="4ec248f7-f1d4-42ef-8e69-0b05829a584a">
+    <returnStep id="f1883998-5cdf-4d67-add8-02cb43c59993">
       <annotation></annotation>
       <name>Resolved : success</name>
       <bounds>
@@ -604,6 +599,12 @@
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
+      <iconSpec id="95e7b871-57b2-4b01-b347-364b0c4a7e31">
+        <baseIcon>return_success.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>true</readOnly>
+        <layers/>
+      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>
@@ -618,7 +619,7 @@
       <userPrompt></userPrompt>
       <bindings/>
       <transitions>
-        <transition id="bbf5f9f7-d5d6-4f0d-b742-cd330edda972">
+        <transition id="2c12fecc-faf4-4fce-9ae9-169443c160d2">
           <annotation></annotation>
           <name>return</name>
           <command>NEXT</command>
@@ -627,10 +628,10 @@
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>4ec248f7-f1d4-42ef-8e69-0b05829a584a</refId>
+            <refId>f1883998-5cdf-4d67-add8-02cb43c59993</refId>
           </destination>
           <source>
-            <refId>4ec248f7-f1d4-42ef-8e69-0b05829a584a</refId>
+            <refId>f1883998-5cdf-4d67-add8-02cb43c59993</refId>
           </source>
           <positions/>
         </transition>
@@ -639,7 +640,7 @@
       <returnStepType>RESOLVED</returnStepType>
       <assignments/>
     </returnStep>
-    <returnStep id="e5e0830b-eca9-40bf-a5aa-f51624f0daf0">
+    <returnStep id="e5262b88-8c29-4122-b728-ac5cc37b6dd7">
       <annotation></annotation>
       <name>Error : failure</name>
       <bounds>
@@ -648,7 +649,7 @@
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="13b4b1fe-c446-4941-9ec3-dd4d2f7e2428">
+      <iconSpec id="dfa2a992-fa1e-4ccb-9412-07469612cc79">
         <baseIcon>return_failure.png</baseIcon>
         <basePath>System</basePath>
         <readOnly>true</readOnly>
@@ -668,7 +669,7 @@
       <userPrompt></userPrompt>
       <bindings/>
       <transitions>
-        <transition id="e2a40bd9-7c6f-4fa0-ad0d-7b60501e7c92">
+        <transition id="618d7f44-a250-4236-846e-f24e29982e94">
           <annotation></annotation>
           <name>return</name>
           <command>NEXT</command>
@@ -677,10 +678,10 @@
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>e5e0830b-eca9-40bf-a5aa-f51624f0daf0</refId>
+            <refId>e5262b88-8c29-4122-b728-ac5cc37b6dd7</refId>
           </destination>
           <source>
-            <refId>e5e0830b-eca9-40bf-a5aa-f51624f0daf0</refId>
+            <refId>e5262b88-8c29-4122-b728-ac5cc37b6dd7</refId>
           </source>
           <positions/>
         </transition>
@@ -689,21 +690,21 @@
       <returnStepType>ERROR</returnStepType>
       <assignments/>
     </returnStep>
-    <step id="096e4967-5f82-4ae5-9154-261ef87c3f9c">
-      <annotation>89d7b098-e00d-4a99-bf6e-4daa3aaa961c.096e4967-5f82-4ae5-9154-261ef87c3f9c.description</annotation>
-      <name>SMAX Aggregation Query</name>
+    <step id="236bc356-aac5-4657-bf33-d2ce79553a1c">
+      <annotation>bd410b75-7ed1-41d6-b384-36fb70317fa3.236bc356-aac5-4657-bf33-d2ce79553a1c.description</annotation>
+      <name>SMAX Get Aggregation Count Selective</name>
       <bounds>
-        <x>311.0</x>
-        <y>36.0</y>
+        <x>467.0</x>
+        <y>174.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="c8f1b554-8e3c-4188-a035-3f166a65c986">
+      <iconSpec id="c6ac6912-c273-4c2e-b255-771dfb919aee">
         <baseIcon>multi.png</baseIcon>
         <basePath>/Others/</basePath>
         <readOnly>false</readOnly>
         <layers>
-          <iconSpec id="58a08d45-86b2-4a22-9a87-f6da926fdafb">
+          <iconSpec id="3fe0858a-2a96-431f-8738-72392c4608dd">
             <baseIcon>view.png</baseIcon>
             <basePath>/Annotations/</basePath>
             <readOnly>false</readOnly>
@@ -724,7 +725,7 @@
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="722c0a82-c4ef-42d6-933e-2d186549251e">
+        <userInputBinding id="1dcec68e-75d3-40fb-a888-69e01a1ba8ba">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -735,11 +736,36 @@
           <inputSymbol>sawUrl</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-          <prompt></prompt>
+          <prompt>bd410b75-7ed1-41d6-b384-36fb70317fa3.1dcec68e-75d3-40fb-a888-69e01a1ba8ba.prompt</prompt>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="2ec81611-a823-4100-8797-f1041f06a27f">
+        <staticBinding id="6aedb1e8-201c-4ce6-a3af-f0b23f5ab971">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>key</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="482fffd7-5a6d-4843-9f71-edf8e75cbe8d">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>subkey</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <userInputBinding id="3cc79ec1-27f7-469f-8699-4a68ec28a170">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -750,11 +776,11 @@
           <inputSymbol>ssoToken</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-          <prompt>89d7b098-e00d-4a99-bf6e-4daa3aaa961c.2ec81611-a823-4100-8797-f1041f06a27f.prompt</prompt>
+          <prompt>bd410b75-7ed1-41d6-b384-36fb70317fa3.3cc79ec1-27f7-469f-8699-4a68ec28a170.prompt</prompt>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="fc58ad4e-ff82-43e1-9441-311fb5ce8543">
+        <userInputBinding id="9fa219d2-d89c-490c-a916-9a8b1e0d7995">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -765,11 +791,11 @@
           <inputSymbol>tenantId</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-          <prompt>89d7b098-e00d-4a99-bf6e-4daa3aaa961c.fc58ad4e-ff82-43e1-9441-311fb5ce8543.prompt</prompt>
+          <prompt>bd410b75-7ed1-41d6-b384-36fb70317fa3.9fa219d2-d89c-490c-a916-9a8b1e0d7995.prompt</prompt>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="031909c0-64a2-4202-99a5-c3f13ebd8536">
+        <userInputBinding id="2fcc6a2e-55c8-439e-b75e-56e8c82d7121">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -784,7 +810,7 @@
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="35bc7762-f9f0-4950-b5ab-3ea4fad337f8">
+        <staticBinding id="d67e5094-9bd9-482e-9785-4ecd206af68f">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -794,12 +820,25 @@
           <isPersisted>true</isPersisted>
           <inputSymbol>query</inputSymbol>
           <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <userInputBinding id="6808a40b-3a08-4f42-93c2-5ef1b462a2cf">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>fields</inputSymbol>
+          <listDelimiter>,</listDelimiter>
           <record>false</record>
           <prompt></prompt>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="b5885141-3eae-4fdd-953f-b31aa969305f">
+        <staticBinding id="ae10c6b9-cf3c-4948-b83f-714f2f79900c">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -811,7 +850,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="0ac66c57-9240-4160-a404-f9a37644b529">
+        <staticBinding id="9c4652a5-7e7b-409b-91a3-d60e93bf02e3">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -823,7 +862,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="4d5815f0-3083-4c60-984e-9a732c40a2e3">
+        <staticBinding id="95c3909e-ed0b-4e23-a1fb-fdb5be9bc0be">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -835,7 +874,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="7cf35ddc-ba9e-4eb1-93c5-90788e677f95">
+        <staticBinding id="4051154d-9fd5-4a9a-ba0f-7099fa2bcea5">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -848,7 +887,7 @@
           <value>8080</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="e3d65ea0-8cbd-4197-be1b-416b54f60726">
+        <staticBinding id="2197b703-9ce5-4634-a3a7-3b56fbaeb69c">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -860,7 +899,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="1819a358-aa06-4afe-aa27-54bb259ca59f">
+        <staticBinding id="eea4d2e4-b2c0-4175-81db-8f91fcac6361">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -872,7 +911,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="72478afc-b1bd-4d27-9595-411333eb9134">
+        <staticBinding id="0b592dc1-bf88-48fe-affa-279f42d3dd69">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -885,7 +924,7 @@
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="a3e590cf-6cde-4d8c-bc73-521b272e7a80">
+        <staticBinding id="59ad9cd8-3070-4172-a3eb-3505ce4bbf3d">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -898,7 +937,7 @@
           <value>strict</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="40e515b4-72a8-4ccb-a807-aecb05a3d3a4">
+        <staticBinding id="58fe323d-d486-40aa-9f54-684ac86de8fe">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -910,7 +949,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="dfb4e9c4-4adb-4b9b-9817-91686dd9150e">
+        <staticBinding id="0a1e2e0b-8372-46e7-8146-22a904009476">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -923,7 +962,7 @@
           <value>changeit</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="4080411a-f434-4a11-8c2d-784fc957ec4d">
+        <staticBinding id="1844a3f4-336a-47f6-bb70-97cb470ab032">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -936,7 +975,7 @@
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="20141503-7ef5-4dc6-91e9-079f34bdcbdb">
+        <staticBinding id="3dd16033-159b-4662-a07e-5b5f3de929aa">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -949,7 +988,7 @@
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="4a130eef-1de2-4835-8fe8-07b903cd93e7">
+        <staticBinding id="e0f9b37d-2b82-44d8-8346-fe776e035c31">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -962,7 +1001,7 @@
           <value>true</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="ed73c60b-a9d5-405d-a157-8724f4581089">
+        <staticBinding id="83fecc6f-c64d-4daf-951d-418737643dcf">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -975,7 +1014,7 @@
           <value>true</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="2b543ea1-b77d-4be8-8edd-2f2558dde95e">
+        <staticBinding id="a112e695-f389-45c9-b4be-41cc61d87a79">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -988,7 +1027,7 @@
           <value>2</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="cba4e9c2-50d2-4541-b328-060ccb8d5b26">
+        <staticBinding id="a55ac1e8-8997-4bbe-9640-d9467c5651c7">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1001,7 +1040,7 @@
           <value>20</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="5b800ae9-ea05-41e8-b537-7381bd1edc1a">
+        <staticBinding id="9ce88687-db39-4619-abce-29f5c0922a2a">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1013,7 +1052,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="4ac21f20-e365-4cdb-a7a2-ceb6d59023da">
+        <staticBinding id="f2fe0fa6-c424-439c-91fe-ed56f413fb8b">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1025,7 +1064,7 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="2958b733-65ce-4576-b53e-375978d703bf">
+        <staticBinding id="6a9cb815-3ada-4ae4-b131-af04a047e0f3">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1038,7 +1077,7 @@
           <value>ISO-8859-1</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="51eda2f9-4153-4715-88be-c4e2682589ef">
+        <staticBinding id="18c8f706-3c69-4981-ab4d-850d8f290dc6">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1050,52 +1089,9 @@
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="88726f85-d866-4d08-8637-c7d80ba3b972">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>fields</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value></value>
-          <record>false</record>
-        </staticBinding>
-        <userInputBinding id="8536c019-8652-4044-b597-b342917403a9">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>true</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>key</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
-        <userInputBinding id="db55bce1-f8ce-4c1d-b152-fa145d40e797">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>true</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>subkey</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
       </bindings>
       <transitions>
-        <transition id="3afb0c20-c8a6-492b-9c6f-8dba502ea15d">
+        <transition id="4597cbc9-5cab-4232-8308-3d54837ea5ba">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -1104,15 +1100,15 @@
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>e5e0830b-eca9-40bf-a5aa-f51624f0daf0</refId>
+            <refId>e5262b88-8c29-4122-b728-ac5cc37b6dd7</refId>
           </destination>
           <source>
-            <refId>096e4967-5f82-4ae5-9154-261ef87c3f9c</refId>
+            <refId>236bc356-aac5-4657-bf33-d2ce79553a1c</refId>
           </source>
           <positions>
             <point>
-              <x>361.0</x>
-              <y>70.0</y>
+              <x>517.0</x>
+              <y>208.0</y>
             </point>
             <point>
               <x>227.0</x>
@@ -1124,7 +1120,7 @@
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="5681b723-3e65-4251-889d-932e1c5d2d63">
+        <transition id="c8a3009e-7b53-445e-9d9d-5742a0ef5947">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -1133,19 +1129,19 @@
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>4ec248f7-f1d4-42ef-8e69-0b05829a584a</refId>
+            <refId>f1883998-5cdf-4d67-add8-02cb43c59993</refId>
           </destination>
           <source>
-            <refId>096e4967-5f82-4ae5-9154-261ef87c3f9c</refId>
+            <refId>236bc356-aac5-4657-bf33-d2ce79553a1c</refId>
           </source>
           <positions>
             <point>
-              <x>361.0</x>
-              <y>70.0</y>
+              <x>517.0</x>
+              <y>208.0</y>
             </point>
             <point>
-              <x>566.0</x>
-              <y>122.0</y>
+              <x>589.0</x>
+              <y>66.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -1156,20 +1152,20 @@
       </transitions>
       <properties/>
       <opRef>
-        <refId>afb51ac6-1bbe-4c50-8640-a97ec6b17ab1</refId>
+        <refId>658ca3ce-235b-4822-a8af-c70c896e9b15</refId>
       </opRef>
       <assignments>
-        <flowVariableAssignment id="cc912d8d-e28b-4f16-9abc-05f9a0a12066">
+        <flowVariableAssignment id="fb73758f-129e-4643-87e7-03842082f710">
           <annotation></annotation>
           <name>assignment</name>
           <action>OVERWRITE</action>
           <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
-          <contextKey>total</contextKey>
-          <expression id="fd4b8a8b-960c-4c79-a6af-f09b27adb02f">
+          <contextKey>pending</contextKey>
+          <expression id="4ffbe162-fa94-43d0-9158-09fcabfdf102">
             <annotation></annotation>
-            <name>Result: total</name>
-            <fieldName>total</fieldName>
-            <sourceType>AVAILABLE_RESULT</sourceType>
+            <name>Result Field: Result</name>
+            <fieldName>Result</fieldName>
+            <sourceType>RAWRESULT</sourceType>
             <filters/>
           </expression>
         </flowVariableAssignment>
@@ -1177,5 +1173,5 @@
       <throttleSize>0</throttleSize>
     </step>
   </steps>
-  <startSteps>9c6928d8-8161-43b0-98f0-5f40815f1d52</startSteps>
+  <startSteps>248d4cd3-d067-4916-b4db-961473d9a9fa</startSteps>
 </flow>
