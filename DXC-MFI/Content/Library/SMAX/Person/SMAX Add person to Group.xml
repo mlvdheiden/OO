@@ -24,7 +24,7 @@
     </staticBinding>
     <userInputBinding id="2e7e7d71-3de9-483b-aec1-db13e0a301bc">
       <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
+      <assignFromContext>true</assignFromContext>
       <assignToContext>true</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -39,7 +39,7 @@
     </userInputBinding>
     <userInputBinding id="53cce9b7-32e4-408a-8652-62be58ba14e5">
       <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
+      <assignFromContext>true</assignFromContext>
       <assignToContext>true</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -54,7 +54,7 @@
     </userInputBinding>
     <userInputBinding id="e0fecb77-4038-4301-bb2f-12fd9e57d41e">
       <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
+      <assignFromContext>true</assignFromContext>
       <assignToContext>true</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -69,7 +69,7 @@
     </userInputBinding>
     <userInputBinding id="c2ab6ee5-6e93-4555-9600-8f4972da690b">
       <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
+      <assignFromContext>true</assignFromContext>
       <assignToContext>true</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -84,7 +84,7 @@
     </userInputBinding>
     <userInputBinding id="866fad0a-b14f-4bf4-b491-b7d4cdd35474">
       <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
+      <assignFromContext>true</assignFromContext>
       <assignToContext>true</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -99,7 +99,7 @@
     </userInputBinding>
     <userInputBinding id="8c4cc4f0-c36a-4236-b6eb-aff8acba0f5f">
       <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
+      <assignFromContext>true</assignFromContext>
       <assignToContext>true</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -643,7 +643,7 @@
           <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
-          <required>true</required>
+          <required>false</required>
           <isPersisted>true</isPersisted>
           <inputSymbol>groupCn</inputSymbol>
           <listDelimiter>,</listDelimiter>
@@ -658,7 +658,7 @@
           <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
-          <required>true</required>
+          <required>false</required>
           <isPersisted>true</isPersisted>
           <inputSymbol>firstName</inputSymbol>
           <listDelimiter>,</listDelimiter>
@@ -673,7 +673,7 @@
           <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
-          <required>true</required>
+          <required>false</required>
           <isPersisted>true</isPersisted>
           <inputSymbol>lastName</inputSymbol>
           <listDelimiter>,</listDelimiter>
@@ -682,28 +682,26 @@
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="761f5a1b-a306-4042-87b3-da7e0195f20d">
+        <staticBinding id="36ae51ee-472b-4d3e-9f50-f917fd567f7a">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
-          <required>true</required>
+          <required>false</required>
           <isPersisted>true</isPersisted>
           <inputSymbol>upn</inputSymbol>
           <listDelimiter>,</listDelimiter>
+          <value> </value>
           <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
+        </staticBinding>
         <userInputBinding id="0316e7a7-fd22-40b0-b311-e678355a76cb">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
-          <required>true</required>
+          <required>false</required>
           <isPersisted>true</isPersisted>
           <inputSymbol>eMail</inputSymbol>
           <listDelimiter>,</listDelimiter>
@@ -712,7 +710,7 @@
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="9f4c6c29-c710-44cd-81d5-989196d55afb">
+        <staticBinding id="235d68ff-699a-410f-94de-a788597b53a8">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>true</assignToContext>
@@ -722,11 +720,9 @@
           <isPersisted>true</isPersisted>
           <inputSymbol>officePhoneNumber</inputSymbol>
           <listDelimiter>,</listDelimiter>
+          <value> </value>
           <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
+        </staticBinding>
       </bindings>
       <transitions>
         <transition id="0f30bdd7-428c-4bc3-8ed1-46a1446bdaa9">
@@ -819,12 +815,6 @@
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="af84ec2f-f6eb-428d-830b-937b99442608">
-        <baseIcon>return_success.png</baseIcon>
-        <basePath>System</basePath>
-        <readOnly>true</readOnly>
-        <layers/>
-      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>
@@ -869,12 +859,6 @@
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="5f632ed5-c65a-4f7d-a9ff-6d2b49cf75b8">
-        <baseIcon>return_failure.png</baseIcon>
-        <basePath>System</basePath>
-        <readOnly>true</readOnly>
-        <layers/>
-      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>
