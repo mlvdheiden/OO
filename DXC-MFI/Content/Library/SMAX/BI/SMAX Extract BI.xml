@@ -53,6 +53,12 @@
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
+      <iconSpec id="ee8f2911-bc71-43fb-9d0e-b24e39cf056a">
+        <baseIcon>flow.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>
@@ -79,7 +85,7 @@
           <value>${sawURL}</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="671d8648-4911-4d5b-a806-dd0d9705047e">
+        <userInputBinding id="15333fb5-c164-43f4-b597-a671f5eb7192">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -89,9 +95,11 @@
           <isPersisted>true</isPersisted>
           <inputSymbol>biConfigurationName</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>EmptyConfiguration</value>
           <record>false</record>
-        </staticBinding>
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
         <staticBinding id="3e8cc849-07d7-4524-bdaa-6b006949e5f5">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
@@ -340,7 +348,7 @@
           <isPersisted>true</isPersisted>
           <inputSymbol>seconds</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>120</value>
+          <value>30</value>
           <record>false</record>
         </staticBinding>
       </bindings>
@@ -461,9 +469,9 @@
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="1c3b4ba6-bc06-44be-baef-d2f62128ae7d">
+        <userInputBinding id="53692362-7b4d-4cb7-84da-409aea8e3226">
           <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
+          <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
@@ -471,9 +479,11 @@
           <isPersisted>true</isPersisted>
           <inputSymbol>biConfigurationName</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>EmptyConfiguration</value>
           <record>false</record>
-        </staticBinding>
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
         <staticBinding id="7fd31bcc-57a1-4e7c-9145-450c237de7e1">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
