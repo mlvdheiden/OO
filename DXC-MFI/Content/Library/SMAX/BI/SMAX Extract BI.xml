@@ -88,7 +88,7 @@
         <userInputBinding id="15333fb5-c164-43f4-b597-a671f5eb7192">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
+          <assignToContext>true</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
           <required>false</required>

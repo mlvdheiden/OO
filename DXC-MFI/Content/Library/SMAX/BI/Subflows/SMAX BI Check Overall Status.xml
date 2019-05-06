@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<flow id="d1076509-d813-4797-b485-cf40e078657b">
-  <descriptionCdata><![CDATA[d1076509-d813-4797-b485-cf40e078657b.5c00c834-9d29-4025-8a72-a0e6934efe9a.description=<pre>\nGets an SSO Token from Micro Focus Service Management Automation X.\n\nInputs\:\n    sawUrl - The Service Management Automation X URL to make the request to. This is a required input.\nExamples\: scheme\://{serverAddress}.\n    username - The user name used for authentication.\n    password - The password used for authentication.\n    proxyHost - The proxy server used to access the web site.\n    proxyPort - The proxy server port. Default value\: 8080. Valid values\: -1, and positive integer values. When the value is '-1' the default port of the scheme, specified in the 'proxyHost', will be used.\n    proxyUsername - The user name used when connecting to the proxy. The 'authType' input will be used to choose authentication type. The 'Basic' and 'Digest' proxy authentication type are supported.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    trustAllRoots - Specifies whether to enable weak security over SSL/TSL. A certificate is trusted even if no trusted certification authority issued it.\nDefault value\: false\nValid values\: true, false\n    x509HostnameVerifier - Specifies the way the server hostname must match a domain name in the subject's Common Name (CN) or subjectAltName field of the X.509 certificate. The hostname verification system prevents communication with other hosts other than the ones you intended. This is done by checking that the hostname is in the subject alternative name extension of the certificate. This system is designed to ensure that, if an attacker(Man In The Middle) redirects traffic to his machine, the client will not accept the connection. If you set this input to "allow_all", this verification is ignored and you become vulnerable to security attacks. For the value "browser_compatible" the hostname verifier works the same way as Curl and Firefox. The hostname must match either the first CN, or any of the subject-alts. A wildcard can occur in the CN, and in any of the subject-alts. The only difference between "browser_compatible" and "strict" is that a wildcard (such as "*.foo.com") with "browser_compatible" matches all subdomains, including "a.b.foo.com". From the security perspective, to provide protection against possible Man-In-The-Middle attacks, we strongly recommend to use "strict" option.\nDefault value\: strict\nValid values\: strict, browser_compatible, allow_all\n    trustKeystore - The pathname of the Java TrustStore file. This contains certificates from other parties that you expect to communicate with, or from Certificate Authorities that you trust to identify other parties.  If the protocol (specified by the 'url') is not 'https' or if trustAllRoots is 'true' this input is ignored.\nDefault value\: <OO_Home>/java/lib/security/cacerts\nFormat\: Java KeyStore (JKS)\n    trustPassword - The password associated with the TrustStore file. If trustAllRoots is false and trustKeystore is empty, trustPassword default will be supplied.\nDefault value\: changeit\n    connectTimeout - The time to wait for a connection to be established, in seconds. A timeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\nExamples\: 10, 20\n    socketTimeout - The timeout for waiting for data (a maximum period inactivity between two consecutive data packets), in seconds. A socketTimeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\n    useCookies - Specifies whether to enable cookie tracking or not. Cookies are stored between consecutive calls in a serializable session object therefore they will be available on a branch level (same subflow, same lane). If you specify a non-boolean value, the default value is used.\nDefault value\: true\nValid values\: true, false\n    keepAlive - Specifies whether to create a shared connection that will be used in subsequent calls. If keepAlive is false, the already open connection will be used and after execution it will close it. The operation will use a connection pool stored in a GlobalSessionObject that will be available throughout the execution (the flow and subflows, between parallel split lanes).\nDefault value\: true\nValid values\: true, false\n    connectionsMaxPerRoute - The maximum limit of connections on a per route basis. The default will create no more than 2 concurrent connections per given route.\nDefault value\: 2\n    connectionsMaxTotal - The maximum limit of connections in total. The default will create no more than 2 concurrent connections in total.\nDefault value\: 20\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: According to HTTP standard for headers (RFC 2616).\nExamples\: Accept\:text/plain\n   contentType - The content type that should be set in the request header, representing the MIME-type of the data in the message body.\nDefault value\: "" (empty)\nExamples\: "text/html", "application/x-www-form-urlencoded"\n    requestCharacterSet - The character encoding to be used for the HTTP request body. If contentType is empty, the requestCharacterSet will use the default value. If contentType will include charset (ex.\: "application/json; charset\=UTF-8"), the requestCharacterSet value will overwrite the charset value from contentType input. This should not be provided for method\=GET, HEAD,TRACE\nDefault value\: ISO-8859-1\n    responseCharacterSet - The character encoding to be used for the HTTP response. If responseCharacterSet is empty, the charset from the 'Content-Type' HTTP response header will be used. If responseCharacterSet is empty and the charset from the HTTP response Content-Type header is empty, the default value will be used. You should not use this for method\=HEAD or OPTIONS.\nDefault value\: ISO-8859-1\n\nResults\n    ssoToken - This ssoToken retrieved by the request.\n    statusCode - The HTTP status code.\nFormat\: 1xx (Informational - Request received, continuing process), 2xx (Success - The action was successfully received, understood, and accepted), 3xx (Redirection - Further action must be taken in order to complete the request), 4xx (Client Error - The request contains bad syntax or cannot be fulfilled), 5xx Server Error - The server failed to fulfil an apparently valid request)\nExamples\: 200, 404\n    exception - In case of success response, this result is empty. In case of failure response, this result contains the java stack trace of the runtime exception.\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\n\nResponses\n    success - the operation completed successfully.\n    failure - an error occurred.\n\nNotes\:\n1. Currently, Service Management Automation X does not support 2-way SSL certificates authentication.\n</pre>
-d1076509-d813-4797-b485-cf40e078657b.728eaca0-5c0d-4256-97b7-376155ce41dd.description=Gets the meta completion status as flow output\n
-d1076509-d813-4797-b485-cf40e078657b.79a35c43-de9e-4016-93e9-95a950e1b109.prompt=Enter username
-d1076509-d813-4797-b485-cf40e078657b.a61a44df-54bf-485d-8bf7-092740e53951.description=<pre>\n</pre>
-d1076509-d813-4797-b485-cf40e078657b.bfba0815-4d66-4e73-8cbc-7811e289cbb0.prompt=Enter password
-d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt=Enter Service Anywhere URL
+<flow id="d5fe915b-a242-4212-ad58-85d14cceab43">
+  <descriptionCdata><![CDATA[d5fe915b-a242-4212-ad58-85d14cceab43.2a51bfe5-5915-4fbf-843e-8dec85673b7b.prompt=Enter username
+d5fe915b-a242-4212-ad58-85d14cceab43.304ff5ad-47f6-4270-8395-4911251b233d.description=<pre>\n</pre>
+d5fe915b-a242-4212-ad58-85d14cceab43.4261338b-7ec4-4e8b-8803-414e70e81c48.description=<pre>\nThis operation takes a reference to JSON (in the form of a string) and runs a specified JSON Path query on it. It returns the results as a JSON Object. \n\nInputs\:\n    json - The JSON in the form of a string.\n    jsonPathQuery - The JSON Path query to run. See details and examples in the Notes section below.\n\nResults\:\n    returnResult - This is the primary output. It contains the resulted JSON from the given path.\n\nResponses\:\n    success - The operation completed as stated in the description.\n    failure - The operation completed unsuccessfully.\n\nNotes\:\n1.Query syntax\:\nJSONPath \t\tDescription\n------------                           -------------     \n$ \t\tThe root object/element\n@ \t\tThe current object/element\n. or [] \t\tChild operator\nn/a \t\tParent operator\n.. \t\tRecursive descent. JSONPath borrows this syntax from E4X.\n* \t\tWildcard. All objects/elements regardless of their names.\nn/a \t\tAttribute access. JSON structures do not have attributes.\n[] \t\tSubscript operator. XPath uses it to iterate over element collections and for predicates. In Javascript and JSON it is the native array operator.\n[,] \t\tUnion operator in XPath results in a combination of node sets. JSONPath allows alternate names or array indices as a set.\n[start\:end\:step] \tArray slice operator borrowed from ES4.\n?() \t\tApplies a filter (script) expression.\n() \t\tSript expression, using the underlying script engine.\n\n2.Examples\:\nThe examples below use the following JSON string value\:\n{\n    "store"\: {\n        "book"\: [\n            {\n                "category"\: "reference",\n                "author"\: "Nigel Rees",\n                "title"\: "Sayings of the Century",\n                "price"\: 8.95\n            },\n            {\n                "category"\: "fiction",\n                "author"\: "Evelyn Waugh",\n                "title"\: "Sword of Honour",\n                "price"\: 12.99\n            },\n            {\n                "category"\: "fiction",\n                "author"\: "Herman Melville",\n                "title"\: "Moby Dick",\n                "isbn"\: "0-553-21311-3",\n                "price"\: 8.99\n            },\n            {\n                "category"\: "fiction",\n                "author"\: "J. R. R. Tolkien",\n                "title"\: "The Lord of the Rings",\n                "isbn"\: "0-395-19395-8",\n                "price"\: 22.99\n            }\n        ],\n        "bicycle"\: {\n            "color"\: "red",\n            "price"\: null\n        }\n    },\n    "expensive"\: "10"\n}\n\nJSONPath \t\t\tResult\n------------                                                ---------\n$.store.book[*].author \t\tThe authors of all books in the store\n$...author \t\t\tAll authors\: ["Nigel Rees","Evelyn Waugh","Herman Melville","J. R. R. Tolkien"]\n$.store.* \t\t\tAll items in store, which are some books and a red bicycle.\n$.store..price \t\tThe price of everything in the store\n$..book[2] \t\t\tThe third book\n$..book[(@.length-1)] or $..book[-1\:] \tThe last book in order\n$..book[0,1] or $..book[\:2] \tThe first two books\n$..book[?(@.isbn)] \t\tFilter all books with isbn number\n$..book[?(@.price<10)] \t\tFilter all books wholse price is less than 10\n$..* \t\t\tAll Elements in XML document. All members of JSON structure. \n$.store.book[0]\t\tReturns the details of the first book\: reference,Nigel Rees,Sayings of the Century,8.95\n$.store.bicycle\t\t\tReturns the details of the bicycle including null in JSON format\: {"color"\:"red","price"\:null}\n\n</pre>
+d5fe915b-a242-4212-ad58-85d14cceab43.5066ee8a-2da4-4e17-98ec-e55a8337363f.description=<pre>\nGets an SSO Token from Micro Focus Service Management Automation X.\n\nInputs\:\n    sawUrl - The Service Management Automation X URL to make the request to. This is a required input.\nExamples\: scheme\://{serverAddress}.\n    username - The user name used for authentication.\n    password - The password used for authentication.\n    proxyHost - The proxy server used to access the web site.\n    proxyPort - The proxy server port. Default value\: 8080. Valid values\: -1, and positive integer values. When the value is '-1' the default port of the scheme, specified in the 'proxyHost', will be used.\n    proxyUsername - The user name used when connecting to the proxy. The 'authType' input will be used to choose authentication type. The 'Basic' and 'Digest' proxy authentication type are supported.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    trustAllRoots - Specifies whether to enable weak security over SSL/TSL. A certificate is trusted even if no trusted certification authority issued it.\nDefault value\: false\nValid values\: true, false\n    x509HostnameVerifier - Specifies the way the server hostname must match a domain name in the subject's Common Name (CN) or subjectAltName field of the X.509 certificate. The hostname verification system prevents communication with other hosts other than the ones you intended. This is done by checking that the hostname is in the subject alternative name extension of the certificate. This system is designed to ensure that, if an attacker(Man In The Middle) redirects traffic to his machine, the client will not accept the connection. If you set this input to "allow_all", this verification is ignored and you become vulnerable to security attacks. For the value "browser_compatible" the hostname verifier works the same way as Curl and Firefox. The hostname must match either the first CN, or any of the subject-alts. A wildcard can occur in the CN, and in any of the subject-alts. The only difference between "browser_compatible" and "strict" is that a wildcard (such as "*.foo.com") with "browser_compatible" matches all subdomains, including "a.b.foo.com". From the security perspective, to provide protection against possible Man-In-The-Middle attacks, we strongly recommend to use "strict" option.\nDefault value\: strict\nValid values\: strict, browser_compatible, allow_all\n    trustKeystore - The pathname of the Java TrustStore file. This contains certificates from other parties that you expect to communicate with, or from Certificate Authorities that you trust to identify other parties.  If the protocol (specified by the 'url') is not 'https' or if trustAllRoots is 'true' this input is ignored.\nDefault value\: <OO_Home>/java/lib/security/cacerts\nFormat\: Java KeyStore (JKS)\n    trustPassword - The password associated with the TrustStore file. If trustAllRoots is false and trustKeystore is empty, trustPassword default will be supplied.\nDefault value\: changeit\n    connectTimeout - The time to wait for a connection to be established, in seconds. A timeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\nExamples\: 10, 20\n    socketTimeout - The timeout for waiting for data (a maximum period inactivity between two consecutive data packets), in seconds. A socketTimeout value of '0' represents an infinite timeout.\nDefault value\: 0\nFormat\: an integer representing seconds\n    useCookies - Specifies whether to enable cookie tracking or not. Cookies are stored between consecutive calls in a serializable session object therefore they will be available on a branch level (same subflow, same lane). If you specify a non-boolean value, the default value is used.\nDefault value\: true\nValid values\: true, false\n    keepAlive - Specifies whether to create a shared connection that will be used in subsequent calls. If keepAlive is false, the already open connection will be used and after execution it will close it. The operation will use a connection pool stored in a GlobalSessionObject that will be available throughout the execution (the flow and subflows, between parallel split lanes).\nDefault value\: true\nValid values\: true, false\n    connectionsMaxPerRoute - The maximum limit of connections on a per route basis. The default will create no more than 2 concurrent connections per given route.\nDefault value\: 2\n    connectionsMaxTotal - The maximum limit of connections in total. The default will create no more than 2 concurrent connections in total.\nDefault value\: 20\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: According to HTTP standard for headers (RFC 2616).\nExamples\: Accept\:text/plain\n   contentType - The content type that should be set in the request header, representing the MIME-type of the data in the message body.\nDefault value\: "" (empty)\nExamples\: "text/html", "application/x-www-form-urlencoded"\n    requestCharacterSet - The character encoding to be used for the HTTP request body. If contentType is empty, the requestCharacterSet will use the default value. If contentType will include charset (ex.\: "application/json; charset\=UTF-8"), the requestCharacterSet value will overwrite the charset value from contentType input. This should not be provided for method\=GET, HEAD,TRACE\nDefault value\: ISO-8859-1\n    responseCharacterSet - The character encoding to be used for the HTTP response. If responseCharacterSet is empty, the charset from the 'Content-Type' HTTP response header will be used. If responseCharacterSet is empty and the charset from the HTTP response Content-Type header is empty, the default value will be used. You should not use this for method\=HEAD or OPTIONS.\nDefault value\: ISO-8859-1\n\nResults\n    ssoToken - This ssoToken retrieved by the request.\n    statusCode - The HTTP status code.\nFormat\: 1xx (Informational - Request received, continuing process), 2xx (Success - The action was successfully received, understood, and accepted), 3xx (Redirection - Further action must be taken in order to complete the request), 4xx (Client Error - The request contains bad syntax or cannot be fulfilled), 5xx Server Error - The server failed to fulfil an apparently valid request)\nExamples\: 200, 404\n    exception - In case of success response, this result is empty. In case of failure response, this result contains the java stack trace of the runtime exception.\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\n\nResponses\n    success - the operation completed successfully.\n    failure - an error occurred.\n\nNotes\:\n1. Currently, Service Management Automation X does not support 2-way SSL certificates authentication.\n</pre>
+d5fe915b-a242-4212-ad58-85d14cceab43.9ae1dcdb-1a39-49fd-8cd3-56ca36cf7bf9.prompt=Enter password
+d5fe915b-a242-4212-ad58-85d14cceab43.ce844b05-60fd-4eaf-aae5-b6ddb39ee644.prompt=Enter Service Anywhere URL
 ]]></descriptionCdata>
   <annotation></annotation>
-  <name>SMAX BI Check Status</name>
+  <name>SMAX BI Check Overall Status</name>
   <categories/>
   <inputs>
-    <staticBinding id="4d373ca9-d3b8-417d-86cb-97ebd5904782">
+    <staticBinding id="7f4b436b-e72e-4ba8-b3ee-1e03c2a7cd20">
       <annotation></annotation>
       <assignFromContext>false</assignFromContext>
       <assignToContext>false</assignToContext>
@@ -24,22 +24,9 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
       <value>${sawURL}</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="0dd01f7a-65fb-4848-8ed4-c524da6eb8c7">
+    <userInputBinding id="04f92ba9-0d04-4c36-ab6c-41af3c5282b4">
       <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>false</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>biSyncId</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>b8c0d8be-fe19-447b-a0cb-0c992f90686c</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="5e10924c-c8db-479a-84c4-1e87316fcfbb">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
+      <assignFromContext>true</assignFromContext>
       <assignToContext>false</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -47,10 +34,12 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
       <isPersisted>true</isPersisted>
       <inputSymbol>biConfigurationName</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>EmptyConfiguration</value>
       <record>false</record>
-    </staticBinding>
-    <staticBinding id="3e02f001-9425-40c9-a516-27871ffbe84c">
+      <prompt></prompt>
+      <isMultiSelect>false</isMultiSelect>
+      <sourceDelimiter>|</sourceDelimiter>
+    </userInputBinding>
+    <staticBinding id="daa49111-3fd7-41c6-aa93-e08ddeb0c0ea">
       <annotation></annotation>
       <assignFromContext>false</assignFromContext>
       <assignToContext>false</assignToContext>
@@ -63,7 +52,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
       <value>${sawTenantId}</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="887304b0-7f79-4002-9b55-6204fa2e663a">
+    <staticBinding id="08d22199-b848-46e8-9987-41a83b052ffc">
       <annotation></annotation>
       <assignFromContext>false</assignFromContext>
       <assignToContext>false</assignToContext>
@@ -76,7 +65,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
       <value>${sawUsername}</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="02cb95c0-f116-4700-8674-6f383f447067">
+    <staticBinding id="b252ec49-e57c-46e5-a106-b255e87721cc">
       <annotation></annotation>
       <assignFromContext>false</assignFromContext>
       <assignToContext>false</assignToContext>
@@ -91,15 +80,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
     </staticBinding>
   </inputs>
   <possibleResponses>
-    <opResponse id="81e89e04-4f76-4253-97ec-75575627621e">
-      <annotation></annotation>
-      <name>success</name>
-      <isDefault>true</isDefault>
-      <onFailure>false</onFailure>
-      <type>RESOLVED</type>
-      <matchRules/>
-    </opResponse>
-    <opResponse id="70225834-1fd2-4dba-b320-a75ac6104395">
+    <opResponse id="a92f356a-8a19-45bf-9035-a181a96bcb24">
       <annotation></annotation>
       <name>failure</name>
       <isDefault>false</isDefault>
@@ -107,16 +88,24 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
       <type>ERROR</type>
       <matchRules/>
     </opResponse>
+    <opResponse id="7f476b5d-d0df-418c-9e28-6b92f6ce1320">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
   </possibleResponses>
   <availableResultExpressions/>
-  <resultExpression id="66ae3566-cec8-4152-ad7b-1297a4c37a49">
+  <resultExpression id="57df0ec7-58a8-4fd4-b170-de9a843b05d0">
     <annotation></annotation>
     <name>FailureMessage</name>
     <fieldName>FailureMessage</fieldName>
     <sourceType>RAWRESULT</sourceType>
     <filters/>
   </resultExpression>
-  <iconSpec id="b64108c5-1bed-4989-84cc-8cc083bfd703">
+  <iconSpec id="484b83bc-55f2-49fb-ba0f-2ab29d556f6f">
     <baseIcon>flow.png</baseIcon>
     <basePath>System</basePath>
     <readOnly>false</readOnly>
@@ -127,21 +116,21 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
   <compatibleRuntimeContext>false</compatibleRuntimeContext>
   <historyCheckPointFlow>true</historyCheckPointFlow>
   <steps>
-    <step id="5c00c834-9d29-4025-8a72-a0e6934efe9a">
-      <annotation>d1076509-d813-4797-b485-cf40e078657b.5c00c834-9d29-4025-8a72-a0e6934efe9a.description</annotation>
+    <step id="5066ee8a-2da4-4e17-98ec-e55a8337363f">
+      <annotation>d5fe915b-a242-4212-ad58-85d14cceab43.5066ee8a-2da4-4e17-98ec-e55a8337363f.description</annotation>
       <name>SMAX Get SSO Token for Tenant</name>
       <bounds>
-        <x>52.0</x>
-        <y>15.0</y>
+        <x>90.0</x>
+        <y>30.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="f4521e71-29e5-4383-930e-cb66f9944929">
+      <iconSpec id="31019972-3f25-4986-95a4-e556b9659677">
         <baseIcon>multi.png</baseIcon>
         <basePath>/Others/</basePath>
         <readOnly>false</readOnly>
         <layers>
-          <iconSpec id="b33489c6-996a-48ae-b3ee-94add39c9be2">
+          <iconSpec id="812ab747-cb26-49fd-b9ca-86f8e3fa4095">
             <baseIcon>information2.png</baseIcon>
             <basePath>/Annotations/</basePath>
             <readOnly>false</readOnly>
@@ -162,7 +151,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="dad3dcf7-79de-46e4-8828-48445d2b49ae">
+        <userInputBinding id="ce844b05-60fd-4eaf-aae5-b6ddb39ee644">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -173,11 +162,11 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <inputSymbol>sawUrl</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-          <prompt>d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt</prompt>
+          <prompt>d5fe915b-a242-4212-ad58-85d14cceab43.ce844b05-60fd-4eaf-aae5-b6ddb39ee644.prompt</prompt>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="79a35c43-de9e-4016-93e9-95a950e1b109">
+        <userInputBinding id="2a51bfe5-5915-4fbf-843e-8dec85673b7b">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -188,11 +177,11 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <inputSymbol>username</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-          <prompt>d1076509-d813-4797-b485-cf40e078657b.79a35c43-de9e-4016-93e9-95a950e1b109.prompt</prompt>
+          <prompt>d5fe915b-a242-4212-ad58-85d14cceab43.2a51bfe5-5915-4fbf-843e-8dec85673b7b.prompt</prompt>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="bfba0815-4d66-4e73-8cbc-7811e289cbb0">
+        <userInputBinding id="9ae1dcdb-1a39-49fd-8cd3-56ca36cf7bf9">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -203,11 +192,11 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <inputSymbol>password</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-          <prompt>d1076509-d813-4797-b485-cf40e078657b.bfba0815-4d66-4e73-8cbc-7811e289cbb0.prompt</prompt>
+          <prompt>d5fe915b-a242-4212-ad58-85d14cceab43.9ae1dcdb-1a39-49fd-8cd3-56ca36cf7bf9.prompt</prompt>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="4a7e42b7-e650-4e3a-a771-f9932c7cd55f">
+        <staticBinding id="3796268d-3b3d-4f9f-9407-8c4e304c1be7">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -219,7 +208,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="3f3b97e0-7a5c-4700-9bbf-42984d748528">
+        <staticBinding id="55233b94-8f58-4a79-93ad-81e8b76932f7">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -232,7 +221,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <value>8080</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="68f2f93a-bfd9-4f27-bd89-d139aa1c5dc9">
+        <staticBinding id="7232f155-cb3e-49d6-8e04-36cd1019ac8c">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -244,7 +233,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="6adeddc8-4594-43da-9a6f-f22793d21124">
+        <staticBinding id="b161d451-6295-40ff-b4ac-0a141fc42ed7">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -256,7 +245,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="45afaf57-8ce7-4208-a326-e4081758396b">
+        <staticBinding id="58d84cf7-4bf5-4c49-a43b-a3734574f678">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -269,7 +258,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="d254cb26-42cf-4b4a-9658-62ce74e5a843">
+        <staticBinding id="d7f2a886-4c9f-44fa-9749-6445da956d3a">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -282,7 +271,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <value>strict</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="b0262671-8e85-4bbe-981b-9b23664ff3fe">
+        <staticBinding id="8d6b609c-38c4-418a-bcca-034a29f20365">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -294,7 +283,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="373c2bf1-b7da-4f4a-adee-ea5a95f463fc">
+        <staticBinding id="57126e2f-df43-4775-90c0-5737c28f7369">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -307,7 +296,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <value>changeit</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="92715bc5-f1f5-4e2c-963b-f9dc92c5e90f">
+        <staticBinding id="92596077-e845-427c-bed3-f43a9fee0d0b">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -320,7 +309,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="1ec2697a-f3ee-485a-9396-e143a7649d8a">
+        <staticBinding id="89226b08-f3cb-4786-a921-55422320fce9">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -333,7 +322,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="d04d736f-94cd-4ff2-a574-f555f74ea7b9">
+        <staticBinding id="2eece995-dbde-428e-a693-8a220d19856c">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -346,7 +335,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <value>true</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="bc8adad1-9da3-44c0-abfb-dac19a1b4f27">
+        <staticBinding id="1ecd2198-628e-4776-a901-10e3956634cf">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -359,7 +348,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <value>true</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="106bbc03-bbc0-4006-b0e9-6eb19f370b55">
+        <staticBinding id="05189982-4c9f-4cb6-88dc-0301f81d20c5">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -372,7 +361,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <value>2</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="b0a63da1-9e32-4c0f-abc8-d288e3e4ca32">
+        <staticBinding id="c38fde7b-3589-4818-adfb-94833cb9c387">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -385,7 +374,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <value>20</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="0735f167-7507-497a-ad92-b035df9d13a7">
+        <staticBinding id="3e8a238a-306f-4f9d-8fe6-caa80c9b472f">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -397,7 +386,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="5a9db344-377f-47f8-be0a-0abdcc067189">
+        <staticBinding id="234fdb1e-030d-4c4a-b6e9-61ffeaab7e97">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -409,7 +398,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="942aa6c3-1f81-4aae-b008-64d01d032a32">
+        <staticBinding id="bbcd3988-3215-4916-8caf-b980630681e9">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -422,7 +411,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <value>ISO-8859-1</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="a2222145-cc16-4db1-9985-8e61a2dacf67">
+        <staticBinding id="239f7aa0-881d-43fa-ac8b-cf821fe4f484">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -436,7 +425,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="2084ff9f-bc2c-49d6-89b1-76aa1e19349f">
+        <transition id="47e73878-7189-4d1b-84db-f7882010adcc">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -445,19 +434,19 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>a61a44df-54bf-485d-8bf7-092740e53951</refId>
+            <refId>304ff5ad-47f6-4270-8395-4911251b233d</refId>
           </destination>
           <source>
-            <refId>5c00c834-9d29-4025-8a72-a0e6934efe9a</refId>
+            <refId>5066ee8a-2da4-4e17-98ec-e55a8337363f</refId>
           </source>
           <positions>
             <point>
-              <x>102.0</x>
-              <y>49.0</y>
+              <x>165.0</x>
+              <y>100.0</y>
             </point>
             <point>
-              <x>281.0</x>
-              <y>51.0</y>
+              <x>344.0</x>
+              <y>102.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -465,7 +454,7 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="59bfe2fd-6496-41ea-9829-2251d0b0c01b">
+        <transition id="292dace5-3555-44bb-a3f4-e8f04315d08d">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -474,19 +463,19 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>564f5751-de2a-438b-bc7b-29b92684401a</refId>
+            <refId>a62e9c15-f86e-4b86-b829-a6fa32da891a</refId>
           </destination>
           <source>
-            <refId>5c00c834-9d29-4025-8a72-a0e6934efe9a</refId>
+            <refId>5066ee8a-2da4-4e17-98ec-e55a8337363f</refId>
           </source>
           <positions>
             <point>
-              <x>102.0</x>
-              <y>49.0</y>
+              <x>165.0</x>
+              <y>100.0</y>
             </point>
             <point>
-              <x>222.0</x>
-              <y>219.0</y>
+              <x>285.0</x>
+              <y>270.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -500,13 +489,13 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
         <refId>13e3d29a-6db7-4219-a669-53a1313d8125</refId>
       </opRef>
       <assignments>
-        <flowVariableAssignment id="0b5705db-832a-4560-b860-2dc77eb72cb7">
+        <flowVariableAssignment id="b01da13f-f951-4fb4-bbdf-742df2f04915">
           <annotation></annotation>
           <name>assignment</name>
           <action>OVERWRITE</action>
           <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
           <contextKey>ssoToken</contextKey>
-          <expression id="797c187f-bcf6-4b79-8833-1ba5a899b973">
+          <expression id="100111ce-2d94-4241-be65-5be67ccad8a2">
             <annotation></annotation>
             <name>Result Field: ssoToken</name>
             <fieldName>ssoToken</fieldName>
@@ -517,280 +506,21 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
       </assignments>
       <throttleSize>0</throttleSize>
     </step>
-    <returnStep id="0f461965-115c-4a3f-9ed8-e1efaca5feb1">
-      <annotation></annotation>
-      <name>Resolved : success</name>
-      <bounds>
-        <x>565.0</x>
-        <y>17.0</y>
-      </bounds>
-      <layer>-1</layer>
-      <hideInbound>false</hideInbound>
-      <addResultToRunContext>false</addResultToRunContext>
-      <isCriticalStep>false</isCriticalStep>
-      <isNonBlocking>false</isNonBlocking>
-      <isParallelStep>false</isParallelStep>
-      <isSingleResponse>false</isSingleResponse>
-      <recordInHistory>false</recordInHistory>
-      <recordRawOutput>true</recordRawOutput>
-      <recordPrimaryOutput>true</recordPrimaryOutput>
-      <checkPointStep>true</checkPointStep>
-      <historyCheckPointStep>true</historyCheckPointStep>
-      <scriptResultStep>false</scriptResultStep>
-      <userPrompt></userPrompt>
-      <bindings/>
-      <transitions>
-        <transition id="6dcfaeda-0d3f-4a80-8dc7-722206c64f7e">
-          <annotation></annotation>
-          <name>return</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>success</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>0f461965-115c-4a3f-9ed8-e1efaca5feb1</refId>
-          </destination>
-          <source>
-            <refId>0f461965-115c-4a3f-9ed8-e1efaca5feb1</refId>
-          </source>
-          <positions/>
-        </transition>
-      </transitions>
-      <properties/>
-      <returnStepType>RESOLVED</returnStepType>
-      <assignments/>
-    </returnStep>
-    <returnStep id="c199fc6a-5d72-409c-8e10-9286daf4e430">
-      <annotation></annotation>
-      <name>Error : failure</name>
-      <bounds>
-        <x>171.0</x>
-        <y>305.0</y>
-      </bounds>
-      <layer>-1</layer>
-      <hideInbound>false</hideInbound>
-      <iconSpec id="ef050865-c7c3-4701-b0f5-a9b4468cb92b">
-        <baseIcon>return_failure.png</baseIcon>
-        <basePath>System</basePath>
-        <readOnly>true</readOnly>
-        <layers/>
-      </iconSpec>
-      <addResultToRunContext>false</addResultToRunContext>
-      <isCriticalStep>false</isCriticalStep>
-      <isNonBlocking>false</isNonBlocking>
-      <isParallelStep>false</isParallelStep>
-      <isSingleResponse>false</isSingleResponse>
-      <recordInHistory>false</recordInHistory>
-      <recordRawOutput>true</recordRawOutput>
-      <recordPrimaryOutput>true</recordPrimaryOutput>
-      <checkPointStep>true</checkPointStep>
-      <historyCheckPointStep>true</historyCheckPointStep>
-      <scriptResultStep>false</scriptResultStep>
-      <userPrompt></userPrompt>
-      <bindings/>
-      <transitions>
-        <transition id="365ad7f1-b6dc-47a8-b78c-26ed8e0d14c8">
-          <annotation></annotation>
-          <name>return</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>failure</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>c199fc6a-5d72-409c-8e10-9286daf4e430</refId>
-          </destination>
-          <source>
-            <refId>c199fc6a-5d72-409c-8e10-9286daf4e430</refId>
-          </source>
-          <positions/>
-        </transition>
-      </transitions>
-      <properties/>
-      <returnStepType>ERROR</returnStepType>
-      <assignments/>
-    </returnStep>
-    <step id="728eaca0-5c0d-4256-97b7-376155ce41dd">
-      <annotation>d1076509-d813-4797-b485-cf40e078657b.728eaca0-5c0d-4256-97b7-376155ce41dd.description</annotation>
-      <name>Get SyncId</name>
-      <bounds>
-        <x>391.0</x>
-        <y>20.0</y>
-      </bounds>
-      <layer>-1</layer>
-      <hideInbound>false</hideInbound>
-      <iconSpec id="813ee186-6945-411d-abb3-24e1bdee79d6">
-        <baseIcon>text_code_javascript.png</baseIcon>
-        <basePath>/Others/</basePath>
-        <readOnly>false</readOnly>
-        <layers/>
-      </iconSpec>
-      <addResultToRunContext>false</addResultToRunContext>
-      <isCriticalStep>false</isCriticalStep>
-      <isNonBlocking>false</isNonBlocking>
-      <isParallelStep>false</isParallelStep>
-      <isSingleResponse>false</isSingleResponse>
-      <recordInHistory>false</recordInHistory>
-      <recordRawOutput>true</recordRawOutput>
-      <recordPrimaryOutput>true</recordPrimaryOutput>
-      <checkPointStep>true</checkPointStep>
-      <historyCheckPointStep>true</historyCheckPointStep>
-      <scriptResultStep>false</scriptResultStep>
-      <userPrompt></userPrompt>
-      <bindings>
-        <resultBinding id="c674763f-58d9-4a08-9178-d47f1b3df2b4">
-          <annotation></annotation>
-          <fromContextKey>resultJSON</fromContextKey>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>object</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </resultBinding>
-        <staticBinding id="0d3c84f5-907c-498c-b227-b3f7fcd2226e">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>key</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>Type</value>
-          <record>false</record>
-        </staticBinding>
-      </bindings>
-      <transitions>
-        <transition id="48f17348-8d9b-4c0b-873f-20a06465c485">
-          <annotation></annotation>
-          <name>success</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>success</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>0f461965-115c-4a3f-9ed8-e1efaca5feb1</refId>
-          </destination>
-          <source>
-            <refId>728eaca0-5c0d-4256-97b7-376155ce41dd</refId>
-          </source>
-          <positions>
-            <point>
-              <x>441.0</x>
-              <y>54.0</y>
-            </point>
-            <point>
-              <x>615.0</x>
-              <y>51.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-        <transition id="15d9faca-5e32-496a-b4c7-36e0ce29503d">
-          <annotation></annotation>
-          <name>failure</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>failure</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>564f5751-de2a-438b-bc7b-29b92684401a</refId>
-          </destination>
-          <source>
-            <refId>728eaca0-5c0d-4256-97b7-376155ce41dd</refId>
-          </source>
-          <positions>
-            <point>
-              <x>441.0</x>
-              <y>54.0</y>
-            </point>
-            <point>
-              <x>222.0</x>
-              <y>219.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-      </transitions>
-      <properties/>
-      <opRef>
-        <refId>61fc6fd2-7d5c-4d5c-aaa9-71c8250310f2</refId>
-      </opRef>
-      <assignments>
-        <flowVariableAssignment id="4618ce08-9011-4126-a4d5-b121b33becbf">
-          <annotation></annotation>
-          <name>assignment</name>
-          <action>OVERWRITE</action>
-          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
-          <contextKey>logMessage</contextKey>
-          <expression id="78d0492e-3c4c-4134-ab5b-02ae74bcfa0c">
-            <annotation></annotation>
-            <name>Result Field: Result</name>
-            <fieldName>Result</fieldName>
-            <sourceType>RAWRESULT</sourceType>
-            <filters/>
-          </expression>
-        </flowVariableAssignment>
-        <flowVariableAssignment id="75116290-45e7-4411-97d8-3c0829c58db5">
-          <annotation></annotation>
-          <name>assignment</name>
-          <action>OVERWRITE</action>
-          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
-          <contextKey>logCode</contextKey>
-          <expression id="4979f90c-8b8f-45c3-ac96-5021d6b56f36">
-            <annotation></annotation>
-            <name>Result Field: Result</name>
-            <fieldName>Result</fieldName>
-            <sourceType>RAWRESULT</sourceType>
-            <filters/>
-          </expression>
-        </flowVariableAssignment>
-        <flowVariableAssignment id="86e2cb70-ff8b-447a-89a1-6bdf1648bf52">
-          <annotation></annotation>
-          <name>assignment</name>
-          <action>OVERWRITE</action>
-          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
-          <contextKey>SyncId</contextKey>
-          <expression id="8a086f2a-741f-4f2c-8cfc-79cc6eb7d2be">
-            <annotation></annotation>
-            <name>Result Field: Result</name>
-            <fieldName>Result</fieldName>
-            <sourceType>RAWRESULT</sourceType>
-            <filters/>
-          </expression>
-        </flowVariableAssignment>
-      </assignments>
-      <throttleSize>0</throttleSize>
-    </step>
-    <step id="a61a44df-54bf-485d-8bf7-092740e53951">
-      <annotation>d1076509-d813-4797-b485-cf40e078657b.a61a44df-54bf-485d-8bf7-092740e53951.description</annotation>
+    <step id="304ff5ad-47f6-4270-8395-4911251b233d">
+      <annotation>d5fe915b-a242-4212-ad58-85d14cceab43.304ff5ad-47f6-4270-8395-4911251b233d.description</annotation>
       <name>GET Sync Status</name>
       <bounds>
-        <x>231.0</x>
-        <y>17.0</y>
+        <x>270.0</x>
+        <y>30.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="a4b8bbce-7d90-427a-a963-24479ca40ee9">
+      <iconSpec id="de86cdc4-a0f4-40de-b52d-1fb29e1a2211">
         <baseIcon>earth.png</baseIcon>
         <basePath>/Networking/</basePath>
         <readOnly>false</readOnly>
         <layers>
-          <iconSpec id="135368ab-a500-4640-825b-532b9ab8b5cd">
+          <iconSpec id="a5fa3acf-7a00-4d9d-830b-279a2dbda19f">
             <baseIcon>send.png</baseIcon>
             <basePath>/Annotations/</basePath>
             <readOnly>false</readOnly>
@@ -810,9 +540,9 @@ d1076509-d813-4797-b485-cf40e078657b.dad3dcf7-79de-46e4-8828-48445d2b49ae.prompt
       <historyCheckPointStep>true</historyCheckPointStep>
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
-      <scriptlet id="2d55d1c4-6e98-4d84-9422-e251f2b2ff6e">
+      <scriptlet id="a75279f7-2b5e-4d0d-a22a-b46a22270c7b">
         <annotation></annotation>
-        <name>Step GET Sync Status in Flow SMAX BI Check Status (a61a44df-54bf-485d-8bf7-092740e53951)</name>
+        <name>Step GET Sync Status in Flow SMAX BI Check Overall Status (304ff5ad-47f6-4270-8395-4911251b233d)</name>
         <script>statusCode = scriptletRawResult[&apos;statusCode&apos;];
 
 if (statusCode != 200){
@@ -821,7 +551,7 @@ if (statusCode != 200){
         <type>NASHORN</type>
       </scriptlet>
       <bindings>
-        <staticBinding id="59aba7ea-dd5a-4462-ae7d-432dc67f1dbb">
+        <staticBinding id="c07103f3-3572-4abe-b3ac-2a79a2f85958">
           <annotation></annotation>
           <toContextKey></toContextKey>
           <fromContextKey></fromContextKey>
@@ -833,10 +563,10 @@ if (statusCode != 200){
           <isPersisted>true</isPersisted>
           <inputSymbol>url</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>${sawURL}/rest/${tenantId}/bi/status/${biSyncId}</value>
+          <value>${sawURL}/rest/${tenantId}/bi/status/</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="957fdd3c-dd0b-428f-95b6-660ca4f18b33">
+        <staticBinding id="57985fd5-151c-45a5-a55d-29bcf45a7eeb">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -849,7 +579,7 @@ if (statusCode != 200){
           <value></value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="a1fd5836-645e-411d-9119-8996c4ded986">
+        <staticBinding id="0b950f69-6866-457e-b7fd-92189efa94c2">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -862,7 +592,7 @@ if (statusCode != 200){
           <value></value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="c44778c8-400a-48f7-ac09-c78e25edce09">
+        <staticBinding id="5ee0967b-39ce-4dae-8cd8-c03bc8f891d4">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -875,7 +605,7 @@ if (statusCode != 200){
           <value></value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="1840505f-5e29-44d9-9ee0-9273eca732ba">
+        <staticBinding id="7c7ee524-0f22-44a3-8435-499016d0c034">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>true</assignToContext>
@@ -888,7 +618,7 @@ if (statusCode != 200){
           <value></value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="37d3b370-02bf-455a-a495-3d00b3e792ce">
+        <staticBinding id="848b4c27-d56c-4fff-9784-56cedddee4ad">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>true</assignToContext>
@@ -901,7 +631,7 @@ if (statusCode != 200){
           <value></value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="cc3ea77b-2b0f-49a0-acc3-dbbbc3ae393a">
+        <staticBinding id="357e26b2-727b-49a3-aff5-a7be8938b7d3">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -914,7 +644,7 @@ if (statusCode != 200){
           <value></value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="e59fb0c3-cccc-44e7-94e9-bf58826d44a4">
+        <staticBinding id="b09e7832-2cb5-4a59-aff2-3e960936288a">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -927,7 +657,7 @@ if (statusCode != 200){
           <value>GET</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="a510462c-b336-482c-badb-6dc08c88f7c8">
+        <staticBinding id="08f94a0a-5929-4af9-8da2-d5f3647222fe">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -940,7 +670,7 @@ if (statusCode != 200){
           <value></value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="79bb3fc8-815c-4cd0-9e6b-d87e441f74a3">
+        <staticBinding id="0d827a02-a6ec-4d81-89dd-775f993d40d0">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -953,7 +683,7 @@ if (statusCode != 200){
           <value>8080</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="51411c29-6cfa-44ef-a195-75f18410a678">
+        <staticBinding id="72ffbb6c-9d6f-415b-942d-084bff937f08">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -966,7 +696,7 @@ if (statusCode != 200){
           <value></value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="671a1898-e30e-4afc-9594-d189702939bf">
+        <staticBinding id="ccff5126-cceb-4110-ab05-3459568781d2">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -979,7 +709,7 @@ if (statusCode != 200){
           <value></value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="793c7b28-07b2-4c4d-8b05-1ba9d6808fe6">
+        <staticBinding id="43fd0542-a6ce-49e0-bad5-97c743184c5c">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -992,7 +722,7 @@ if (statusCode != 200){
           <value>true</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="90ca618a-91f8-498e-b775-3bfd5b28895d">
+        <staticBinding id="1ef49b2e-8f2e-4ff9-a8ad-04fa18c9a038">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1005,7 +735,7 @@ if (statusCode != 200){
           <value>strict</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="7f10761e-5dff-4a08-a447-a7b940edad60">
+        <staticBinding id="4c33a91d-a258-44d1-b891-1cd2e454719f">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1018,7 +748,7 @@ if (statusCode != 200){
           <value></value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="051f9c9f-2263-40b3-8c76-5e7b45b0a94b">
+        <staticBinding id="db12a8c6-e5db-4437-80b5-ee94a7b8bfaf">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1031,7 +761,7 @@ if (statusCode != 200){
           <value>changeit</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="32efc52c-88e2-4b01-aa69-f06c9de9678b">
+        <staticBinding id="fbcb4998-9fd5-4aaa-89ae-4d08f3103cc5">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1044,7 +774,7 @@ if (statusCode != 200){
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="54f3280e-9b80-47f0-b725-7cf3f2aeb5d7">
+        <staticBinding id="441c7df5-7810-48c4-9c6a-0298cf8e2d03">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1057,7 +787,7 @@ if (statusCode != 200){
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="f0a3b4ed-2f56-4347-a91f-3750a411ac6f">
+        <staticBinding id="f7ec0ce5-2427-4205-a95f-c96b3fb79bcc">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1070,7 +800,7 @@ if (statusCode != 200){
           <value>true</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="42914b47-5a0c-45c9-936a-265c1ae67ff6">
+        <staticBinding id="0a2beac8-349f-441b-9373-aa37466fc783">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1083,7 +813,7 @@ if (statusCode != 200){
           <value>true</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="d8556c8e-df8d-4ba3-9800-1dc3d933d431">
+        <staticBinding id="e47bdafb-7a36-4831-a691-b6f47f35d1d3">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1096,7 +826,7 @@ if (statusCode != 200){
           <value>2</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="8bd16d32-1a86-4481-84c0-78d129185d5c">
+        <staticBinding id="206101a4-10e8-4b8a-b9cc-6cceb95691ee">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1109,7 +839,7 @@ if (statusCode != 200){
           <value>20</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="5530bc21-54de-45ee-969d-8250047a35a6">
+        <staticBinding id="a4ca425b-668d-4381-834e-d6f234576418">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1122,7 +852,7 @@ if (statusCode != 200){
           <value>application/json</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="1771fc4e-d436-45d0-8456-9a7f9786f8e7">
+        <staticBinding id="2f80dbec-93c3-46d7-bd3d-d3b69e0df95c">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1135,7 +865,7 @@ if (statusCode != 200){
           <value>Cookie:LWSSO_COOKIE_KEY=${ssoToken} TENANTID=${sawTenantId} User-Agent=Apache-HttpClient/4.1</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="663f5a47-67b6-477c-a09d-10fc8489563c">
+        <staticBinding id="370c7c4b-5e68-4013-9f69-979ad488d6cc">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1148,7 +878,7 @@ if (statusCode != 200){
           <value>ISO-8859-1</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="cc38be01-71aa-4ffd-aac4-14d70f0172e7">
+        <staticBinding id="27ac7da0-424b-425d-93b8-57667cb245b8">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1163,36 +893,7 @@ if (statusCode != 200){
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="8639911f-bde7-4784-9b5b-195564dd6707">
-          <annotation></annotation>
-          <name>success</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>success</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>728eaca0-5c0d-4256-97b7-376155ce41dd</refId>
-          </destination>
-          <source>
-            <refId>a61a44df-54bf-485d-8bf7-092740e53951</refId>
-          </source>
-          <positions>
-            <point>
-              <x>281.0</x>
-              <y>51.0</y>
-            </point>
-            <point>
-              <x>441.0</x>
-              <y>54.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-        <transition id="fd53060c-13a9-41c6-8f2a-b621d8ab1408">
+        <transition id="f088e587-c1da-4367-b8b0-a3be16853174">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -1201,19 +902,48 @@ if (statusCode != 200){
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>564f5751-de2a-438b-bc7b-29b92684401a</refId>
+            <refId>a62e9c15-f86e-4b86-b829-a6fa32da891a</refId>
           </destination>
           <source>
-            <refId>a61a44df-54bf-485d-8bf7-092740e53951</refId>
+            <refId>304ff5ad-47f6-4270-8395-4911251b233d</refId>
           </source>
           <positions>
             <point>
-              <x>281.0</x>
-              <y>51.0</y>
+              <x>344.0</x>
+              <y>102.0</y>
             </point>
             <point>
-              <x>222.0</x>
-              <y>219.0</y>
+              <x>285.0</x>
+              <y>270.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="227d9ea1-76af-4515-89c9-4499e0954e4b">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>4261338b-7ec4-4e8b-8803-414e70e81c48</refId>
+          </destination>
+          <source>
+            <refId>304ff5ad-47f6-4270-8395-4911251b233d</refId>
+          </source>
+          <positions>
+            <point>
+              <x>320.0</x>
+              <y>64.0</y>
+            </point>
+            <point>
+              <x>520.0</x>
+              <y>198.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -1227,13 +957,13 @@ if (statusCode != 200){
         <refId>aef59d9e-7bce-4a8c-8bba-69edfb155f48</refId>
       </opRef>
       <assignments>
-        <flowVariableAssignment id="4a26bd9d-2017-40cb-933e-f15a162495f6">
+        <flowVariableAssignment id="884bb9d4-e3dc-4d12-abbe-ae9de681b741">
           <annotation></annotation>
           <name>assignment</name>
           <action>OVERWRITE</action>
           <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
           <contextKey>logMessage</contextKey>
-          <expression id="b4f5b892-62e0-4658-a0ca-7e584766b826">
+          <expression id="dc5de138-ce11-4cb6-9b98-127b85227286">
             <annotation></annotation>
             <name>Result Field: returnResult</name>
             <fieldName>returnResult</fieldName>
@@ -1241,13 +971,13 @@ if (statusCode != 200){
             <filters/>
           </expression>
         </flowVariableAssignment>
-        <flowVariableAssignment id="8d3f220a-d6fe-4c2d-a23b-00e1efd1b50c">
+        <flowVariableAssignment id="af09b593-3575-4bad-bd66-8143ac8c45db">
           <annotation></annotation>
           <name>assignment</name>
           <action>OVERWRITE</action>
           <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
           <contextKey>logCode</contextKey>
-          <expression id="942841f5-4bd1-4f91-bb8b-7f15085ab8f6">
+          <expression id="60046996-91e1-4f7a-b41d-7c466f4bf79e">
             <annotation></annotation>
             <name>Result Field: returnCode</name>
             <fieldName>returnCode</fieldName>
@@ -1255,13 +985,13 @@ if (statusCode != 200){
             <filters/>
           </expression>
         </flowVariableAssignment>
-        <flowVariableAssignment id="e4a67989-661d-48b9-a230-ce2204183cec">
+        <flowVariableAssignment id="d2d9c4e4-81a3-4dd9-9e5a-7f7e0abbaef7">
           <annotation></annotation>
           <name>assignment</name>
           <action>OVERWRITE</action>
           <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
           <contextKey>statusCode</contextKey>
-          <expression id="987fbcaf-58b1-496d-972e-9288a6c952e3">
+          <expression id="0a9de64f-243d-4faf-b381-9df5df449632">
             <annotation></annotation>
             <name>Result Field: statusCode</name>
             <fieldName>statusCode</fieldName>
@@ -1269,13 +999,13 @@ if (statusCode != 200){
             <filters/>
           </expression>
         </flowVariableAssignment>
-        <flowVariableAssignment id="17dd77b1-6f01-4a35-bf8b-20d3f0d13e18">
+        <flowVariableAssignment id="e7f9b72b-b6c1-498d-9f70-498a8c8671a0">
           <annotation></annotation>
           <name>assignment</name>
           <action>OVERWRITE</action>
           <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
           <contextKey>resultJSON</contextKey>
-          <expression id="9ced400c-9936-4d85-b5cb-dcaea3354a7a">
+          <expression id="5f9dbf0f-81b2-44c5-8bb2-28048391a1c5">
             <annotation></annotation>
             <name>Result Field: returnResult</name>
             <fieldName>returnResult</fieldName>
@@ -1283,13 +1013,13 @@ if (statusCode != 200){
             <filters/>
           </expression>
         </flowVariableAssignment>
-        <flowVariableAssignment id="ecf87b66-49fd-4d06-8ce8-c6b4dd22259a">
+        <flowVariableAssignment id="00538cf7-c4e4-4a2c-8db4-752e248cc3e2">
           <annotation></annotation>
           <name>assignment</name>
           <action>OVERWRITE</action>
           <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
           <contextKey>returnResult</contextKey>
-          <expression id="1cc30d8b-1cee-4c9d-b2e9-ddbd55fb2bb0">
+          <expression id="24835442-7a8f-4ab6-8aed-bffe6fc3f4bd">
             <annotation></annotation>
             <name>Result Field: returnResult</name>
             <fieldName>returnResult</fieldName>
@@ -1300,16 +1030,66 @@ if (statusCode != 200){
       </assignments>
       <throttleSize>0</throttleSize>
     </step>
-    <step id="564f5751-de2a-438b-bc7b-29b92684401a">
+    <returnStep id="8b62d7db-b7c7-436e-953b-55212e975d69">
       <annotation></annotation>
-      <name>LogError</name>
+      <name>Error : failure</name>
       <bounds>
-        <x>172.0</x>
-        <y>185.0</y>
+        <x>210.0</x>
+        <y>330.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="c417d19d-0279-4c45-a6b3-d07bb6bad3c1">
+      <iconSpec id="945d9912-6e22-4b52-a3fb-5c44b3f05fcf">
+        <baseIcon>return_failure.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>true</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="56db5108-20f4-4045-936a-613addffa913">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>8b62d7db-b7c7-436e-953b-55212e975d69</refId>
+          </destination>
+          <source>
+            <refId>8b62d7db-b7c7-436e-953b-55212e975d69</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments/>
+    </returnStep>
+    <step id="a62e9c15-f86e-4b86-b829-a6fa32da891a">
+      <annotation></annotation>
+      <name>LogError</name>
+      <bounds>
+        <x>210.0</x>
+        <y>210.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="ce2cd346-4799-4bf8-888a-1eb416b09796">
         <baseIcon>flow.png</baseIcon>
         <basePath>System</basePath>
         <readOnly>false</readOnly>
@@ -1328,7 +1108,7 @@ if (statusCode != 200){
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="804fb0ff-1ea2-4a44-af1c-62b64d251dec">
+        <userInputBinding id="39ec2485-3062-430e-95aa-be6e51d311a8">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1343,7 +1123,7 @@ if (statusCode != 200){
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="a6bf2dfd-162e-43af-b3ea-6bc746bb5b27">
+        <userInputBinding id="927663a5-83e6-420c-b11d-706655ebd309">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1360,36 +1140,7 @@ if (statusCode != 200){
         </userInputBinding>
       </bindings>
       <transitions>
-        <transition id="82d1eb7c-ab72-4dbc-b009-6e1d0be1fe8f">
-          <annotation></annotation>
-          <name>success</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>success</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>c199fc6a-5d72-409c-8e10-9286daf4e430</refId>
-          </destination>
-          <source>
-            <refId>564f5751-de2a-438b-bc7b-29b92684401a</refId>
-          </source>
-          <positions>
-            <point>
-              <x>222.0</x>
-              <y>219.0</y>
-            </point>
-            <point>
-              <x>221.0</x>
-              <y>339.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-        <transition id="6fd19715-c389-46e0-8090-a03a354f9a03">
+        <transition id="2f1d46b7-9d64-4ede-89a0-132b0d92b399">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -1398,27 +1149,56 @@ if (statusCode != 200){
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>c199fc6a-5d72-409c-8e10-9286daf4e430</refId>
+            <refId>8b62d7db-b7c7-436e-953b-55212e975d69</refId>
           </destination>
           <source>
-            <refId>564f5751-de2a-438b-bc7b-29b92684401a</refId>
+            <refId>a62e9c15-f86e-4b86-b829-a6fa32da891a</refId>
           </source>
           <positions>
             <point>
-              <x>222.0</x>
-              <y>219.0</y>
+              <x>285.0</x>
+              <y>270.0</y>
             </point>
             <point>
-              <x>246.49914934985998</x>
-              <y>279.2062428750811</y>
+              <x>309.49914934986</x>
+              <y>330.2062428750811</y>
             </point>
             <point>
-              <x>246.49911462944613</x>
-              <y>279.2104093247465</y>
+              <x>309.4991146294461</x>
+              <y>330.2104093247465</y>
             </point>
             <point>
-              <x>221.0</x>
-              <y>339.0</y>
+              <x>284.0</x>
+              <y>390.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="573f6631-eeb7-4d7c-bc04-cd483a88222a">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>8b62d7db-b7c7-436e-953b-55212e975d69</refId>
+          </destination>
+          <source>
+            <refId>a62e9c15-f86e-4b86-b829-a6fa32da891a</refId>
+          </source>
+          <positions>
+            <point>
+              <x>285.0</x>
+              <y>270.0</y>
+            </point>
+            <point>
+              <x>284.0</x>
+              <y>390.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -1434,6 +1214,167 @@ if (statusCode != 200){
       <assignments/>
       <throttleSize>0</throttleSize>
     </step>
+    <returnStep id="9228c314-9302-4b9d-9674-302e8666a71d">
+      <annotation></annotation>
+      <name>Resolved : success</name>
+      <bounds>
+        <x>600.0</x>
+        <y>30.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="99df31ee-a1b0-4b79-a735-c4be541c1a8f">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>9228c314-9302-4b9d-9674-302e8666a71d</refId>
+          </destination>
+          <source>
+            <refId>9228c314-9302-4b9d-9674-302e8666a71d</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+    <step id="4261338b-7ec4-4e8b-8803-414e70e81c48">
+      <annotation>d5fe915b-a242-4212-ad58-85d14cceab43.4261338b-7ec4-4e8b-8803-414e70e81c48.description</annotation>
+      <name>JSON Path</name>
+      <bounds>
+        <x>414.0</x>
+        <y>28.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="83d29e2e-8927-46e4-bed2-36555c595716">
+          <annotation></annotation>
+          <fromContextKey>resultJSON</fromContextKey>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>json</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{&quot;List&quot;:${resultJSON} }</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5cd6e3c5-0662-4f9a-a0bc-dad82d88ac0c">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>jsonPathQuery</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>$.Type[3]</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="985dbcaa-d6b4-4f2c-9832-fe2331ba1b4a">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>9228c314-9302-4b9d-9674-302e8666a71d</refId>
+          </destination>
+          <source>
+            <refId>4261338b-7ec4-4e8b-8803-414e70e81c48</refId>
+          </source>
+          <positions>
+            <point>
+              <x>464.0</x>
+              <y>62.0</y>
+            </point>
+            <point>
+              <x>650.0</x>
+              <y>64.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="882982e6-3b66-4908-9d38-541998153ed2">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>a62e9c15-f86e-4b86-b829-a6fa32da891a</refId>
+          </destination>
+          <source>
+            <refId>4261338b-7ec4-4e8b-8803-414e70e81c48</refId>
+          </source>
+          <positions>
+            <point>
+              <x>464.0</x>
+              <y>62.0</y>
+            </point>
+            <point>
+              <x>260.0</x>
+              <y>244.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>dc278be5-3c54-4640-bc57-971e9a1b15c5</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
   </steps>
-  <startSteps>5c00c834-9d29-4025-8a72-a0e6934efe9a</startSteps>
+  <startSteps>5066ee8a-2da4-4e17-98ec-e55a8337363f</startSteps>
 </flow>
