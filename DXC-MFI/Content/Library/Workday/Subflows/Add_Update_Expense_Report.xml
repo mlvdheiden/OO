@@ -1,0 +1,2144 @@
+<flow id="9bfb1631-1170-4992-9c93-a831a068f9c6">
+  <descriptionCdata><![CDATA[9bfb1631-1170-4992-9c93-a831a068f9c6.4130a5cf-f0cb-4afe-b1e1-9a51500a6558.description=<pre>\nThe operation invokes web service methods.  This operation should not be used directly\!  Please use the wizard to build flows that use this operation.\n\nInputs\:\n    xmlTemplate - The template of the soap request to make.\n    inputMap - A map used to map between template names and user-friendly names. The template names are pipe-delimited xpaths of the xmltemplate location, with a numerical element for lists.\nValue format\: A list of elements separated by the new line delimiter. Eache element hes the format\: <name>\=<new name>.\nExample\: A line in the "inputMap" could be\: "Request|Details|0|Input|x\=input0.x"\n    url - The url to Post to. \n    header_SOAPAction - The SOAPAction http header field, defined by many web services for indicating the intent of the request\n    wswAuthenticationType - The authentication type to use for the "username" and "password" input.\nDefault value\: http\nValid values\: http, ntlm, ws-security digest, ws-security text\n    WSSecuritySignRequest - Should the SOAP request be signed using WS-Security.\nDefault value\: false\nValid values true, false\n    WSSecurityEncryptRequest - Should the entire SOAP request be signed using WS-Security.\nDefault value\: false\nValid values true, false\n    WSSecurityTimestampRequest - Should the Timestamp attribute be added to the WS-Security header\nDefault value\: false\nValid values true, false\n    WSSecurityKeystore - Keystore to use for encrypting and signing requests.\n    WSSecurityKeystoreType - The type of "WSSecurityKeystore".\n    WSSecurityKeystorePassword - The password for "WSSecurityKeystore".\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: Conforming with HTTP standard for headers (RFC 2616).\nExamples\: Accept-Language\:en\n    contentType - Value to be used in the Content-Type HTTP header. If Content-Type header is also passed in "headers" input, the "contentType" input will override the value provided in "headers".\nDefault value\: text/xml\n    characterSet - The character set for HTTP Get request and response.\nDefault value\: UTF-8\n    username - The username to use for authenticating with the web service.\nValue format\: For NTLM authentication, the required format is domain\\user.\n    password - The password to use for authenticating with the web service.\n    trustAllRoots - Enables weak security over SSL. A SSH certificate is trusted even if no trusted CA issued it.\nDefault value\: false\nValid values\: true, false\n    useCookies - Enables cookie tracking. Cookies will be stored between consecutive calls.\nDefault value\: false\nValid values\: true, false\n    usesJSON - Use JSON arrays for the SOAP Request for all Array types.\nDefault value\: false\nValid values\: true, false\n    timeout - a timeout after which the connection should be terminated or 0 for no timeout.\n    socketTimeout - The time to wait for data to be retrieved, in milliseconds. This input needs a value greater than or equal to zero. A "socketTimeout" value of '0' represents an infinite timeout.\nDefault value\: 0\n    proxy - A proxy to use when accessing the web service.\n    proxyPort - A port on the proxy to connect to.\n    proxyUsername - A username to use when connecting to the proxy.\n    proxyPassword - A password to use when connecting to the proxy.\n    keystore - The path to the keystore to use for SSL Client Certificates when using http authentication.\n    keystorePassword - The password for the keystore when using http authentication.\n    ICONCLUDE_WSW_VERSION - This value is used internally by the operation.\n    returnXMLRequest - If this input is set to true, a new output named "rawXMLRequest" is returned from the operation which contains the text of the SOAP request that will be sent. This can be very valuable in troubleshooting.\nDefault value\: false\nValid values\: true, false\n\nResults\:\n    returnCode - This is the primary output. It contains the value 0 if the operation successfully completes and the value -1 otherwise.\n    document - Raw XML response.\n    documentStripped - Raw XML response stripped of namespaces for ease in parsing with XML XPath operations.\n    jsonStripped - Raw XML response stripped of namespaces for ease in parsing with JSON operations, input usesJSON must be set to true for this to be populated.\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\nExample\: Content-Type\: text/xml;charset\=utf-8\n              Transfer-Encoding\: chunked\n\nResponses\:\n    success - SOAP request completed successfully.\n    failure - Something went wrong.\n\nNotes\:\n1.If wswAuthenticationType\=ws-security text then this operation transmits passwords in clear-text.\n2.Any additional inputs that follow these are added by the Web Service Wizard, and they are specific to the particular web service method being called.\n3.If you add new step-level inputs with the name header_<headername>, where <headername> is the name of an html header, then that html header will be set to the given value in the HTTP request.\n4.This operation will not allow connection through secure transport layers below TLS 1.0.\n</pre>
+9bfb1631-1170-4992-9c93-a831a068f9c6.description=<pre>\nThis subflow was created by the Web Services Wizard to invoke the Add_Update_Expense_Report operation on C\:\\Users\\vonderhe.CORPDOM\\apps\\microfocus\\oo\\studio\\tools\\Professional_Services_Automation.wsdl. Note that the inputs to this flow which correspond to web service inputs are optional inputs.  This is due to the fact that web services definitions usually incorrectly indicate that too many inputs are required, and mirroring those settings in the flow would force you to enter unused values when running the flow.  The xmlTemplate input on the Invoke Method 2 step of this flow contains a template of the xml message to be sent, and the fields preceded by the comment "<\!--Optional\:-->" or "<\!--zero or more repetitions-->" are those which the web service indicates are optional; all others are indicated to be required.\n\nInputs\:\n    webserviceHost - The host that is running the web service\n    webservicePort - The port on the host running the web service\n    headers - The list containing the headers to use for the request separated by new line (CRLF).The header name - value pair will be separated by "\:".\nFormat\: Conforming with HTTP standard for headers (RFC 2616).\nExamples\: Accept-Language\:en\n    username - The username to use for authenticating with the web service. For NTLM authentication, the required format is domain\\\\user.\n    password - The password to use for authenticating with the web service.\n    Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Comment - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data|Comment of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Compressed - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data|Compressed of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Content_Type - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data|Content_Type of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Encoding - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data|Encoding of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.File_Content - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data|File_Content of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Filename - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data|Filename of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Business_Document_Attachment_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.Descriptor - The input named Expense_Report_Add_Update|Expense_Report_Data|Company_Reference|Organization_Reference|Integration_ID_Reference|Descriptor of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|Company_Reference|Organization_Reference|Integration_ID_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.ID - The input named Expense_Report_Add_Update|Expense_Report_Data|Company_Reference|Organization_Reference|Integration_ID_Reference|ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|Company_Reference|Organization_Reference|Integration_ID_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.ID.System_ID - The input named Expense_Report_Add_Update|Expense_Report_Data|Company_Reference|Organization_Reference|Integration_ID_Reference|ID|System_ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|Company_Reference|Organization_Reference|Integration_ID_Reference|ID\n    Expense_Report_Add_Update.Expense_Report_Data.Currency_Reference.Currency_Code - The input named Expense_Report_Add_Update|Expense_Report_Data|Currency_Reference|Currency_Code of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|Currency_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.Descriptor - The input named Expense_Report_Add_Update|Expense_Report_Data|Employee_Reference|Integration_ID_Reference|Descriptor of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|Employee_Reference|Integration_ID_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.ID - The input named Expense_Report_Add_Update|Expense_Report_Data|Employee_Reference|Integration_ID_Reference|ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|Employee_Reference|Integration_ID_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.ID.System_ID - The input named Expense_Report_Add_Update|Expense_Report_Data|Employee_Reference|Integration_ID_Reference|ID|System_ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|Employee_Reference|Integration_ID_Reference|ID\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Approved_Externally - The input named Expense_Report_Add_Update|Expense_Report_Data|Expense_Report_Approved_Externally of the complex type\: Expense_Report_Add_Update|Expense_Report_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Date - The input named Expense_Report_Add_Update|Expense_Report_Data|Expense_Report_Date of the complex type\: Expense_Report_Add_Update|Expense_Report_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Description - The input named Expense_Report_Add_Update|Expense_Report_Data|Expense_Report_Description of the complex type\: Expense_Report_Add_Update|Expense_Report_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Amount - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|Amount of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Billable - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|Billable of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Converted_Amount - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|Converted_Amount of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Currency_Rate - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|Currency_Rate of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Item_Reference0.Item_Name - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Expense_Item_Reference|Item_Name of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Expense_Item_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Line_Description - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|Expense_Line_Description of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Report_Line_Date - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|Expense_Report_Line_Date of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Quantity - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|Quantity of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Receipt_Included - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|Receipt_Included of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Total_Amount - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|Total_Amount of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Transaction_Currency_Reference.Currency_Code - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|Transaction_Currency_Reference|Currency_Code of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|Transaction_Currency_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.Descriptor - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Cost_Center_Reference|Integration_ID_Reference|Descriptor of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Cost_Center_Reference|Integration_ID_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.ID - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Cost_Center_Reference|Integration_ID_Reference|ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Cost_Center_Reference|Integration_ID_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.ID.System_ID - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Cost_Center_Reference|Integration_ID_Reference|ID|System_ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Cost_Center_Reference|Integration_ID_Reference|ID\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_1_Reference.Custom_Work_Tag_Value - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_1_Reference|Custom_Work_Tag_Value of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_1_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_2_Reference.Custom_Work_Tag_Value - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_2_Reference|Custom_Work_Tag_Value of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_2_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_3_Reference.Custom_Work_Tag_Value - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_3_Reference|Custom_Work_Tag_Value of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_3_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_4_Reference.Custom_Work_Tag_Value - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_4_Reference|Custom_Work_Tag_Value of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_4_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_5_Reference.Custom_Work_Tag_Value - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_5_Reference|Custom_Work_Tag_Value of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_5_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Customer_Reference.Customer_Name - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Customer_Reference|Customer_Name of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Customer_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Customer_Request_ID_Reference.Customer_Request_ID - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Customer_Request_ID_Reference|Customer_Request_ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Customer_Request_ID_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Opportunity_Reference.Opportunity_ID - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Opportunity_Reference|Opportunity_ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Opportunity_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Project_Reference.Project_Name - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Project_Reference|Project_Name of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Project_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Prospect_Reference.Prospect_ID - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Prospect_Reference|Prospect_ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|Prospect_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.Descriptor - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Region_Reference|Integration_ID_Reference|Descriptor of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Region_Reference|Integration_ID_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.ID - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Region_Reference|Integration_ID_Reference|ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Region_Reference|Integration_ID_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.ID.System_ID - The input named Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Region_Reference|Integration_ID_Reference|ID|System_ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|0|Expense_Report_Line_Data|0|Work_Tag_for_Business_Document_Line_Reference|0|Region_Reference|Integration_ID_Reference|ID\n    Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Number - The input named Expense_Report_Add_Update|Expense_Report_Data|Expense_Report_Number of the complex type\: Expense_Report_Add_Update|Expense_Report_Data\n    Expense_Report_Add_Update.Expense_Report_Data.Integration_ID_Data.ID0 - The input named Expense_Report_Add_Update|Expense_Report_Data|Integration_ID_Data|0|ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|Integration_ID_Data|0\n    Expense_Report_Add_Update.Expense_Report_Data.Integration_ID_Data.ID0.System_ID - The input named Expense_Report_Add_Update|Expense_Report_Data|Integration_ID_Data|0|ID|System_ID of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|Integration_ID_Data|0|ID\n    Expense_Report_Add_Update.Expense_Report_Data.Payment_Type_Reference.Payment_Type_Name - The input named Expense_Report_Add_Update|Expense_Report_Data|Payment_Type_Reference|Payment_Type_Name of the complex type\: Expense_Report_Add_Update|Expense_Report_Data|Payment_Type_Reference\n    Expense_Report_Add_Update.Expense_Report_Data.Total_Amount - The input named Expense_Report_Add_Update|Expense_Report_Data|Total_Amount of the complex type\: Expense_Report_Add_Update|Expense_Report_Data\n    Expense_Report_Add_Update.version - The input named Expense_Report_Add_Update|version of the complex type\: Expense_Report_Add_Update\n    Workday_Common_Header.Include_Reference_Descriptors_In_Response - The input named Workday_Common_Header|Include_Reference_Descriptors_In_Response of the complex type\: Workday_Common_Header\n\nResults\:\n    document - The raw XML response of the web service\n    documentStripped - The XML response of the web service stripped of namespaces\n    responseHeaders - The list containing the headers of the response message, separated by newline.\nFormat\: This is conforming with HTTP standard for headers (RFC 2616).\nExample\: Content-Type\: text/xml;charset\=utf-8\n               Transfer-Encoding\: chunkedWebServiceWizard.repo.successDesc\=The SOAP command was accepted by the web service\n\nResponses\:\n    success - The SOAP command was accepted by the web service\n    failure - Something went wrong while making the SOAP request\n</pre>
+]]></descriptionCdata>
+  <annotation>9bfb1631-1170-4992-9c93-a831a068f9c6.description</annotation>
+  <name>Add_Update_Expense_Report</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="d59d8e2d-dedf-41a7-9ce3-0a6ac6e7470f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>webserviceHost</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>${SP_Dxc-mfi_WebService_Host}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="8ce32420-b41c-40a9-b80e-a2bff41a81ea">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>webservicePort</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>${SP_Dxc-mfi_WebService_Port}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="c30352f2-1b43-460f-82b6-8df07b571de7">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>headers</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <identityBinding id="7713e3be-ec31-4c25-9feb-509e05fd7071">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>username</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <record>false</record>
+      <link>
+        <refId>cd45f53b-3dd9-4e86-b5f8-67ef550cd2ed</refId>
+      </link>
+      <identityAttribute>USERNAME</identityAttribute>
+    </identityBinding>
+    <identityBinding id="b53e8182-98fc-4106-91b2-7a60aba87ba0">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>ENCRYPTED</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>password</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <record>false</record>
+      <link>
+        <refId>cd45f53b-3dd9-4e86-b5f8-67ef550cd2ed</refId>
+      </link>
+      <identityAttribute>PASSWORD</identityAttribute>
+    </identityBinding>
+    <staticBinding id="07ea2740-f2fe-4952-b2c1-c3a1be2f3523">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Comment</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="a90d1448-c558-4ce5-b48c-c2eafdc221cd">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Compressed</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="8a3e868d-18a9-4d5b-94c1-78c80bee3c1a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Content_Type</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="cdbe696f-e78e-44c8-b4a2-4fcea30dc82f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Encoding</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="55aa64b8-afdc-438d-8959-63390cc7a475">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.File_Content</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="58f9d543-7deb-4b69-82ef-327bdc0acbbc">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Filename</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f2621bd5-b361-4cb6-a9f3-11e80b9e11e3">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.Descriptor</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="d1a7a796-e6bc-4cac-8b82-7450ddee768b">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="7ce951c6-f1f3-4fdd-aa19-170763cb8bfe">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.ID.System_ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="e1cbb7aa-ac73-4a0c-adac-62d30fbd3f64">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Currency_Reference.Currency_Code</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="0ab15045-fc40-4ef6-b2dc-076b69220926">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.Descriptor</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="61ecd5ce-4d10-4867-a582-009d9167d678">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="29bd57f7-1586-40e1-a200-e25952aa1365">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.ID.System_ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="40539a28-67bf-4c0d-97a1-53b2e3774759">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Approved_Externally</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="4b3f1f91-b451-4eea-bfd3-fe27648871ff">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Date</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f32b225c-cd52-4e35-b729-728ff2a883c5">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Description</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="cf74fe00-b380-45b4-9a31-20bf0cfc0c84">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Amount</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f729ec6e-2cbb-4a42-a6e6-70484f0c35b2">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Billable</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="2d29e90d-17cf-4d07-8ea2-5df3f816253d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Converted_Amount</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="cea15aa6-1406-44d9-8bf7-7a9c8a56aaa7">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Currency_Rate</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="0302d559-eb10-45a8-801f-04e563f61641">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Item_Reference0.Item_Name</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="18ce8bf0-b36f-4223-8e98-c691424a0f49">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Line_Description</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="024eb18b-7520-4957-bebe-8bfa1bfbfe68">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Report_Line_Date</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="d3f1f71a-1adc-47d0-8424-a1a1aa04282e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Quantity</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="63da5cdc-3689-43eb-8213-bdc1ff183b9a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Receipt_Included</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="869db465-a880-45ad-8144-b98c6e95ab3a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Total_Amount</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f0aaaee6-47e9-4af6-b3ec-f62e04f63a2d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Transaction_Currency_Reference.Currency_Code</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="4fda752c-e4a6-4b29-926a-504d6503a327">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.Descriptor</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="8e4c3d5f-5160-4c53-8faf-af36c0a586ea">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="929ac08f-247f-460f-b44c-fdecfea4838b">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.ID.System_ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="0c23d828-6d80-4863-93b1-39bfb059b117">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_1_Reference.Custom_Work_Tag_Value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="923b290f-2f0e-4a04-bf3e-229d88b8348c">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_2_Reference.Custom_Work_Tag_Value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="13c6f0df-9871-4365-941b-42f6dce8bd32">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_3_Reference.Custom_Work_Tag_Value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="dbf7246c-6c60-47b2-a3c8-2fc761c4de67">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_4_Reference.Custom_Work_Tag_Value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="6b5bafa2-234d-4aa6-acca-67e64c62249e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_5_Reference.Custom_Work_Tag_Value</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="16586775-36a1-47a0-9ddf-9f458e002e6b">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Customer_Reference.Customer_Name</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="92c9e8b0-aa27-4883-add3-2aea9d816d2e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Customer_Request_ID_Reference.Customer_Request_ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="68931486-67b6-406c-b9ab-e5ffece2fc4f">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Opportunity_Reference.Opportunity_ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="47862733-50b9-4053-92ee-a0437a952430">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Project_Reference.Project_Name</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="a1eb85a0-6a4d-43c1-b41f-dac835398bf8">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Prospect_Reference.Prospect_ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="e8e24bf7-bf48-4504-96f3-35e937fdaac6">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.Descriptor</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="b4c53519-95a8-4a45-953d-ba9ad8012e1d">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="301db0cc-7967-447e-ac9d-80682529b0b2">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.ID.System_ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="3c547281-6b83-48b8-a45f-ed2b49c82893">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Number</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="de9d3289-e138-42f9-8c49-ea18c8937ac2">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Integration_ID_Data.ID0</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="80c90c3f-f4fb-4ddd-8e1a-7f3b55012658">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Integration_ID_Data.ID0.System_ID</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="ea0995a9-42e4-4ea8-9614-66cf970027ee">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Payment_Type_Reference.Payment_Type_Name</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="cc2214c3-84ea-42d4-bb5f-bfecb942b724">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Total_Amount</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="e2971eb1-57da-481f-8214-2aa2992da55a">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Expense_Report_Add_Update.version</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="87a81d4a-5e95-4bd2-8580-2086c7bbf6e7">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>false</isPersisted>
+      <inputSymbol>Workday_Common_Header.Include_Reference_Descriptors_In_Response</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="b3020bb1-8c88-4dca-8dff-c0926b7d4469">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+    </opResponse>
+    <opResponse id="6aab8668-78f1-42d4-b1d6-7f759c1469fe">
+      <annotation></annotation>
+      <name>failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="53de60ea-a0c3-460a-8491-0c3b09980d66">
+    <annotation></annotation>
+    <name>document</name>
+    <fieldName>document</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="1d595324-9433-4ba1-846d-2ff3e5237743">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>false</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>false</historyCheckPointFlow>
+  <steps>
+    <step id="4130a5cf-f0cb-4afe-b1e1-9a51500a6558">
+      <annotation>9bfb1631-1170-4992-9c93-a831a068f9c6.4130a5cf-f0cb-4afe-b1e1-9a51500a6558.description</annotation>
+      <name>Invoke Method 2</name>
+      <bounds>
+        <x>0.0</x>
+        <y>0.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>Invoke Method 2</resultContextKey>
+      <bindings>
+        <staticBinding id="813c1a3b-4f0b-413a-b4c6-86bf310e132e">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>url</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>http://${webserviceHost}:${webservicePort}/unknownLocation</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c18c96e4-9a7e-4d6e-b74c-a7100277be4b">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>xmlTemplate</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:bsvc=&quot;urn:com.workday/bsvc&quot;&gt;
+   &lt;soapenv:Header&gt;
+      &lt;bsvc:Workday_Common_Header&gt;
+         &lt;!--Optional:--&gt;
+         &lt;bsvc:Include_Reference_Descriptors_In_Response&gt;?&lt;/bsvc:Include_Reference_Descriptors_In_Response&gt;
+      &lt;/bsvc:Workday_Common_Header&gt;
+   &lt;/soapenv:Header&gt;
+   &lt;soapenv:Body&gt;
+      &lt;bsvc:Expense_Report_Add_Update bsvc:version=&quot;?&quot;&gt;
+         &lt;bsvc:Expense_Report_Data&gt;
+            &lt;bsvc:Integration_ID_Data&gt;
+               &lt;!--1 or more repetitions:--&gt;
+               &lt;bsvc:ID bsvc:System_ID=&quot;?&quot;&gt;?&lt;/bsvc:ID&gt;
+            &lt;/bsvc:Integration_ID_Data&gt;
+            &lt;bsvc:Company_Reference&gt;
+               &lt;bsvc:Organization_Reference&gt;
+                  &lt;bsvc:Integration_ID_Reference bsvc:Descriptor=&quot;?&quot;&gt;
+                     &lt;bsvc:ID bsvc:System_ID=&quot;?&quot;&gt;?&lt;/bsvc:ID&gt;
+                  &lt;/bsvc:Integration_ID_Reference&gt;
+               &lt;/bsvc:Organization_Reference&gt;
+            &lt;/bsvc:Company_Reference&gt;
+            &lt;bsvc:Currency_Reference&gt;
+               &lt;bsvc:Currency_Code&gt;?&lt;/bsvc:Currency_Code&gt;
+            &lt;/bsvc:Currency_Reference&gt;
+            &lt;bsvc:Employee_Reference&gt;
+               &lt;bsvc:Integration_ID_Reference bsvc:Descriptor=&quot;?&quot;&gt;
+                  &lt;bsvc:ID bsvc:System_ID=&quot;?&quot;&gt;?&lt;/bsvc:ID&gt;
+               &lt;/bsvc:Integration_ID_Reference&gt;
+            &lt;/bsvc:Employee_Reference&gt;
+            &lt;bsvc:Expense_Report_Date&gt;?&lt;/bsvc:Expense_Report_Date&gt;
+            &lt;bsvc:Expense_Report_Number&gt;?&lt;/bsvc:Expense_Report_Number&gt;
+            &lt;!--Optional:--&gt;
+            &lt;bsvc:Total_Amount&gt;?&lt;/bsvc:Total_Amount&gt;
+            &lt;!--Optional:--&gt;
+            &lt;bsvc:Expense_Report_Description&gt;?&lt;/bsvc:Expense_Report_Description&gt;
+            &lt;!--Optional:--&gt;
+            &lt;bsvc:Expense_Report_Approved_Externally&gt;?&lt;/bsvc:Expense_Report_Approved_Externally&gt;
+            &lt;bsvc:Payment_Type_Reference&gt;
+               &lt;bsvc:Payment_Type_Name&gt;?&lt;/bsvc:Payment_Type_Name&gt;
+            &lt;/bsvc:Payment_Type_Reference&gt;
+            &lt;!--Zero or more repetitions:--&gt;
+            &lt;bsvc:Expense_Report_Line_Data&gt;
+               &lt;bsvc:Expense_Report_Line_Date&gt;?&lt;/bsvc:Expense_Report_Line_Date&gt;
+               &lt;!--1 or more repetitions:--&gt;
+               &lt;bsvc:Expense_Item_Reference&gt;
+                  &lt;!--Optional:--&gt;
+                  &lt;bsvc:Item_Name&gt;?&lt;/bsvc:Item_Name&gt;
+               &lt;/bsvc:Expense_Item_Reference&gt;
+               &lt;bsvc:Quantity&gt;?&lt;/bsvc:Quantity&gt;
+               &lt;bsvc:Amount&gt;?&lt;/bsvc:Amount&gt;
+               &lt;bsvc:Transaction_Currency_Reference&gt;
+                  &lt;bsvc:Currency_Code&gt;?&lt;/bsvc:Currency_Code&gt;
+               &lt;/bsvc:Transaction_Currency_Reference&gt;
+               &lt;!--Optional:--&gt;
+               &lt;bsvc:Currency_Rate&gt;?&lt;/bsvc:Currency_Rate&gt;
+               &lt;!--Optional:--&gt;
+               &lt;bsvc:Converted_Amount&gt;?&lt;/bsvc:Converted_Amount&gt;
+               &lt;!--Optional:--&gt;
+               &lt;bsvc:Total_Amount&gt;?&lt;/bsvc:Total_Amount&gt;
+               &lt;!--Optional:--&gt;
+               &lt;bsvc:Receipt_Included&gt;?&lt;/bsvc:Receipt_Included&gt;
+               &lt;!--Optional:--&gt;
+               &lt;bsvc:Billable&gt;?&lt;/bsvc:Billable&gt;
+               &lt;!--Optional:--&gt;
+               &lt;bsvc:Expense_Line_Description&gt;?&lt;/bsvc:Expense_Line_Description&gt;
+               &lt;!--Zero or more repetitions:--&gt;
+               &lt;bsvc:Work_Tag_for_Business_Document_Line_Reference&gt;
+                  &lt;!--Zero or more repetitions:--&gt;
+                  &lt;bsvc:Cost_Center_Reference&gt;
+                     &lt;bsvc:Integration_ID_Reference bsvc:Descriptor=&quot;?&quot;&gt;
+                        &lt;bsvc:ID bsvc:System_ID=&quot;?&quot;&gt;?&lt;/bsvc:ID&gt;
+                     &lt;/bsvc:Integration_ID_Reference&gt;
+                  &lt;/bsvc:Cost_Center_Reference&gt;
+                  &lt;!--Zero or more repetitions:--&gt;
+                  &lt;bsvc:Region_Reference&gt;
+                     &lt;bsvc:Integration_ID_Reference bsvc:Descriptor=&quot;?&quot;&gt;
+                        &lt;bsvc:ID bsvc:System_ID=&quot;?&quot;&gt;?&lt;/bsvc:ID&gt;
+                     &lt;/bsvc:Integration_ID_Reference&gt;
+                  &lt;/bsvc:Region_Reference&gt;
+                  &lt;!--Optional:--&gt;
+                  &lt;bsvc:Project_Reference&gt;
+                     &lt;bsvc:Project_Name&gt;?&lt;/bsvc:Project_Name&gt;
+                  &lt;/bsvc:Project_Reference&gt;
+                  &lt;!--Optional:--&gt;
+                  &lt;bsvc:Custom_Worktag_1_Reference&gt;
+                     &lt;bsvc:Custom_Work_Tag_Value&gt;?&lt;/bsvc:Custom_Work_Tag_Value&gt;
+                  &lt;/bsvc:Custom_Worktag_1_Reference&gt;
+                  &lt;!--Optional:--&gt;
+                  &lt;bsvc:Custom_Worktag_2_Reference&gt;
+                     &lt;bsvc:Custom_Work_Tag_Value&gt;?&lt;/bsvc:Custom_Work_Tag_Value&gt;
+                  &lt;/bsvc:Custom_Worktag_2_Reference&gt;
+                  &lt;!--Optional:--&gt;
+                  &lt;bsvc:Custom_Worktag_3_Reference&gt;
+                     &lt;bsvc:Custom_Work_Tag_Value&gt;?&lt;/bsvc:Custom_Work_Tag_Value&gt;
+                  &lt;/bsvc:Custom_Worktag_3_Reference&gt;
+                  &lt;!--Optional:--&gt;
+                  &lt;bsvc:Custom_Worktag_4_Reference&gt;
+                     &lt;bsvc:Custom_Work_Tag_Value&gt;?&lt;/bsvc:Custom_Work_Tag_Value&gt;
+                  &lt;/bsvc:Custom_Worktag_4_Reference&gt;
+                  &lt;!--Optional:--&gt;
+                  &lt;bsvc:Custom_Worktag_5_Reference&gt;
+                     &lt;bsvc:Custom_Work_Tag_Value&gt;?&lt;/bsvc:Custom_Work_Tag_Value&gt;
+                  &lt;/bsvc:Custom_Worktag_5_Reference&gt;
+                  &lt;!--Optional:--&gt;
+                  &lt;bsvc:Prospect_Reference&gt;
+                     &lt;bsvc:Prospect_ID&gt;?&lt;/bsvc:Prospect_ID&gt;
+                  &lt;/bsvc:Prospect_Reference&gt;
+                  &lt;!--Optional:--&gt;
+                  &lt;bsvc:Opportunity_Reference&gt;
+                     &lt;bsvc:Opportunity_ID&gt;?&lt;/bsvc:Opportunity_ID&gt;
+                  &lt;/bsvc:Opportunity_Reference&gt;
+                  &lt;!--Optional:--&gt;
+                  &lt;bsvc:Customer_Reference&gt;
+                     &lt;!--Optional:--&gt;
+                     &lt;bsvc:Customer_Name&gt;?&lt;/bsvc:Customer_Name&gt;
+                  &lt;/bsvc:Customer_Reference&gt;
+                  &lt;!--Optional:--&gt;
+                  &lt;bsvc:Customer_Request_ID_Reference&gt;
+                     &lt;!--Optional:--&gt;
+                     &lt;bsvc:Customer_Request_ID&gt;?&lt;/bsvc:Customer_Request_ID&gt;
+                  &lt;/bsvc:Customer_Request_ID_Reference&gt;
+               &lt;/bsvc:Work_Tag_for_Business_Document_Line_Reference&gt;
+            &lt;/bsvc:Expense_Report_Line_Data&gt;
+            &lt;!--Zero or more repetitions:--&gt;
+            &lt;bsvc:Business_Document_Attachment_Data bsvc:Content_Type=&quot;?&quot; bsvc:Filename=&quot;?&quot; bsvc:Encoding=&quot;?&quot; bsvc:Compressed=&quot;?&quot;&gt;
+               &lt;!--Optional:--&gt;
+               &lt;bsvc:File_Content&gt;cid:1460898413147&lt;/bsvc:File_Content&gt;
+               &lt;!--Optional:--&gt;
+               &lt;bsvc:Comment&gt;?&lt;/bsvc:Comment&gt;
+            &lt;/bsvc:Business_Document_Attachment_Data&gt;
+         &lt;/bsvc:Expense_Report_Data&gt;
+      &lt;/bsvc:Expense_Report_Add_Update&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b14e4dce-e43c-46c6-8ec1-2822e025b0d0">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>header_SOAPAction</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="68b8b4a7-1616-4460-a187-549129ba2ea2">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>inputMap</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Expense_Report_Add_Update|Expense_Report_Data|*|Business_Document_Attachment_Data|Comment=^Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data*.Comment$
+Expense_Report_Add_Update|Expense_Report_Data|*|Business_Document_Attachment_Data|Compressed=^Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data*.Compressed$
+Expense_Report_Add_Update|Expense_Report_Data|*|Business_Document_Attachment_Data|Content_Type=^Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data*.Content_Type$
+Expense_Report_Add_Update|Expense_Report_Data|*|Business_Document_Attachment_Data|Encoding=^Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data*.Encoding$
+Expense_Report_Add_Update|Expense_Report_Data|*|Business_Document_Attachment_Data|File_Content=^Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data*.File_Content$
+Expense_Report_Add_Update|Expense_Report_Data|*|Business_Document_Attachment_Data|Filename=^Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data*.Filename$
+Expense_Report_Add_Update|Expense_Report_Data|Company_Reference|Organization_Reference|Integration_ID_Reference|Descriptor=Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.Descriptor
+Expense_Report_Add_Update|Expense_Report_Data|Company_Reference|Organization_Reference|Integration_ID_Reference|ID=Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.ID
+Expense_Report_Add_Update|Expense_Report_Data|Company_Reference|Organization_Reference|Integration_ID_Reference|ID|System_ID=Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.ID.System_ID
+Expense_Report_Add_Update|Expense_Report_Data|Currency_Reference|Currency_Code=Expense_Report_Add_Update.Expense_Report_Data.Currency_Reference.Currency_Code
+Expense_Report_Add_Update|Expense_Report_Data|Employee_Reference|Integration_ID_Reference|Descriptor=Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.Descriptor
+Expense_Report_Add_Update|Expense_Report_Data|Employee_Reference|Integration_ID_Reference|ID=Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.ID
+Expense_Report_Add_Update|Expense_Report_Data|Employee_Reference|Integration_ID_Reference|ID|System_ID=Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.ID.System_ID
+Expense_Report_Add_Update|Expense_Report_Data|Expense_Report_Approved_Externally=Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Approved_Externally
+Expense_Report_Add_Update|Expense_Report_Data|Expense_Report_Date=Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Date
+Expense_Report_Add_Update|Expense_Report_Data|Expense_Report_Description=Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Description
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|Amount=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Amount$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|Billable=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Billable$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|Converted_Amount=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Converted_Amount$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|Currency_Rate=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Currency_Rate$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Expense_Item_Reference|Item_Name=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Expense_Item_Reference*.Item_Name$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|Expense_Line_Description=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Expense_Line_Description$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|Expense_Report_Line_Date=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Expense_Report_Line_Date$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|Quantity=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Quantity$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|Receipt_Included=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Receipt_Included$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|Total_Amount=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Total_Amount$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|Transaction_Currency_Reference|Currency_Code=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Transaction_Currency_Reference.Currency_Code$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|*|Cost_Center_Reference|Integration_ID_Reference|Descriptor=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Cost_Center_Reference*.Integration_ID_Reference.Descriptor$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|*|Cost_Center_Reference|Integration_ID_Reference|ID=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Cost_Center_Reference*.Integration_ID_Reference.ID$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|*|Cost_Center_Reference|Integration_ID_Reference|ID|System_ID=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Cost_Center_Reference*.Integration_ID_Reference.ID.System_ID$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_1_Reference|Custom_Work_Tag_Value=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Custom_Worktag_1_Reference.Custom_Work_Tag_Value$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_2_Reference|Custom_Work_Tag_Value=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Custom_Worktag_2_Reference.Custom_Work_Tag_Value$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_3_Reference|Custom_Work_Tag_Value=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Custom_Worktag_3_Reference.Custom_Work_Tag_Value$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_4_Reference|Custom_Work_Tag_Value=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Custom_Worktag_4_Reference.Custom_Work_Tag_Value$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|Custom_Worktag_5_Reference|Custom_Work_Tag_Value=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Custom_Worktag_5_Reference.Custom_Work_Tag_Value$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|Customer_Reference|Customer_Name=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Customer_Reference.Customer_Name$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|Customer_Request_ID_Reference|Customer_Request_ID=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Customer_Request_ID_Reference.Customer_Request_ID$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|Opportunity_Reference|Opportunity_ID=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Opportunity_Reference.Opportunity_ID$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|Project_Reference|Project_Name=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Project_Reference.Project_Name$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|Prospect_Reference|Prospect_ID=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Prospect_Reference.Prospect_ID$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|*|Region_Reference|Integration_ID_Reference|Descriptor=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Region_Reference*.Integration_ID_Reference.Descriptor$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|*|Region_Reference|Integration_ID_Reference|ID=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Region_Reference*.Integration_ID_Reference.ID$
+Expense_Report_Add_Update|Expense_Report_Data|*|Expense_Report_Line_Data|*|Work_Tag_for_Business_Document_Line_Reference|*|Region_Reference|Integration_ID_Reference|ID|System_ID=^Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data*.Work_Tag_for_Business_Document_Line_Reference*.Region_Reference*.Integration_ID_Reference.ID.System_ID$
+Expense_Report_Add_Update|Expense_Report_Data|Expense_Report_Number=Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Number
+Expense_Report_Add_Update|Expense_Report_Data|Integration_ID_Data|*|ID=^Expense_Report_Add_Update.Expense_Report_Data.Integration_ID_Data.ID*$
+Expense_Report_Add_Update|Expense_Report_Data|Integration_ID_Data|*|ID|System_ID=^Expense_Report_Add_Update.Expense_Report_Data.Integration_ID_Data.ID*.System_ID$
+Expense_Report_Add_Update|Expense_Report_Data|Payment_Type_Reference|Payment_Type_Name=Expense_Report_Add_Update.Expense_Report_Data.Payment_Type_Reference.Payment_Type_Name
+Expense_Report_Add_Update|Expense_Report_Data|Total_Amount=Expense_Report_Add_Update.Expense_Report_Data.Total_Amount
+Expense_Report_Add_Update|version=Expense_Report_Add_Update.version
+Workday_Common_Header|Include_Reference_Descriptors_In_Response=Workday_Common_Header.Include_Reference_Descriptors_In_Response</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="2085ca7c-c6bf-43ef-9c07-9fb57558da24">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>usesJSON</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0a52aaca-2091-4f9d-87e7-52039528973d">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>username</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>${username}</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3c75c10e-00ad-42d8-9cc6-002a431477da">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>password</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>${password}</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="74110276-9370-4f3e-8022-6d640dba6cc9">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>wswAuthenticationType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>http</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3efe7ba2-fdf3-40c0-b417-f97cbd3ad38b">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecuritySignRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="34ee053e-1d76-4f73-ac0a-36967a6e169f">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityEncryptRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5745c91e-4df9-4100-9590-82d629b18442">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityTimestampRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4376e75d-c078-4bee-b255-3dc4d85e2a21">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9c4165c2-b1e4-438f-9174-8c73feba80c7">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystoreType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="aacf4051-2a44-4db1-b45a-bfd6bd65bced">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>WSSecurityKeystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="868de7d7-4b3d-4a73-a392-adc41991827a">
+          <fromContextKey>headers</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>headers</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="84305e21-c772-4abd-ae77-796a9d09e6c5">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>contentType</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>text/xml</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1b1454b7-6cf8-47b7-ae13-00fc93d82cdb">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>characterSet</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>UTF-8</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9f661297-5332-44cb-bf9b-43c219a42978">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>trustAllRoots</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ac3986cc-19f9-4223-9de9-7dd9896512e4">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>useCookies</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>true</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7d53c188-9fcf-487b-b841-5ef98abdf698">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>timeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6df2825f-443c-4cfd-9410-b71669c29995">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>socketTimeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e399999a-fae5-4b7e-8203-7277d774e231">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxy</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ab224bd2-7ba3-4ffc-a1b7-1e0348775b3d">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyPort</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="023a7ac2-32ac-422a-ad3a-6a5d1731a346">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyUsername</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="2c4e1ba4-d616-42cc-9c4a-5f3a6e1665a2">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>proxyPassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="347f3e45-9b7d-4958-9585-9b8afbc71ae4">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>keystore</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a943c111-7527-456b-a982-6af453428fc2">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>keystorePassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8afeb2f0-75e4-40d6-9c18-244f277eb413">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>ICONCLUDE_WSW_VERSION</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>2</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3fd2dea2-f8d2-43aa-91de-e09bc3312f67">
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>returnXMLRequest</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8223901c-1d6b-42d6-af3c-cce364ac32a1">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Comment</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Comment</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c9dfb9cc-98e2-4183-a24c-0149e7f00ee0">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Compressed</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Compressed</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="54fe25b4-e983-41e9-9f71-751a12b2c4ea">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Content_Type</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Content_Type</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f2dbc1b9-ad11-48b3-8bb7-a760ccc42e85">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Encoding</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Encoding</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4c94b7c3-fd76-43c2-823b-a448f1a1b3bd">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.File_Content</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.File_Content</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b3339c1b-683b-4d49-b57c-ab56257f3ee9">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Filename</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Business_Document_Attachment_Data0.Filename</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b83fcd34-24c5-4d71-9740-17f6a273b64e">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.Descriptor</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.Descriptor</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="610c644f-38bb-4985-b149-fbb4ee9b0200">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7152b7e1-6667-4ee1-904a-7c7be0114ac8">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.ID.System_ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Company_Reference.Organization_Reference.Integration_ID_Reference.ID.System_ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="eaf81818-6772-4d15-bb03-16cba9e6212a">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Currency_Reference.Currency_Code</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Currency_Reference.Currency_Code</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e362bae8-56b3-45dd-bd43-fe8fa9b7ee42">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.Descriptor</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.Descriptor</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="25d928ac-5cf9-423e-8261-aca361bfffbc">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="51a9faf4-99e5-48fb-9d49-2613da1bf346">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.ID.System_ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Employee_Reference.Integration_ID_Reference.ID.System_ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e1dc0fae-9d4e-4c3f-a81b-abe06a4ba937">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Approved_Externally</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Approved_Externally</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="424d57be-917e-41d0-ac2b-942fcdd04f09">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Date</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Date</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9f0ab13a-a007-417c-8a8e-41036daeee38">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Description</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Description</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b8c47486-b8b6-4347-9444-573889d78bc9">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Amount</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Amount</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1b5a1dcb-6316-499e-a985-eb411e553c7c">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Billable</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Billable</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="bf5a5936-38bb-4335-9baf-d202096db2c8">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Converted_Amount</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Converted_Amount</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0b7e68e3-f4bc-4f34-b885-972c9ebff98e">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Currency_Rate</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Currency_Rate</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="164b98b0-3f9a-414c-ba0d-128d2465251e">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Item_Reference0.Item_Name</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Item_Reference0.Item_Name</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6c6d8929-abf3-4709-a8e9-4ddb41d61112">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Line_Description</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Line_Description</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="60366eae-5a88-44d7-bbf0-f5099d475e29">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Report_Line_Date</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Expense_Report_Line_Date</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d1863c66-d7d4-4b25-80f9-2223e5dc4078">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Quantity</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Quantity</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="d659be36-0736-4dba-820e-9ecddff0c267">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Receipt_Included</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Receipt_Included</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6e99665e-ba22-46a4-84b9-e41c9ea60da0">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Total_Amount</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Total_Amount</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="513255f6-8f60-4251-b626-0ce8ac99b23c">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Transaction_Currency_Reference.Currency_Code</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Transaction_Currency_Reference.Currency_Code</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="cc984d3d-d0fe-4f91-8a6b-2581b7d5e705">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.Descriptor</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.Descriptor</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3fbf137c-3a62-4f92-ad0a-14e3daf2362e">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="441e46d7-22d9-4d0e-9c51-12fa0835d607">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.ID.System_ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Cost_Center_Reference0.Integration_ID_Reference.ID.System_ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="12c691cf-46b4-4752-9eac-65ea09f7b02d">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_1_Reference.Custom_Work_Tag_Value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_1_Reference.Custom_Work_Tag_Value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f40cd959-6716-43c3-ab0c-d5c80d784d1a">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_2_Reference.Custom_Work_Tag_Value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_2_Reference.Custom_Work_Tag_Value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="05aede4b-10ab-4f35-ac8f-e9eb46469cde">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_3_Reference.Custom_Work_Tag_Value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_3_Reference.Custom_Work_Tag_Value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="aee60665-e3a4-4a67-8bed-7d5fb41ff23b">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_4_Reference.Custom_Work_Tag_Value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_4_Reference.Custom_Work_Tag_Value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="1c4796f5-c7a7-4461-a4da-0b155e71937c">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_5_Reference.Custom_Work_Tag_Value</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Custom_Worktag_5_Reference.Custom_Work_Tag_Value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="df05e326-cea9-4b8a-858d-051c09b0b189">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Customer_Reference.Customer_Name</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Customer_Reference.Customer_Name</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="05f398f6-2651-4840-8a20-ff7e6417f37e">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Customer_Request_ID_Reference.Customer_Request_ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Customer_Request_ID_Reference.Customer_Request_ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="334d0c77-bc5f-4bcb-9814-6716dd3ad91b">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Opportunity_Reference.Opportunity_ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Opportunity_Reference.Opportunity_ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="bfe3a1a5-1d06-44fe-a791-fe0c3603ca70">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Project_Reference.Project_Name</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Project_Reference.Project_Name</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="47f61b31-923b-4907-bf02-6e2bc9224900">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Prospect_Reference.Prospect_ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Prospect_Reference.Prospect_ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b05f73bd-d062-4f7c-9870-ba8c8d4ecca4">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.Descriptor</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.Descriptor</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="663a0f87-0d7d-4dd2-92c0-14fd0733ff03">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f7bbf8bf-20eb-4295-8fef-be1e5ac265d4">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.ID.System_ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Line_Data0.Work_Tag_for_Business_Document_Line_Reference0.Region_Reference0.Integration_ID_Reference.ID.System_ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="2598d565-d608-403a-9997-43efea18fc51">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Number</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Expense_Report_Number</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0a873590-8a34-4599-975c-028c93872020">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Integration_ID_Data.ID0</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Integration_ID_Data.ID0</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7cdf95d8-8d58-476f-8ae3-fae2940383a4">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Integration_ID_Data.ID0.System_ID</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Integration_ID_Data.ID0.System_ID</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b958d499-5203-4638-b8f6-05fcb371f80a">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Payment_Type_Reference.Payment_Type_Name</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Payment_Type_Reference.Payment_Type_Name</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="fec7d481-7525-4280-ad31-ace6d13940cf">
+          <fromContextKey>Expense_Report_Add_Update.Expense_Report_Data.Total_Amount</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.Expense_Report_Data.Total_Amount</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="39048ea8-f45b-4c46-b144-762e09fa96e0">
+          <fromContextKey>Expense_Report_Add_Update.version</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Expense_Report_Add_Update.version</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9510161d-40db-4f58-b8ba-5e48684b8acb">
+          <fromContextKey>Workday_Common_Header.Include_Reference_Descriptors_In_Response</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>false</isPersisted>
+          <inputSymbol>Workday_Common_Header.Include_Reference_Descriptors_In_Response</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="01e78eea-ff8e-40ae-89cc-88baa5abefc2">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>6b5125d7-5876-4dfe-8021-c01e9fae8f90</refId>
+          </destination>
+          <source>
+            <refId>4130a5cf-f0cb-4afe-b1e1-9a51500a6558</refId>
+          </source>
+          <positions/>
+        </transition>
+        <transition id="55a2c63a-21e3-4acd-8ece-bb649085e76f">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>881d8d3a-18d9-4d2f-a869-b3df54d6ca25</refId>
+          </destination>
+          <source>
+            <refId>4130a5cf-f0cb-4afe-b1e1-9a51500a6558</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>962ffbf8-4105-46bb-8c71-84f037c4de61</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="00f0e062-41ec-483f-a5a3-cf1fe5fc0920">
+          <annotation></annotation>
+          <name>document</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>document</contextKey>
+          <expression id="55c0bb51-9c7a-4327-a7a8-2757332f856c">
+            <annotation></annotation>
+            <name>document</name>
+            <fieldName>document</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="0eb82fd1-f226-4c90-8523-a803fced5177">
+          <annotation></annotation>
+          <name>documentStripped</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>documentStripped</contextKey>
+          <expression id="882a622a-5d6a-41a6-a6ca-2db9d96208ca">
+            <annotation></annotation>
+            <name>documentStripped</name>
+            <fieldName>documentStripped</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="ce35910d-1f00-4f8e-b970-efa72d96a93f">
+          <annotation></annotation>
+          <name>responseHeaders</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>responseHeaders</contextKey>
+          <expression id="9bb117fd-1c6b-4fbc-8c9f-7b8352ef0051">
+            <annotation></annotation>
+            <name>responseHeaders</name>
+            <fieldName>responseHeaders</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="6b5125d7-5876-4dfe-8021-c01e9fae8f90">
+      <annotation></annotation>
+      <name>RESOLVED : success</name>
+      <bounds>
+        <x>0.0</x>
+        <y>150.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>RESOLVED : success</resultContextKey>
+      <bindings/>
+      <transitions>
+        <transition id="72c7b534-745d-478a-863f-aa79ba3912c2">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>6b5125d7-5876-4dfe-8021-c01e9fae8f90</refId>
+          </destination>
+          <source>
+            <refId>6b5125d7-5876-4dfe-8021-c01e9fae8f90</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+    <returnStep id="881d8d3a-18d9-4d2f-a869-b3df54d6ca25">
+      <annotation></annotation>
+      <name>ERROR : failure</name>
+      <bounds>
+        <x>150.0</x>
+        <y>150.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>true</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>false</checkPointStep>
+      <historyCheckPointStep>false</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <resultContextKey>ERROR : failure</resultContextKey>
+      <bindings/>
+      <transitions>
+        <transition id="10d0c820-daa7-4008-b729-62af9e66df92">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>881d8d3a-18d9-4d2f-a869-b3df54d6ca25</refId>
+          </destination>
+          <source>
+            <refId>881d8d3a-18d9-4d2f-a869-b3df54d6ca25</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments/>
+    </returnStep>
+  </steps>
+  <startSteps>4130a5cf-f0cb-4afe-b1e1-9a51500a6558</startSteps>
+</flow>
