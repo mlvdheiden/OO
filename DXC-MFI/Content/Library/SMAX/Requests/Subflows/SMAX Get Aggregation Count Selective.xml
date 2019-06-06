@@ -513,7 +513,7 @@ if (statusCode != 200){
           <isPersisted>true</isPersisted>
           <inputSymbol>url</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>${sawUrl}/rest/${tenantId}/ems/${entityType}?filter=${query}&amp;layout=${fields}</value>
+          <value>${sawUrl}/rest/${tenantId}/ems/${entityType}/aggregations?filter=${query}&amp;layout=${fields}</value>
           <record>false</record>
         </staticBinding>
         <staticBinding id="7d694e21-b643-4f5e-863a-734eb1ebbeff">
@@ -964,7 +964,7 @@ if (statusCode != 200){
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="56bdf45f-36b4-4e95-a5f4-99f11cf36bbb">
+      <iconSpec id="12f3b131-97a7-43a3-869c-b50581f9fea5">
         <baseIcon>return_failure.png</baseIcon>
         <basePath>System</basePath>
         <readOnly>true</readOnly>
@@ -1014,7 +1014,7 @@ if (statusCode != 200){
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="9d437879-4891-4b83-9456-1c3896e48a22">
+      <iconSpec id="de6f6de6-f0e2-432c-af68-205255632369">
         <baseIcon>return_success.png</baseIcon>
         <basePath>System</basePath>
         <readOnly>true</readOnly>
