@@ -61,7 +61,7 @@
       <isPersisted>true</isPersisted>
       <inputSymbol>privateKeyFile</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>C:\Users\vonderhe.CORPDOM\Micro Focus\SWAX - Documents\Engine Room\SMAX\MarkusPrivateKeyOpenSSH</value>
+      <value>${vmKeyFilePath}</value>
       <record>false</record>
     </staticBinding>
     <staticBinding id="320de316-3c6e-4a3c-8162-be1b87a4cc3b">
