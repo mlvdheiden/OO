@@ -899,6 +899,12 @@ echo &apos;net.ipv6.conf.all.disable_ipv6=0&apos;&gt;&gt; /etc/sysctl.d/50-defau
 echo &apos;net.ipv6.conf.default.disable_ipv6=0&apos;&gt;&gt; /etc/sysctl.d/50-default.conf;
 echo &apos;net.bridge.bridge-nf-call-iptables = 1&apos; &gt;&gt;/etc/sysctl.d/50-default.conf;
 echo &apos;net.bridge.bridge-nf-call-ip6tables = 1&apos; &gt;&gt;/etc/sysctl.d/50-default.conf;
+echo &apos;net.core.wmem_max=4194304&apos; &gt;&gt; /etc/sysctl.d/50-default.conf;
+echo &apos;net.core.rmem_max=4194304&apos; &gt;&gt; /etc/sysctl.d/50-default.conf;
+echo &apos;net.ipv4.tcp_wmem=4096 87380 4194304&apos; &gt;&gt; /etc/sysctl.d/50-default.conf;
+echo &apos;net.ipv4.tcp_rmem=4096 87380 4194304&apos; &gt;&gt; /etc/sysctl.d/50-default.conf;
+echo &apos;net.ipv4.ip_local_port_range = 1024 65535&apos; &gt;&gt; /etc/sysctl.d/50-default.conf;
+sysctl -p:
 sysctl --system;
 systemctl daemon-reload;
 swapoff -a</value>
