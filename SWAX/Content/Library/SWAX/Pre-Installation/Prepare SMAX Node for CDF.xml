@@ -369,7 +369,7 @@ c5097d99-6797-46e0-b092-9f56ddd95e06.db862b87-b6d6-41be-9e1a-c6dd9b6d4667.descri
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="c0a1fbf3-7414-4acb-b0c7-ed1d3765018e">
+        <transition id="f6dcbf82-ab0a-420d-b9b3-9b6ecca102f2">
           <annotation></annotation>
           <name>has more</name>
           <command>NEXT</command>
@@ -378,7 +378,7 @@ c5097d99-6797-46e0-b092-9f56ddd95e06.db862b87-b6d6-41be-9e1a-c6dd9b6d4667.descri
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>d9a977c8-a20f-40c3-b519-f23726f6d7e7</refId>
+            <refId>d1ad7c2d-db3d-4976-9161-7291029a2c0c</refId>
           </destination>
           <source>
             <refId>6e559476-be3b-4f21-a310-edc27175b8fa</refId>
@@ -389,8 +389,8 @@ c5097d99-6797-46e0-b092-9f56ddd95e06.db862b87-b6d6-41be-9e1a-c6dd9b6d4667.descri
               <y>135.0</y>
             </point>
             <point>
-              <x>429.0</x>
-              <y>135.0</y>
+              <x>262.0</x>
+              <y>116.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -425,8 +425,8 @@ c5097d99-6797-46e0-b092-9f56ddd95e06.db862b87-b6d6-41be-9e1a-c6dd9b6d4667.descri
       <annotation></annotation>
       <name>Resolved : success</name>
       <bounds>
-        <x>158.0</x>
-        <y>2.0</y>
+        <x>70.0</x>
+        <y>0.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
@@ -1952,6 +1952,160 @@ hwclock -w;
       <properties/>
       <opRef>
         <refId>0b066b79-d65c-4da9-8ed4-edf50f378950</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="d1ad7c2d-db3d-4976-9161-7291029a2c0c">
+      <annotation></annotation>
+      <name>Check Requirements</name>
+      <bounds>
+        <x>218.0</x>
+        <y>101.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="c9791872-3c87-4761-a6ca-aef21acb25b8">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>host</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>16.32.12.138</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="759540fa-e97c-4cb0-ba1d-9f15b53ca970">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>privateKeyFile</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>${vmKeyFilePath}</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e7d75837-38dd-48ae-b291-93f52aa7e849">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>username</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>root</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6cd10057-edd4-4743-91c7-10d3bff54b0c">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>password</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="38ce1b4f-bcbd-4b7b-a8cc-09eed03d1ae2">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>port</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>22</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="c525553f-c38d-4c3e-9360-290d3d85d99f">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>d9a977c8-a20f-40c3-b519-f23726f6d7e7</refId>
+          </destination>
+          <source>
+            <refId>d1ad7c2d-db3d-4976-9161-7291029a2c0c</refId>
+          </source>
+          <positions>
+            <point>
+              <x>262.0</x>
+              <y>116.0</y>
+            </point>
+            <point>
+              <x>429.0</x>
+              <y>135.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="abd34024-b837-4a8d-899c-d7b993b5a1f8">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>76c13f37-ec26-40ea-9383-2f5693b5aeab</refId>
+          </destination>
+          <source>
+            <refId>d1ad7c2d-db3d-4976-9161-7291029a2c0c</refId>
+          </source>
+          <positions>
+            <point>
+              <x>268.0</x>
+              <y>135.0</y>
+            </point>
+            <point>
+              <x>288.0</x>
+              <y>270.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>387db607-14ad-4c58-85f3-91d6c38d01a6</refId>
       </opRef>
       <assignments/>
       <throttleSize>0</throttleSize>

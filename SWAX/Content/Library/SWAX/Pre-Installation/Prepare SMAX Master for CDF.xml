@@ -284,12 +284,350 @@ f57413b6-1994-465a-bc93-1a3ca4da23d5.85ad8714-7731-4c91-b299-14cd8a8f6a01.descri
   <compatibleRuntimeContext>false</compatibleRuntimeContext>
   <historyCheckPointFlow>true</historyCheckPointFlow>
   <steps>
+    <step id="984c0b28-1dc5-4656-841b-81b6711826b7">
+      <annotation></annotation>
+      <name>Check Requirements</name>
+      <bounds>
+        <x>157.0</x>
+        <y>283.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <userInputBinding id="ebf85fdf-979f-458f-b275-a659f6dcf77e">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>host</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
+        <staticBinding id="8402df93-8635-43eb-b39a-5518104a6172">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>neededSize</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>150</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e830155e-fce6-49c1-99a5-19f227dead43">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>kubernetesNet</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>172.19.17.0/24</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8f14d79f-17b4-425f-a01a-080e4f90f0cf">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>remoteNfs</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="681aba0f-77ee-4228-a0f8-c1e84be77f1b">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>smaxProxy</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>web-proxy.houston.softwaregrp.net:8080</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="bbc9ac62-dc17-4e0b-95c9-b852248e236d">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>smaxNoProxy</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>localhost,.swinfra.net</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="97c4db3a-0469-42df-8ed6-47258a06203f">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>smaxInstallerZip</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Micro_Focus_Container_Deployment_Foundation_for_ITOM_Install_CDF1905-00131-15001-installer.zip</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="cd7671da-aca3-43ea-a973-8c0acd51d2df">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>smaxInstallZip</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>ITOM_Suite_Foundation_2019.05.00131.zip</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="10d46389-636d-4d2b-8a26-9da9a2af5057">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>smaxMetaZip</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>itsma-suite-metadata-2019.05-b62.tgz</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0177f3c8-c363-4582-a456-a5ee659fd27a">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>k8Path</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>/opt/kubernetes</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="ce894be1-fa59-44c9-9db6-ae565340ab48">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>imagesPath</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>${installersPath}/images</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a0699d66-0cef-44ce-8328-7e2dbff3b802">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>installersPath</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>/opt/microfocus/installers</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9ae066c6-4630-4b36-bdb5-2934006617c7">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>nfsIp</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>16.32.12.129</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5644522a-935f-4f2f-a96f-e2a52bd7908d">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>rasIp</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>15.122.104.139</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f69221da-9be8-4081-905c-95749dfc2d1f">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>remoteAdmin</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>root.itinvent</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="acda86f4-2267-4070-b6c0-08da37e6c1bd">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>privateKeyFile</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>${vmKeyFilePath}</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="80182aff-c515-4516-95d5-e30ba8ee00e9">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>username</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>root</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="01b24012-087a-4741-81c4-ee9756758b6c">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>password</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a41fecaf-770e-495c-b288-9fa21241b281">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>port</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>22</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="047966d5-0f72-46f1-8927-3aa908051cf3">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>85ad8714-7731-4c91-b299-14cd8a8f6a01</refId>
+          </destination>
+          <source>
+            <refId>984c0b28-1dc5-4656-841b-81b6711826b7</refId>
+          </source>
+          <positions>
+            <point>
+              <x>184.0</x>
+              <y>306.0</y>
+            </point>
+            <point>
+              <x>351.0</x>
+              <y>319.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="060f8d76-439a-438c-aedc-86d5fabe311f">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>e432ef95-c28b-4f62-bcf1-b060f16618cf</refId>
+          </destination>
+          <source>
+            <refId>984c0b28-1dc5-4656-841b-81b6711826b7</refId>
+          </source>
+          <positions>
+            <point>
+              <x>184.0</x>
+              <y>306.0</y>
+            </point>
+            <point>
+              <x>520.0</x>
+              <y>46.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>387db607-14ad-4c58-85f3-91d6c38d01a6</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
     <step id="85ad8714-7731-4c91-b299-14cd8a8f6a01">
       <annotation>f57413b6-1994-465a-bc93-1a3ca4da23d5.85ad8714-7731-4c91-b299-14cd8a8f6a01.description</annotation>
       <name>create Kubernetes and installation folder</name>
       <bounds>
-        <x>10.0</x>
-        <y>275.0</y>
+        <x>301.0</x>
+        <y>285.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
@@ -643,7 +981,7 @@ f57413b6-1994-465a-bc93-1a3ca4da23d5.85ad8714-7731-4c91-b299-14cd8a8f6a01.descri
       <annotation></annotation>
       <name>Resolved : success</name>
       <bounds>
-        <x>894.0</x>
+        <x>1147.0</x>
         <y>272.0</y>
       </bounds>
       <layer>-1</layer>
@@ -687,7 +1025,7 @@ f57413b6-1994-465a-bc93-1a3ca4da23d5.85ad8714-7731-4c91-b299-14cd8a8f6a01.descri
       <annotation>f57413b6-1994-465a-bc93-1a3ca4da23d5.25743d1c-a716-4933-ab18-7ac8910d7e9d.description</annotation>
       <name>prepare environment</name>
       <bounds>
-        <x>169.0</x>
+        <x>422.0</x>
         <y>275.0</y>
       </bounds>
       <layer>-1</layer>
@@ -1099,7 +1437,7 @@ swapoff -a</value>
       <annotation>f57413b6-1994-465a-bc93-1a3ca4da23d5.12c07a5a-84f4-49e5-aae4-b18624781fe2.description</annotation>
       <name>install unzip</name>
       <bounds>
-        <x>299.0</x>
+        <x>552.0</x>
         <y>275.0</y>
       </bounds>
       <layer>-1</layer>
@@ -1455,7 +1793,7 @@ swapoff -a</value>
       <annotation>f57413b6-1994-465a-bc93-1a3ca4da23d5.34f91d62-a627-446a-a601-519938a37797.description</annotation>
       <name>unzip installer</name>
       <bounds>
-        <x>476.0</x>
+        <x>729.0</x>
         <y>275.0</y>
       </bounds>
       <layer>-1</layer>
@@ -1816,7 +2154,7 @@ unzip -o ${smaxInstallZip};
       <annotation>f57413b6-1994-465a-bc93-1a3ca4da23d5.0dc6b440-cb7f-43fb-80ff-a304b60af66e.description</annotation>
       <name>needed packages</name>
       <bounds>
-        <x>607.0</x>
+        <x>860.0</x>
         <y>275.0</y>
       </bounds>
       <layer>-1</layer>
@@ -2173,7 +2511,7 @@ unzip -o ${smaxInstallZip};
       <annotation>f57413b6-1994-465a-bc93-1a3ca4da23d5.4f4211b0-2742-4ab0-a641-861fc4810353.description</annotation>
       <name>prepare NTP</name>
       <bounds>
-        <x>738.0</x>
+        <x>991.0</x>
         <y>275.0</y>
       </bounds>
       <layer>-1</layer>
@@ -2540,7 +2878,7 @@ hwclock -w
       <annotation>f57413b6-1994-465a-bc93-1a3ca4da23d5.70706d81-c6fb-4e0d-9104-51112575ab2f.description</annotation>
       <name>salvage</name>
       <bounds>
-        <x>471.0</x>
+        <x>724.0</x>
         <y>122.0</y>
       </bounds>
       <layer>-1</layer>
@@ -2882,7 +3220,7 @@ rm -rf ${k8Path};</value>
               <y>156.0</y>
             </point>
             <point>
-              <x>545.4989670061768</x>
+              <x>798.4989670061768</x>
               <y>100.7727366635802</y>
             </point>
             <point>
@@ -2948,5 +3286,5 @@ rm -rf ${k8Path};</value>
       <assignments/>
     </returnStep>
   </steps>
-  <startSteps>85ad8714-7731-4c91-b299-14cd8a8f6a01</startSteps>
+  <startSteps>984c0b28-1dc5-4656-841b-81b6711826b7</startSteps>
 </flow>
