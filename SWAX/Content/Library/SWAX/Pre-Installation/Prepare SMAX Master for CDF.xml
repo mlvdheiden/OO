@@ -906,6 +906,10 @@ echo &apos;net.ipv4.tcp_rmem=4096 87380 4194304&apos; &gt;&gt; /etc/sysctl.d/50-
 echo &apos;net.ipv4.ip_local_port_range = 1024 65535&apos; &gt;&gt; /etc/sysctl.d/50-default.conf;
 sysctl -p:
 sysctl --system;
+
+echo &apos;itsma hard nofile 1000000&apos;&gt;&gt;/etc/security/limits.conf
+echo &apos;itsma soft nofile 1000000&apos; &gt;&gt;/etc/security/limits.conf
+
 systemctl daemon-reload;
 swapoff -a</value>
           <record>false</record>
