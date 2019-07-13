@@ -17,7 +17,7 @@ c5097d99-6797-46e0-b092-9f56ddd95e06.db862b87-b6d6-41be-9e1a-c6dd9b6d4667.descri
       <assignToContext>true</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
-      <required>false</required>
+      <required>true</required>
       <isPersisted>true</isPersisted>
       <inputSymbol>host</inputSymbol>
       <listDelimiter>,</listDelimiter>
@@ -1988,6 +1988,19 @@ hwclock -w;
           <inputSymbol>port</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <value>22</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="38851cde-27cc-408a-aa83-65cc5401cfa1">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>neededSize</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>150</value>
           <record>false</record>
         </staticBinding>
       </bindings>

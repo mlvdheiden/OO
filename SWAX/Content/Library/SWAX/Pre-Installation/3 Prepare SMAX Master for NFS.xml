@@ -1721,7 +1721,7 @@ yum -y install nfs-utils;
           <isPersisted>true</isPersisted>
           <inputSymbol>timeout</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>90000</value>
+          <value>900000</value>
           <record>false</record>
         </staticBinding>
         <staticBinding id="c7604201-30c8-44f5-94d6-298933882aa3">
@@ -2397,7 +2397,6 @@ systemctl status firewalld;
           <listDelimiter>,</listDelimiter>
           <value>groupadd -g 1999 itsma;
 useradd -g 1999 -u 1999 itsma;
-chown -R 1999:1999 /var/vols/itom/;
 </value>
           <record>false</record>
         </staticBinding>
@@ -2757,7 +2756,6 @@ chown -R 1999:1999 /var/vols/itom/;
 cp -f /etc/fstab /etc/fstab.orig;
 echo &apos;${nfsIp}:/var/opt/kubernetes/offline /var/opt/kubernetes/offline nfs defaults 0 0&apos; &gt;&gt; /etc/fstab;
 echo &apos;${nfsIp}:/opt/microfocus/installers /opt/microfocus/installers nfs defaults 0 0&apos; &gt;&gt; /etc/fstab;
-mount -a:
 
 
 </value>

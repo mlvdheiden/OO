@@ -29,7 +29,7 @@ f57413b6-1994-465a-bc93-1a3ca4da23d5.e772c01a-3938-430b-89d5-d92b1ed38198.descri
     </staticBinding>
     <staticBinding id="44a52efd-3ed5-4e3c-af69-e1737ac4ff1b">
       <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
+      <assignFromContext>true</assignFromContext>
       <assignToContext>false</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -333,7 +333,7 @@ f57413b6-1994-465a-bc93-1a3ca4da23d5.e772c01a-3938-430b-89d5-d92b1ed38198.descri
           <isPersisted>true</isPersisted>
           <inputSymbol>neededSize</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>150</value>
+          <value>200</value>
           <record>false</record>
         </staticBinding>
         <staticBinding id="e830155e-fce6-49c1-99a5-19f227dead43">
@@ -533,7 +533,7 @@ f57413b6-1994-465a-bc93-1a3ca4da23d5.e772c01a-3938-430b-89d5-d92b1ed38198.descri
         </staticBinding>
         <staticBinding id="01b24012-087a-4741-81c4-ee9756758b6c">
           <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
+          <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
@@ -990,6 +990,12 @@ mkdir -p ${k8Path};
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
+      <iconSpec id="e2c0fc49-21fb-4441-be10-b81710dcca69">
+        <baseIcon>return_success.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>true</readOnly>
+        <layers/>
+      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>
@@ -2353,7 +2359,7 @@ unzip -o ${smaxInstallZip};
 yum -y install chrony;
 mkdir -p /var/lib/chrony; 
 echo &gt; /var/lib/chrony/drift;
-sed -i &apos;3 a\server ${ntpId} iburst&apos; /etc/chrony.conf;
+sed -i &apos;3 a\server ${ntpIp} iburst&apos; /etc/chrony.conf;
 systemctl enable chronyd;
 systemctl start chronyd; 
 chronyc makestep; 

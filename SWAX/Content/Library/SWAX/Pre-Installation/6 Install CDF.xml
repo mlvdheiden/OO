@@ -17,7 +17,7 @@
       <isPersisted>true</isPersisted>
       <inputSymbol>host</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>16.32.12.138</value>
+      <value>${smaxMasterIp}</value>
       <record>false</record>
     </staticBinding>
     <staticBinding id="8a9633fb-1bad-451f-b760-96bdbdcdbaf9">
@@ -160,7 +160,7 @@
       <isPersisted>true</isPersisted>
       <inputSymbol>nfsIp</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>16.32.12.129</value>
+      <value>${nfsIp}</value>
       <record>false</record>
     </staticBinding>
     <staticBinding id="79bd97ee-0c92-413f-bcf7-77b069391130">
@@ -294,7 +294,7 @@
   <steps>
     <step id="af0b4f69-702d-46ba-933d-ee7d2b29502f">
       <annotation>84965c9e-e352-4a4b-b8bb-4036408dc69a.af0b4f69-702d-46ba-933d-ee7d2b29502f.description</annotation>
-      <name>build install command</name>
+      <name>build installDir</name>
       <bounds>
         <x>31.0</x>
         <y>26.0</y>
@@ -335,6 +335,19 @@
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
+        <staticBinding id="c315ec04-5a2f-4ab1-a81e-3018b256a58e">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>installerString</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>${smaxInstallerPath}/${smaxInstallZip}</value>
+          <record>false</record>
+        </staticBinding>
         <staticBinding id="c14f28be-acad-405f-ac5e-4414e2b8cf5e">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
@@ -485,11 +498,7 @@
           <isPersisted>true</isPersisted>
           <inputSymbol>command</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>cd ${installersPath}/${smaxInstallDir};
-echo &gt; silentInstall.sh;
-echo &apos;./install -m ${installersPath}/${smaxMetaZip}  --password ${suitePassword} --docker-http-proxy ${dockerProxy} --docker-https-proxy ${dockerProxy} --docker-no-proxy ${dockerNoProxy} --skip-warning --fail-swap-on false --k8s-home ${k8Path} --registry-username admin --registry-password ${suitePassword} --service-cidr ${serviceCidr} --nfs-server ${nfsIp} --nfs-folder ${nfsClaim}&apos; &gt;${installersPath}/${smaxInstallDir}/silentInstall.sh;
-chmod 775 silentInstall.sh;
-</value>
+          <value>echo &apos;Start install .......&apos;</value>
           <record>false</record>
         </staticBinding>
         <staticBinding id="2d3c001b-7e6f-4551-b54c-36e816c73cab">
@@ -648,7 +657,29 @@ chmod 775 silentInstall.sh;
       <opRef>
         <refId>0b066b79-d65c-4da9-8ed4-edf50f378950</refId>
       </opRef>
-      <assignments/>
+      <assignments>
+        <flowVariableAssignment id="843ad5da-ac72-42b4-a9be-ccb2df6e556c">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>smaxInstallDir</contextKey>
+          <expression id="5baa5e18-93c8-410d-bd02-8bd5603a9d3a">
+            <annotation></annotation>
+            <name>Input: installerString</name>
+            <fieldName>installerString</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters>
+              <stripTrailingFilter id="6375c697-21f4-43f9-ad48-6645c1b96556">
+                <annotation></annotation>
+                <name>Strip</name>
+                <strip>.zip</strip>
+                <type>ALL_CHARACTERS_AFTER_AND_INCLUDING</type>
+              </stripTrailingFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
       <throttleSize>0</throttleSize>
     </step>
     <returnStep id="d779f532-5f56-4bd6-ad23-f0edb993985e">
@@ -660,6 +691,12 @@ chmod 775 silentInstall.sh;
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
+      <iconSpec id="dc3a2db6-8ff0-4724-87d2-8c8bf87e2780">
+        <baseIcon>return_success.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>true</readOnly>
+        <layers/>
+      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>
@@ -932,7 +969,11 @@ chmod 775 silentInstall.sh;
           <isPersisted>true</isPersisted>
           <inputSymbol>command</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>cd ${installersPath}/${smaxInstallDir};
+          <value>cd ${smaxInstallDir};
+echo &gt; silentInstall.sh;
+echo &apos;./install -m ${installersPath}/${smaxMetaZip}  --password ${suitePassword} --docker-http-proxy ${dockerProxy} --docker-https-proxy ${dockerProxy} --docker-no-proxy ${dockerNoProxy} --skip-warning --fail-swap-on false --k8s-home ${k8Path} --registry-username admin --registry-password ${suitePassword} --service-cidr ${serviceCidr} --nfs-server ${nfsIp} --nfs-folder ${nfsClaim}&apos; &gt;${smaxInstallDir}/silentInstall.sh;
+chmod 775 silentInstall.sh;
+cd ${smaxInstallDir};
 ./silentInstall.sh;</value>
           <record>false</record>
         </staticBinding>
@@ -972,7 +1013,7 @@ chmod 775 silentInstall.sh;
           <isPersisted>true</isPersisted>
           <inputSymbol>timeout</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>90000000</value>
+          <value>900000000</value>
           <record>false</record>
         </staticBinding>
         <staticBinding id="5192a389-32cb-4759-add1-3728054b73d6">
