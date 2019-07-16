@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<systemProperty id="d6b828e8-1b13-4252-ac5c-c3a5ebd40593">
+  <descriptionCdata><![CDATA[d6b828e8-1b13-4252-ac5c-c3a5ebd40593.description=The Model ID of the SMAX system to create the change in SMAX. Used for the HCM integration.
+]]></descriptionCdata>
+  <annotation>d6b828e8-1b13-4252-ac5c-c3a5ebd40593.description</annotation>
+  <name>SMAXModelID</name>
+  <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
+</systemProperty>
