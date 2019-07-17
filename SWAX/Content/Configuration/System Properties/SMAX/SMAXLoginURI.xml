@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<systemProperty id="79562133-9c6a-4135-898e-94273bc9d4d0">
-  <descriptionCdata><![CDATA[79562133-9c6a-4135-898e-94273bc9d4d0.description=The login URL of SMAX
-]]></descriptionCdata>
-  <annotation>79562133-9c6a-4135-898e-94273bc9d4d0.description</annotation>
-  <name>SMAXLoginURI</name>
-  <value>{OBFUSCATED}Dc9rJY/J4gh47a6YZXSj3pt5GxuwNYJBOHN/4r7NPRPh+iRcYIPIILPaDtm7A+fStFQ2pnWYKQCGLnn/5LPzoA==</value>
-</systemProperty>

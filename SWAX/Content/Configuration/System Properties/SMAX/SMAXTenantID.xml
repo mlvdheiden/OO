@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<systemProperty id="9a729d60-6eff-4913-9c32-7e4b5372750c">
-  <descriptionCdata><![CDATA[9a729d60-6eff-4913-9c32-7e4b5372750c.description=The Tenant ID of the SMAX system. Used for the Jira/Octane integration.
-]]></descriptionCdata>
-  <annotation>9a729d60-6eff-4913-9c32-7e4b5372750c.description</annotation>
-  <name>SMAXTenantID</name>
-  <value>{OBFUSCATED}tFQ2pnWYKQCGLnn/5LPzoA==</value>
-</systemProperty>

@@ -16,5 +16,10 @@
       <artifactId>Virtualization</artifactId>
       <version>[1.15.0]</version>
     </dependency>
+    <dependency>
+      <groupId>DEFAULT</groupId>
+      <artifactId>Service Management Automation X</artifactId>
+      <version>[3.2.0]</version>
+    </dependency>
   </dependencies>
 </project>
