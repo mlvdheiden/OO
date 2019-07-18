@@ -4,7 +4,7 @@
 08042ea4-e476-4242-99f7-1b6aa685e025.c583f57d-ed7f-454e-8667-d686c81fe59b.description=<pre>\nCompares two strings, returning a true response if and only if they contain the same sequence of characters. A null string is considered to be equal to an empty string.\n\nInputs\:\n    string1 - The first string. \nDefault value\: "" (empty)\n    string2 - The second string.\nDefault value\: "" (empty)\n    ignoreCase - If set to 'true', then the comparison ignores case considerations. The two strings are considered equal ignoring case if they are of the same length and corresponding characters in the two strings are equal ignoring case. If set to any value other than 'true', then the strings must match exactly to be considered equal.\n\nResponses\:\n    true - If the two strings are equal.\n    false - If the two strings are not equal.\n\n</pre>
 ]]></descriptionCdata>
   <annotation></annotation>
-  <name>7 Download Suite Images</name>
+  <name>8 Download Suite Image</name>
   <categories/>
   <inputs>
     <staticBinding id="f91e5b1c-546d-422c-905d-7008dac6b051">
