@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow id="cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48">
   <descriptionCdata><![CDATA[cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.0ce76f3c-1d0a-4ceb-9a06-e5fcb5037472.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
-cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.314210c6-e529-4a43-9418-1dbaac2a1dfa.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
-cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.383f4f15-9744-4466-bc9c-ca2809cb3429.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
-cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.71077ff3-ef43-4a78-97f0-1958b0ec2c19.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
-cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.9b5f6baa-3145-41b8-aced-c9186b120b1d.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
-cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.a1556fee-0c5f-4553-bcd6-1d457358b3ab.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
-cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.cfe1fe7c-e283-4995-b405-bd410770547c.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
+cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.13ce9317-7be9-46fe-b6cb-f6745f857f91.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
+cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.2d90d669-d2f6-40eb-8556-3a02a75438f3.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
+cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.8c42c119-da5b-4405-bfb9-66e325ef65a6.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
 cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node for central Portgres
+cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.fb393f57-d6c1-4383-9817-8ad6bce7e823.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
 ]]></descriptionCdata>
   <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description</annotation>
   <name>2 Prepare Postgres Cluster</name>
@@ -75,7 +73,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
       <isPersisted>true</isPersisted>
       <inputSymbol>privateKeyFile</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>${vmKeyFilePath}</value>
+      <value>${pgKeyFilePath}</value>
       <record>false</record>
     </staticBinding>
     <staticBinding id="1597fc58-b4cc-4e99-bb33-2fbc13fb1a27">
@@ -155,12 +153,352 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
   <compatibleRuntimeContext>false</compatibleRuntimeContext>
   <historyCheckPointFlow>true</historyCheckPointFlow>
   <steps>
+    <step id="d32d7f2e-0d3f-4377-9ad3-42ed8b76e496">
+      <annotation></annotation>
+      <name>Check Requirements</name>
+      <bounds>
+        <x>49.0</x>
+        <y>21.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <userInputBinding id="fba4f39f-29ce-4bcb-b5e2-77d688b3ee6f">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>host</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
+        <staticBinding id="3eda77ee-a608-421b-a166-de309ba56382">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>neededSize</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>280</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="eb03a856-cce4-49fd-a7d7-cc5de74c9621">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>kubernetesNet</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>172.19.17.0/24</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="72c49aed-49c6-4774-b5e5-923118ad9593">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>remoteNfs</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c47191ad-c3c5-4e3e-a923-4ac04acd4c4b">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>smaxProxy</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>web-proxy.houston.softwaregrp.net:8080</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="761c6bd4-dea8-424f-9e65-76a15b224288">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>smaxNoProxy</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>localhost,.swinfra.net</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="2ba97f8d-def0-4686-9ac7-528d1ebaf601">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>smaxInstallerZip</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Micro_Focus_Container_Deployment_Foundation_for_ITOM_Install_CDF1905-00131-15001-installer.zip</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e3567688-f84b-432a-b252-c4de3459d2bc">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>smaxInstallZip</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>ITOM_Suite_Foundation_2019.05.00131.zip</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="05af774d-c98c-4c14-a1fc-494f3b4abd37">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>smaxMetaZip</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>itsma-suite-metadata-2019.05-b62.tgz</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8e1148bc-36b0-4e58-b1ef-64b3d59f6b3d">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>k8Path</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>/opt/kubernetes</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a5e44710-05ad-4f11-acf3-874b8ec16da7">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>imagesPath</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>${installersPath}/images</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="16ef5bf2-994d-4842-972c-6a6d172d51a1">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>installersPath</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>/opt/microfocus/installers</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="cffa6214-7f9d-47f4-8071-c0c203c8b630">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>nfsIp</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>16.32.12.129</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="140e0827-143b-4be4-a7a9-8aaf01c1485b">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>rasIp</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>15.122.104.139</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e9062950-0f45-43ad-b146-add6b42981a8">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>remoteAdmin</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>root.itinvent</value>
+          <record>false</record>
+        </staticBinding>
+        <userInputBinding id="ae8b21d5-2bf1-4400-9fa7-461a9d084845">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>privateKeyFile</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
+        <staticBinding id="bd0ed5c3-cb52-4177-a2a4-5528d44b07c7">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>username</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>root</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="4a7608cb-fb05-4850-a982-cd70e2eb14fd">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>password</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="8189cb23-2aec-45c3-b2c1-769d32a3617a">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>port</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>22</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="35b5d975-1af4-401a-b62e-857d1e6128cc">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>0ce76f3c-1d0a-4ceb-9a06-e5fcb5037472</refId>
+          </destination>
+          <source>
+            <refId>d32d7f2e-0d3f-4377-9ad3-42ed8b76e496</refId>
+          </source>
+          <positions>
+            <point>
+              <x>99.0</x>
+              <y>55.0</y>
+            </point>
+            <point>
+              <x>267.0</x>
+              <y>62.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="cd7914f4-b5a3-4305-b6bb-fe0ed03fc872">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>f24c55ba-d313-469c-a0ba-460af88ea1f5</refId>
+          </destination>
+          <source>
+            <refId>d32d7f2e-0d3f-4377-9ad3-42ed8b76e496</refId>
+          </source>
+          <positions>
+            <point>
+              <x>99.0</x>
+              <y>55.0</y>
+            </point>
+            <point>
+              <x>268.0</x>
+              <y>401.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>387db607-14ad-4c58-85f3-91d6c38d01a6</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
     <step id="0ce76f3c-1d0a-4ceb-9a06-e5fcb5037472">
       <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.0ce76f3c-1d0a-4ceb-9a06-e5fcb5037472.description</annotation>
-      <name>install nfs packages</name>
+      <name>install packages</name>
       <bounds>
-        <x>46.0</x>
-        <y>19.0</y>
+        <x>217.0</x>
+        <y>28.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
@@ -183,7 +521,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="ce1868af-330b-4e99-82c5-c7bcdaabff17">
+        <userInputBinding id="75938935-4fa8-4388-a2df-68af3bf2185d">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -289,7 +627,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="e0c5c57f-8f77-48ce-b599-e8bccead871d">
+        <userInputBinding id="bf5b7a53-6dc3-4886-9750-c03c42ff3618">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -300,7 +638,10 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <inputSymbol>privateKeyFile</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-        </staticBinding>
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
         <staticBinding id="fee4b773-c453-4c3f-af3d-eb4e28f253c1">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
@@ -348,7 +689,11 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <isPersisted>true</isPersisted>
           <inputSymbol>command</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>yum -y install nfs-utils</value>
+          <value>yum -y install https://yum.postgresql.org/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm;
+yum -y install postgresql96-server postgresql96-contrib net-tools;
+
+
+</value>
           <record>false</record>
         </staticBinding>
         <staticBinding id="9c04926b-764c-4cf8-a3d7-0cef67895e18">
@@ -444,7 +789,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="f0b28de1-0422-48c2-aad3-e0675ee4a13c">
+        <transition id="7ae826df-16b8-4925-a9b6-ff754bbc19bb">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -453,19 +798,19 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>f24c55ba-d313-469c-a0ba-460af88ea1f5</refId>
+            <refId>2d90d669-d2f6-40eb-8556-3a02a75438f3</refId>
           </destination>
           <source>
             <refId>0ce76f3c-1d0a-4ceb-9a06-e5fcb5037472</refId>
           </source>
           <positions>
             <point>
-              <x>596.0</x>
-              <y>222.0</y>
+              <x>96.0</x>
+              <y>53.0</y>
             </point>
             <point>
-              <x>100.0</x>
-              <y>295.0</y>
+              <x>103.0</x>
+              <y>226.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -473,7 +818,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="818ffea4-3203-490b-9943-9acf53278509">
+        <transition id="314819d8-7ace-4b94-8c72-ed77ca41227e">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -482,19 +827,19 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>cfe1fe7c-e283-4995-b405-bd410770547c</refId>
+            <refId>8c42c119-da5b-4405-bfb9-66e325ef65a6</refId>
           </destination>
           <source>
             <refId>0ce76f3c-1d0a-4ceb-9a06-e5fcb5037472</refId>
           </source>
           <positions>
             <point>
-              <x>596.0</x>
-              <y>222.0</y>
+              <x>96.0</x>
+              <y>53.0</y>
             </point>
             <point>
-              <x>594.0</x>
-              <y>353.0</y>
+              <x>251.0</x>
+              <y>51.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -514,8 +859,8 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
       <annotation></annotation>
       <name>Resolved : success</name>
       <bounds>
-        <x>1072.0</x>
-        <y>316.0</y>
+        <x>921.0</x>
+        <y>22.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
@@ -558,8 +903,8 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
       <annotation></annotation>
       <name>Error : failure</name>
       <bounds>
-        <x>542.0</x>
-        <y>316.0</y>
+        <x>218.0</x>
+        <y>367.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
@@ -598,16 +943,16 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
       <returnStepType>ERROR</returnStepType>
       <assignments/>
     </returnStep>
-    <step id="cfe1fe7c-e283-4995-b405-bd410770547c">
-      <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.cfe1fe7c-e283-4995-b405-bd410770547c.description</annotation>
-      <name>create nsf shares</name>
+    <step id="2d90d669-d2f6-40eb-8556-3a02a75438f3">
+      <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.2d90d669-d2f6-40eb-8556-3a02a75438f3.description</annotation>
+      <name>restore</name>
       <bounds>
-        <x>227.0</x>
-        <y>23.0</y>
+        <x>224.0</x>
+        <y>201.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="6932deea-3022-487a-8014-0cf571446cc5">
+      <iconSpec id="08551d47-02d5-4bc0-ac2d-b6cd4140d837">
         <baseIcon>workstation_network.png</baseIcon>
         <basePath>/Others/</basePath>
         <readOnly>false</readOnly>
@@ -626,7 +971,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="2480bd4a-8ea2-4455-86d1-80604ff37635">
+        <userInputBinding id="35967fb2-90d0-4232-8f43-c832155ff74f">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -641,7 +986,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="9a18594f-10f5-43be-b6ae-898562de1062">
+        <staticBinding id="92d96fab-a4fa-4d37-9ec2-89ec82f35e7b">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -654,7 +999,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <value>22</value>
           <record>false</record>
         </staticBinding>
-        <userInputBinding id="ce1e9f88-ebca-4516-8701-057912a6d966">
+        <userInputBinding id="eb270385-3a83-404a-a686-d515505696ca">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -669,7 +1014,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="9a140d0e-b77f-4e30-9c6a-b7f63eb4fe42">
+        <userInputBinding id="960a7370-c3da-4ee2-9995-3365f1b6ac49">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -684,7 +1029,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="97e53bbd-ea14-4c95-a52c-3db398ecaef5">
+        <staticBinding id="a20e690a-73ee-41a0-a461-cea92e6d7019">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -696,7 +1041,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="6c04f48d-b949-411e-8ce2-8224120f58ac">
+        <staticBinding id="929c0581-ee2c-4eb4-aafc-51f2d91d06ad">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -708,7 +1053,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="0a7b8965-9242-4702-8d17-6187112ec65b">
+        <staticBinding id="c7489511-7c33-446e-9c3b-1043595991f1">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -720,7 +1065,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="68e2f885-01f2-4737-b15a-be346f12602d">
+        <staticBinding id="75ce2424-a74c-43b4-89e4-3a169a56edfb">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -732,7 +1077,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="110c3363-58fb-4348-95dc-620d0a1ce1af">
+        <staticBinding id="cdabc4d6-9c05-48ca-9185-518297c5b6ba">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -744,7 +1089,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="bdf8aba5-e24d-4595-bb82-c5f58e7c4e0e">
+        <staticBinding id="4641d7b4-6501-40b9-a804-ba5700d6deba">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -756,7 +1101,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="4b0a4e27-3680-4205-8363-4fbeda1ad20a">
+        <staticBinding id="89968071-69f1-4858-bf72-fb536055a962">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -769,7 +1114,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <value>allow</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="d70567ab-ff7f-4d79-97e5-ed5a34da5ecf">
+        <staticBinding id="5ca410dd-4848-4e6a-b9a1-8e3d9e07d445">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -781,7 +1126,7 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="96fec8e7-3235-4d16-8da6-fbec25b864aa">
+        <staticBinding id="19c40758-df35-4bc7-8c42-953ed1d11bf8">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -791,370 +1136,13 @@ cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.description=Preoares the Master and Node fo
           <isPersisted>true</isPersisted>
           <inputSymbol>command</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>mkdir -p /var/vols/itom/core /var/vols/itom/db-single-vol /var/vols/itom/db-backup-vol  /var/vols/itom/itsma/global-volume /var/vols/itom/itsma/db-volume /var/vols/itom/itsma/db-volume-1 /var/vols/itom/itsma/db-volume-2 /var/vols/itom/itsma/smartanalytics-volume /var/vols/itom/itsma/rabbitmq-pro-rabbitmq-0 /var/vols/itom/itsma/rabbitmq-pro-rabbitmq-1 /var/vols/itom/itsma/rabbitmq-pro-rabbitmq-2 /var/vols/itom/itsma/rabbitmq-infra-rabbitmq-0 /var/vols/itom/itsma/rabbitmq-infra-rabbitmq-1 /var/vols/itom/itsma/rabbitmq-infra-rabbitmq-2 /var/vols/itom/logs /opt/microfocus/installers /var/opt/kubernetes/offline /var/vols/itom/claim</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="349f4b63-4692-4fce-af14-db69fe8f351f">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>characterSet</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>UTF-8</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="7b6b56ae-38fd-425f-b152-9519385fe0c8">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>pty</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>false</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="d177a37d-b85c-4c80-b00b-f5fc76281476">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>timeout</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>90000</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="2a4bdcee-55ea-4b9c-bce3-7f208314d259">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>connectTimeout</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>10000</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="b4ec2500-480f-4da2-b247-245d7439c1b2">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>keepAlive</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>0</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="529dccf8-95ad-4c4d-a4d8-b94a416b49b2">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>closeSession</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>false</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="2523a64c-3eac-4d41-bef5-a6e231816446">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>useGlobalContext</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>false</value>
-          <record>false</record>
-        </staticBinding>
-      </bindings>
-      <transitions>
-        <transition id="affdbfd2-70a5-44e0-9601-5de45dec6a0a">
-          <annotation></annotation>
-          <name>failure</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>failure</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>f24c55ba-d313-469c-a0ba-460af88ea1f5</refId>
-          </destination>
-          <source>
-            <refId>cfe1fe7c-e283-4995-b405-bd410770547c</refId>
-          </source>
-          <positions>
-            <point>
-              <x>594.0</x>
-              <y>353.0</y>
-            </point>
-            <point>
-              <x>100.0</x>
-              <y>295.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-        <transition id="f1bf0f22-3843-4426-a11b-a4836917ee98">
-          <annotation></annotation>
-          <name>success</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>success</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>a1556fee-0c5f-4553-bcd6-1d457358b3ab</refId>
-          </destination>
-          <source>
-            <refId>cfe1fe7c-e283-4995-b405-bd410770547c</refId>
-          </source>
-          <positions>
-            <point>
-              <x>594.0</x>
-              <y>353.0</y>
-            </point>
-            <point>
-              <x>594.0</x>
-              <y>492.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-      </transitions>
-      <properties/>
-      <opRef>
-        <refId>0b066b79-d65c-4da9-8ed4-edf50f378950</refId>
-      </opRef>
-      <assignments/>
-      <throttleSize>0</throttleSize>
-    </step>
-    <step id="a1556fee-0c5f-4553-bcd6-1d457358b3ab">
-      <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.a1556fee-0c5f-4553-bcd6-1d457358b3ab.description</annotation>
-      <name>set owner to 1999</name>
-      <bounds>
-        <x>417.0</x>
-        <y>19.0</y>
-      </bounds>
-      <layer>-1</layer>
-      <hideInbound>false</hideInbound>
-      <iconSpec id="75a5682d-9482-4f03-8184-c2131f7f568f">
-        <baseIcon>workstation_network.png</baseIcon>
-        <basePath>/Others/</basePath>
-        <readOnly>false</readOnly>
-        <layers/>
-      </iconSpec>
-      <addResultToRunContext>false</addResultToRunContext>
-      <isCriticalStep>false</isCriticalStep>
-      <isNonBlocking>false</isNonBlocking>
-      <isParallelStep>false</isParallelStep>
-      <isSingleResponse>false</isSingleResponse>
-      <recordInHistory>false</recordInHistory>
-      <recordRawOutput>true</recordRawOutput>
-      <recordPrimaryOutput>true</recordPrimaryOutput>
-      <checkPointStep>true</checkPointStep>
-      <historyCheckPointStep>true</historyCheckPointStep>
-      <scriptResultStep>false</scriptResultStep>
-      <userPrompt></userPrompt>
-      <bindings>
-        <userInputBinding id="fd3f51ff-f7bd-4e16-8844-7a9f57caf89b">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>host</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
-        <staticBinding id="a77d527e-4fc0-4948-a888-9c9f537fef82">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>port</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>22</value>
-          <record>false</record>
-        </staticBinding>
-        <userInputBinding id="eb9fa788-226d-47be-9630-5d48e93a6e32">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>username</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
-        <userInputBinding id="77702fcc-3e70-4325-ab32-660c743a4628">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>ENCRYPTED</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>password</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
-        <staticBinding id="a42a6e66-5944-4bd0-acc6-9a2ca0ca7b47">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>proxyHost</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="4e118054-7e98-40fb-b185-a8c98c70ac91">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>proxyPort</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="88b338b3-3181-43c4-bb11-fc4dd0f5fbda">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>proxyUsername</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="de7dbbc4-975f-4c50-8577-01ab0a4b41d3">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>ENCRYPTED</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>proxyPassword</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="dc0604f3-d2d9-45bc-89de-b304f5fad0c0">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>privateKeyFile</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="bf405b4a-b91d-4e1d-80b3-d38e6eced72f">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>ENCRYPTED</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>privateKeyData</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="5815928b-4c5e-4aa0-978f-055440d5c901">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>knownHostsPolicy</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>allow</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="f579b150-c6b6-4e21-af64-811308820f60">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>allowedCiphers</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="ec3c9b91-b0d2-44c5-a196-1551ffecdbc9">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>command</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>groupadd -g 1999 itsma ; useradd -g 1999 -u 1999 itsma ; 
-chown -R 1999:1999 /var/vols/itom/;
-chown -R 1999:1999 /var/opt/kubernetes/offline/;
-chown -R 1999:1999 /opt/microfocus/installers/
+          <value>yum -y remove postgresql96-server postgresql96-contrib;
+rm -rf /var/lib/pgsql/9.6;
 
 </value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="25dbaf7d-e106-46f2-81f4-ffc4680f02ee">
+        <staticBinding id="d5f4ff0d-d6bf-402c-8c88-adb99023e540">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1167,7 +1155,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <value>UTF-8</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="1c1678f1-5ff7-4280-8285-2005738f07eb">
+        <staticBinding id="f32d6d70-a3c9-4bad-aa1c-b96582131d0b">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1180,7 +1168,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="54486464-204d-4669-abcb-40f35f78dd53">
+        <staticBinding id="d88d98ad-2c88-47e4-9beb-12feb165826b">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1190,10 +1178,10 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <isPersisted>true</isPersisted>
           <inputSymbol>timeout</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>90000</value>
+          <value>900000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="625b36f6-9444-4b5d-b8e0-abb5b4e58978">
+        <staticBinding id="1ed13818-04e3-456b-be78-a683491a3be3">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1206,7 +1194,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <value>10000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="4907f102-eae5-44e7-9d2f-33babd7f8a23">
+        <staticBinding id="80cd7faa-2c7f-4837-a7ef-a42edfe692d0">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1219,7 +1207,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="ed563639-8323-4f91-9e62-71b0b4e2dd8a">
+        <staticBinding id="9dc212fc-6473-4b3d-a968-dfcdc475bb4a">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1232,7 +1220,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="ca4f591f-a206-44cc-9188-4d7bf6cadfcd">
+        <staticBinding id="98aba7b0-8587-4bff-957a-fc6d631cc1d0">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1247,7 +1235,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="a315a972-e76a-40ed-809a-49fda82b0ef4">
+        <transition id="f46b4ecf-ee46-4d0c-b053-039b974bba2d">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -1259,16 +1247,24 @@ chown -R 1999:1999 /opt/microfocus/installers/
             <refId>f24c55ba-d313-469c-a0ba-460af88ea1f5</refId>
           </destination>
           <source>
-            <refId>a1556fee-0c5f-4553-bcd6-1d457358b3ab</refId>
+            <refId>2d90d669-d2f6-40eb-8556-3a02a75438f3</refId>
           </source>
           <positions>
             <point>
-              <x>594.0</x>
-              <y>492.0</y>
+              <x>103.0</x>
+              <y>226.0</y>
             </point>
             <point>
-              <x>100.0</x>
-              <y>295.0</y>
+              <x>296.8164261278303</x>
+              <y>295.8638702248983</y>
+            </point>
+            <point>
+              <x>295.1509450755976</x>
+              <y>341.9421793366714</y>
+            </point>
+            <point>
+              <x>97.0</x>
+              <y>392.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -1276,7 +1272,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="19725f2f-ddf6-4fd0-b3c4-008cff8000bb">
+        <transition id="b62f60ff-4cf1-48e8-b1de-5a9d4de076d3">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -1285,19 +1281,19 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>71077ff3-ef43-4a78-97f0-1958b0ec2c19</refId>
+            <refId>f24c55ba-d313-469c-a0ba-460af88ea1f5</refId>
           </destination>
           <source>
-            <refId>a1556fee-0c5f-4553-bcd6-1d457358b3ab</refId>
+            <refId>2d90d669-d2f6-40eb-8556-3a02a75438f3</refId>
           </source>
           <positions>
             <point>
-              <x>594.0</x>
-              <y>492.0</y>
+              <x>103.0</x>
+              <y>226.0</y>
             </point>
             <point>
-              <x>590.0</x>
-              <y>629.0</y>
+              <x>97.0</x>
+              <y>392.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -1313,16 +1309,16 @@ chown -R 1999:1999 /opt/microfocus/installers/
       <assignments/>
       <throttleSize>0</throttleSize>
     </step>
-    <step id="71077ff3-ef43-4a78-97f0-1958b0ec2c19">
-      <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.71077ff3-ef43-4a78-97f0-1958b0ec2c19.description</annotation>
-      <name>add exports</name>
+    <step id="8c42c119-da5b-4405-bfb9-66e325ef65a6">
+      <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.8c42c119-da5b-4405-bfb9-66e325ef65a6.description</annotation>
+      <name>Configure</name>
       <bounds>
-        <x>572.0</x>
-        <y>25.0</y>
+        <x>372.0</x>
+        <y>26.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="20bf8da1-c7c5-4507-ba63-f946a7dbd487">
+      <iconSpec id="d7b3e8a6-09be-4a71-8d85-841cf63bfa06">
         <baseIcon>workstation_network.png</baseIcon>
         <basePath>/Others/</basePath>
         <readOnly>false</readOnly>
@@ -1341,7 +1337,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="c9961ee9-4ee8-4a9f-926a-6cbd58d15546">
+        <userInputBinding id="13fe1197-6418-4bd6-9267-72049a60de52">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1356,7 +1352,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="8e266127-960d-4151-8e7e-896ba95f3baf">
+        <staticBinding id="af097b18-1c5a-46c0-a3cc-0d30f16003a0">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1369,7 +1365,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <value>22</value>
           <record>false</record>
         </staticBinding>
-        <userInputBinding id="6758193f-73a4-4307-8139-9b850326f942">
+        <userInputBinding id="8595d111-b2f1-41cf-ab29-113065c3e506">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1384,7 +1380,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="de9cbcaf-62a0-43c1-ba20-ab8b83bba5b8">
+        <userInputBinding id="6b273ea2-67de-4ad0-a271-d1c5bcab9f47">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1399,7 +1395,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="7eb014de-0c74-4c47-95f4-a4f5320a58ff">
+        <staticBinding id="20ab702c-d96e-4fb1-bfd4-edd7de165130">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1411,7 +1407,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="fce84185-528c-4189-8819-aa2f67bcdbbc">
+        <staticBinding id="7c466a70-73f0-4723-92ba-065d22df4060">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1423,7 +1419,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="6fd87dab-08ae-4f3e-844c-a23480aea1a2">
+        <staticBinding id="8906ed8c-1510-4e8b-835b-c252b6f45255">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1435,7 +1431,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="18c32ca3-1e55-427f-b9d6-3a2908aeaf47">
+        <staticBinding id="c8068d5b-aec7-4e4d-ac66-823bbbd41784">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1447,7 +1443,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="8bdf00af-3d3c-4c15-8c6f-ec1f57112c97">
+        <userInputBinding id="83951b70-0357-4c0b-aa02-22eaccaaa2fd">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1458,8 +1454,11 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <inputSymbol>privateKeyFile</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-        </staticBinding>
-        <staticBinding id="aaf2ff46-dd65-4541-8a67-5dd5aad55dd0">
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
+        <staticBinding id="325c4148-e0af-4e37-be0d-157d521944ba">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1471,7 +1470,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="5220fb35-1bcf-46b6-9287-3593aeff2200">
+        <staticBinding id="a7a1cddc-47a6-44ef-b7fe-6dee1f15b8a5">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1484,7 +1483,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <value>allow</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="2831e085-42ea-420a-9623-9130e84238d7">
+        <staticBinding id="13961190-cde2-4142-a8ca-7729a9566b7a">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1496,7 +1495,7 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="8dec9af3-2bdc-414c-b834-51ed9bbb0524">
+        <staticBinding id="eb691203-dd65-4b8f-b8a5-66d016ed8d4a">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1506,28 +1505,22 @@ chown -R 1999:1999 /opt/microfocus/installers/
           <isPersisted>true</isPersisted>
           <inputSymbol>command</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>cat /dev/null &gt; /etc/exports;
-echo &apos;/var/vols/itom/core *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos; &gt;&gt; /etc/exports;
-echo &apos;/var/vols/itom/itsma/global-volume *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/itsma/db-volume *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/itsma/db-volume-1 *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/itsma/db-volume-2 *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/itsma/smartanalytics-volume *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/itsma/rabbitmq-pro-rabbitmq-0 *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/itsma/rabbitmq-pro-rabbitmq-1 *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/itsma/rabbitmq-pro-rabbitmq-2 *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/db-single-vol *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/db-backup-vol *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-0 *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-1 *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/itsma/rabbitmq-infra-rabbitmq-2 *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt;/etc/exports;
-echo &apos;/var/vols/itom/logs *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt; /etc/exports
-echo &apos;/opt/microfocus/installers *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt; /etc/exports
-echo &apos;/var/opt/kubernetes/offline *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt; /etc/exports
-echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&apos;&gt;&gt; /etc/exports</value>
+          <value>systemctl stop postgresql-9.6;
+cd /usr/pgsql-9.6/bin;
+./postgresql96-setup initdb;
+systemctl start postgresql-9.6;
+systemctl enable postgresql-9.6;
+netstat -plntu | grep 5432;
+sudo -u postgres psql -c &quot;ALTER USER postgres WITH PASSWORD &apos;${pgPostgresUserPwd}&apos;;&quot;
+systemctl disable firewalld;
+systemctl stop firewalld;
+
+
+
+</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="22747162-bc3d-4d04-8ce5-6160c16287e3">
+        <staticBinding id="1a4ccbc4-ae96-4d55-9f4a-86cdc74f65e1">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1540,7 +1533,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <value>UTF-8</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="9a7fbb00-2051-4ee2-bea7-2cd775f28296">
+        <staticBinding id="abe7e374-c590-4aef-bf9b-288f0366bf29">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1553,7 +1546,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="d01e458b-0f56-4163-8f19-0cbeeb9d9ecd">
+        <staticBinding id="45da043a-fb4f-4bc2-843c-2736cec761db">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1566,7 +1559,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <value>90000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="1a7904ea-b6d6-4219-8f88-e1aab83c3368">
+        <staticBinding id="eb43733f-b6c3-46a7-9bd9-b0890b628289">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1579,7 +1572,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <value>10000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="9d4333eb-3847-4d3e-ab2b-422ba5e58f31">
+        <staticBinding id="d806194a-2d95-4474-9003-1bdbea1d7989">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1592,7 +1585,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="e838206a-5479-45e1-a5a4-a6dd6d58e655">
+        <staticBinding id="4bd05d95-ae75-4ce5-9011-8ce55fec726a">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1605,7 +1598,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="6c28aaf9-6827-460d-a4bd-f88f01dffae6">
+        <staticBinding id="0ccd513a-27a8-47d3-89d7-ca068efe6c2b">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1620,7 +1613,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="04ece777-45dc-48fe-a6da-a0b7d81b7837">
+        <transition id="17ab59ab-f801-4c58-9888-286e8ffa740d">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -1629,19 +1622,19 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>f24c55ba-d313-469c-a0ba-460af88ea1f5</refId>
+            <refId>2d90d669-d2f6-40eb-8556-3a02a75438f3</refId>
           </destination>
           <source>
-            <refId>71077ff3-ef43-4a78-97f0-1958b0ec2c19</refId>
+            <refId>8c42c119-da5b-4405-bfb9-66e325ef65a6</refId>
           </source>
           <positions>
             <point>
-              <x>590.0</x>
-              <y>629.0</y>
+              <x>251.0</x>
+              <y>51.0</y>
             </point>
             <point>
-              <x>100.0</x>
-              <y>295.0</y>
+              <x>103.0</x>
+              <y>226.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -1649,7 +1642,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="f682baf8-3b60-4124-9162-81cc9ee17837">
+        <transition id="1f2e1c13-68b1-4124-a101-5ccb4f0817f7">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -1658,19 +1651,19 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>314210c6-e529-4a43-9418-1dbaac2a1dfa</refId>
+            <refId>13ce9317-7be9-46fe-b6cb-f6745f857f91</refId>
           </destination>
           <source>
-            <refId>71077ff3-ef43-4a78-97f0-1958b0ec2c19</refId>
+            <refId>8c42c119-da5b-4405-bfb9-66e325ef65a6</refId>
           </source>
           <positions>
             <point>
-              <x>590.0</x>
-              <y>629.0</y>
+              <x>422.0</x>
+              <y>60.0</y>
             </point>
             <point>
-              <x>595.0</x>
-              <y>758.0</y>
+              <x>599.0</x>
+              <y>55.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -1686,16 +1679,16 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
       <assignments/>
       <throttleSize>0</throttleSize>
     </step>
-    <step id="314210c6-e529-4a43-9418-1dbaac2a1dfa">
-      <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.314210c6-e529-4a43-9418-1dbaac2a1dfa.description</annotation>
-      <name>export and start nfs</name>
+    <step id="13ce9317-7be9-46fe-b6cb-f6745f857f91">
+      <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.13ce9317-7be9-46fe-b6cb-f6745f857f91.description</annotation>
+      <name>Prepare Standby</name>
       <bounds>
-        <x>750.0</x>
-        <y>20.0</y>
+        <x>549.0</x>
+        <y>21.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="a31bc7b6-4dec-47dd-a5de-5a396e21b249">
+      <iconSpec id="51fdf8c5-e083-4cb8-9be1-d7ade722527b">
         <baseIcon>workstation_network.png</baseIcon>
         <basePath>/Others/</basePath>
         <readOnly>false</readOnly>
@@ -1714,7 +1707,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="bf0ac7bf-0976-4077-9f60-080dfd7e037e">
+        <userInputBinding id="b1cf0699-c3d4-4ed3-b72a-d436bd455ed4">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1729,7 +1722,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="f174c0c0-3e04-4960-9560-11ba955b5015">
+        <staticBinding id="f1086ad4-586a-4590-b066-19c701f649ef">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1742,7 +1735,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <value>22</value>
           <record>false</record>
         </staticBinding>
-        <userInputBinding id="a7c42a78-9522-4804-94fc-106cf23f113a">
+        <userInputBinding id="3c1e954c-6826-4b76-bc6a-d6529e93e17b">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1757,7 +1750,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="0a99245d-8389-4c48-99f5-64c1d9db164a">
+        <userInputBinding id="8e721af6-e9f9-4e76-880f-6b844a178620">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1772,7 +1765,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="e7fbc57f-2ff4-4493-bd68-eaf1d67dec10">
+        <staticBinding id="cb7d4eda-cc54-4c67-a747-bdc518c54c2e">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1784,7 +1777,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="aeb48f17-8e79-4040-bf5d-929a54f674eb">
+        <staticBinding id="9479fe11-b632-4fa5-a886-924156358fae">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1796,7 +1789,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="2d2646d1-d246-46cc-898e-104dbf4b8fdc">
+        <staticBinding id="dc59bff8-df5b-4955-8b36-491e960b0b5e">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1808,7 +1801,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="9f9a13e5-f2ef-4965-82f8-0ca144e6ed1f">
+        <staticBinding id="f2526f28-5d72-4bb1-81a8-12e42fefb7de">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1820,7 +1813,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="20fdfbc0-d101-47a7-9f34-26ff1dd4d5ec">
+        <userInputBinding id="59df2162-fc8d-4d16-86ca-ef0c3d5dc4d4">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1831,8 +1824,11 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <inputSymbol>privateKeyFile</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-        </staticBinding>
-        <staticBinding id="288aa987-697e-45a3-b308-4f433bb0475b">
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
+        <staticBinding id="c89b38bb-2007-4c8f-b792-e76201d5f80c">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1844,7 +1840,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="3dcaa623-52c6-42d7-8662-d4eba30ef083">
+        <staticBinding id="87e93c2a-1033-4cdc-9e9c-62abb1193ceb">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1857,7 +1853,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <value>allow</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="6e0423c4-df48-4874-8f26-b49b5ed8f696">
+        <staticBinding id="a0ce3cb6-4838-48f3-a994-b484f9670b38">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1869,7 +1865,7 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="5542a0fb-f765-46ba-b4eb-047a2e503247">
+        <staticBinding id="fab32e9a-66d8-459a-98a0-0d22c92ccac6">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1879,12 +1875,33 @@ echo &apos;/var/vols/itom/claim *(rw,sync,anonuid=1999,anongid=1999,all_squash)&
           <isPersisted>true</isPersisted>
           <inputSymbol>command</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>exportfs -a;
-systemctl enable rpcbind; systemctl start rpcbind; systemctl enable nfs-server; systemctl start nfs-server;
-systemctl status nfs-server</value>
+          <value>cp /var/lib/pgsql/9.6/data/postgresql.conf /var/lib/pgsql/9.6/data/postgresql.conf.orig;
+sed -i &apos;/listen_addresses/s/^#//g&apos; /var/lib/pgsql/9.6/data/postgresql.conf;
+sed -i &apos;/wal_level/s/^#//g&apos; /var/lib/pgsql/9.6/data/postgresql.conf;
+sed -i &apos;/synchronous_commit/s/^#//g&apos; /var/lib/pgsql/9.6/data/postgresql.conf;
+sed -i &apos;/archive_mode/s/^#//g&apos; /var/lib/pgsql/9.6/data/postgresql.conf;
+sed -i &apos;/archive_command/s/^#//g&apos; /var/lib/pgsql/9.6/data/postgresql.conf;
+sed -i &apos;/max_wal_senders/s/^#//g&apos; /var/lib/pgsql/9.6/data/postgresql.conf;
+sed -i &apos;/wal_keep_segments/s/^#//g&apos; /var/lib/pgsql/9.6/data/postgresql.conf;
+sed -i &apos;/synchronous_standby_names/s/^#//g&apos; /var/lib/pgsql/9.6/data/postgresql.conf;
+sed -i &quot;s/listen_addresses =.*/listen_addresses =&apos;*&apos;/&quot; /var/lib/pgsql/9.6/data/postgresql.conf; 
+sed -i &quot;s/wal_level =.*/wal_level =&apos;hot_standby&apos;/&quot; /var/lib/pgsql/9.6/data/postgresql.conf; 
+sed -i &quot;s/synchronous_commit =.*/synchronous_commit =&apos;local&apos;/&quot; /var/lib/pgsql/9.6/data/postgresql.conf; 
+sed -i &quot;s/archive_mode =.*/archive_mode =&apos;on&apos;/&quot; /var/lib/pgsql/9.6/data/postgresql.conf;  
+sed -i &quot;s/archive_command =.*/archive_command=&apos;cp %p \/var\/lib\/pgsql\/9.6\/archive\/%f&apos;/&quot; /var/lib/pgsql/9.6/data/postgresql.conf; 
+sed -i &quot;s/max_wal_senders =.*/max_wal_senders=&apos;2&apos;/&quot; /var/lib/pgsql/9.6/data/postgresql.conf; 
+sed -i &quot;s/wal_keep_segments =.*/wal_keep_segments=&apos;10&apos;/&quot; /var/lib/pgsql/9.6/data/postgresql.conf; 
+sed -i &quot;s/synchronous_standby_names =.*/synchronous_standby_names=&apos;pgslave01&apos;/&quot; /var/lib/pgsql/9.6/data/postgresql.conf;
+mkdir -p /var/lib/pgsql/9.6/archive/;
+chmod 700 /var/lib/pgsql/9.6/archive/;
+chown -R postgres:postgres /var/lib/pgsql/9.6/archive/;
+echo &apos;host    replication     replica          127.0.0.1/24            md5&apos; &gt;&gt; pg_hba.conf;
+echo &apos;host    replication     replica          ${pgMasterIp}/24         md5&apos; &gt;&gt; pg_hba.conf;
+echo &apos;host    replication     replica          ${gpSlaveIp}/24         md5&apos; &gt;&gt; pg_hba.conf;
+systemctl restart postgresql-9.6;</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="397be1df-e7e3-4f38-87fa-e59005bba79b">
+        <staticBinding id="39523555-73ae-4c68-8fdf-23ac1c1f89c8">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1897,7 +1914,7 @@ systemctl status nfs-server</value>
           <value>UTF-8</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="d2ac1019-2ead-4c27-89f5-b66bd37e80ee">
+        <staticBinding id="706d4061-f009-4dc4-9aa2-13eafad0e6cc">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1910,7 +1927,7 @@ systemctl status nfs-server</value>
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="cdeb7f4b-c04b-456f-95a9-3985f54608cb">
+        <staticBinding id="5bb1af86-e514-4123-99e1-0f60808e7072">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1923,7 +1940,7 @@ systemctl status nfs-server</value>
           <value>90000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="271b74aa-8642-4094-9ccb-21e977138dcb">
+        <staticBinding id="d1f2b045-14f6-460d-9b4a-50a53680a472">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1936,7 +1953,7 @@ systemctl status nfs-server</value>
           <value>10000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="dac898f0-2cd9-445c-b78d-3f1de10c99cc">
+        <staticBinding id="6562ad95-9d7b-4975-b497-4333ad679a23">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1949,7 +1966,7 @@ systemctl status nfs-server</value>
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="3de0af30-34dc-4b2c-a70b-22d4984ae2d9">
+        <staticBinding id="78096d0c-2c53-4296-b66e-b46091deaf4c">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1962,7 +1979,7 @@ systemctl status nfs-server</value>
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="149e8292-6d2e-4e33-8af2-712366776ff7">
+        <staticBinding id="16d6b565-7b07-4b55-af4b-373e1b8c08b1">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1977,7 +1994,7 @@ systemctl status nfs-server</value>
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="cc9a5bb2-7229-4c8a-9e95-7dddb712c530">
+        <transition id="6a3962b1-be1d-495d-afcb-4da4dbd396be">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -1986,19 +2003,19 @@ systemctl status nfs-server</value>
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>f24c55ba-d313-469c-a0ba-460af88ea1f5</refId>
+            <refId>2d90d669-d2f6-40eb-8556-3a02a75438f3</refId>
           </destination>
           <source>
-            <refId>314210c6-e529-4a43-9418-1dbaac2a1dfa</refId>
+            <refId>13ce9317-7be9-46fe-b6cb-f6745f857f91</refId>
           </source>
           <positions>
             <point>
-              <x>595.0</x>
-              <y>758.0</y>
+              <x>599.0</x>
+              <y>55.0</y>
             </point>
             <point>
-              <x>100.0</x>
-              <y>295.0</y>
+              <x>274.0</x>
+              <y>235.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -2006,7 +2023,7 @@ systemctl status nfs-server</value>
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="c4b3f093-6c7d-4019-9818-0acf199735c3">
+        <transition id="9618d0e9-fd23-40c6-948e-b39a31acd81b">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -2015,19 +2032,19 @@ systemctl status nfs-server</value>
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>383f4f15-9744-4466-bc9c-ca2809cb3429</refId>
+            <refId>fb393f57-d6c1-4383-9817-8ad6bce7e823</refId>
           </destination>
           <source>
-            <refId>314210c6-e529-4a43-9418-1dbaac2a1dfa</refId>
+            <refId>13ce9317-7be9-46fe-b6cb-f6745f857f91</refId>
           </source>
           <positions>
             <point>
-              <x>595.0</x>
-              <y>758.0</y>
+              <x>599.0</x>
+              <y>55.0</y>
             </point>
             <point>
-              <x>502.0</x>
-              <y>814.0</y>
+              <x>744.0</x>
+              <y>301.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -2043,16 +2060,16 @@ systemctl status nfs-server</value>
       <assignments/>
       <throttleSize>0</throttleSize>
     </step>
-    <step id="9b5f6baa-3145-41b8-aced-c9186b120b1d">
-      <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.9b5f6baa-3145-41b8-aced-c9186b120b1d.description</annotation>
-      <name>check status</name>
+    <step id="fb393f57-d6c1-4383-9817-8ad6bce7e823">
+      <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.fb393f57-d6c1-4383-9817-8ad6bce7e823.description</annotation>
+      <name>Create Replica User</name>
       <bounds>
-        <x>1067.0</x>
-        <y>15.0</y>
+        <x>712.0</x>
+        <y>14.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="b1716548-bcdb-4c98-b2bf-4ab52f6e37dc">
+      <iconSpec id="42f4639e-7ab7-47c3-b3d4-85df0493f7ed">
         <baseIcon>workstation_network.png</baseIcon>
         <basePath>/Others/</basePath>
         <readOnly>false</readOnly>
@@ -2071,7 +2088,7 @@ systemctl status nfs-server</value>
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="e83ac729-386d-4efb-8270-3ccfbe8d5116">
+        <userInputBinding id="81622567-66a4-4b7c-a03a-8b39d82182ae">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2086,7 +2103,7 @@ systemctl status nfs-server</value>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="538cec7c-2c05-48c4-82b1-356d3b4afad8">
+        <staticBinding id="e8dafaa8-caf8-4616-840b-7153f91144d4">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2099,7 +2116,7 @@ systemctl status nfs-server</value>
           <value>22</value>
           <record>false</record>
         </staticBinding>
-        <userInputBinding id="d3f447b4-1402-4a21-ae8c-82ff32498080">
+        <userInputBinding id="14896c40-bbda-4c6a-8505-c21137bc6530">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2114,7 +2131,7 @@ systemctl status nfs-server</value>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="24dc1e2a-9e31-4e23-9d62-1e68990a246d">
+        <userInputBinding id="00b9b43f-ca52-43a7-8e79-cc5e3715fa39">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2129,7 +2146,7 @@ systemctl status nfs-server</value>
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="91b1430b-ac7b-4816-9367-8ce54eb6143e">
+        <staticBinding id="c16aeecd-8fb5-488a-9eaf-d4e7265800d1">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2141,7 +2158,7 @@ systemctl status nfs-server</value>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="18c219ab-3def-4998-ba05-34bc7b903d46">
+        <staticBinding id="9ecc05f9-db17-4156-b842-f9de617780bc">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2153,7 +2170,7 @@ systemctl status nfs-server</value>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="59fea1a0-e225-44c1-933e-117a8145d9b9">
+        <staticBinding id="9df067c8-9755-45ee-a8a3-6ee59a6d7d59">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2165,7 +2182,7 @@ systemctl status nfs-server</value>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="e9969a8a-1f6f-4061-ad6e-6e9139022770">
+        <staticBinding id="4be7796c-0d6c-4fae-8a4f-6c8f9e030bca">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2177,7 +2194,7 @@ systemctl status nfs-server</value>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="2da4fb73-2c5f-4c9a-9d50-95a24c48b306">
+        <userInputBinding id="e1f3c32e-a19f-40a3-845a-bad320db7edb">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2188,8 +2205,11 @@ systemctl status nfs-server</value>
           <inputSymbol>privateKeyFile</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
-        </staticBinding>
-        <staticBinding id="39d7cc30-ae7f-4da5-a149-039bfe7c48a9">
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
+        <staticBinding id="71f9954a-2058-4be4-8e61-84631fb40020">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2201,7 +2221,7 @@ systemctl status nfs-server</value>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="62ad2b82-f81c-4d43-b7be-94fab1c2fd49">
+        <staticBinding id="d8c8220f-12cb-4052-9533-44df01f939f4">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2214,7 +2234,7 @@ systemctl status nfs-server</value>
           <value>allow</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="90573670-42ff-41cd-80f2-aa361853a9b7">
+        <staticBinding id="1da2d417-8f5e-42b1-9010-0da38b3397f2">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2226,7 +2246,7 @@ systemctl status nfs-server</value>
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="7cd96d3c-e7bf-42f2-924f-122b542eeed5">
+        <staticBinding id="fd7b045d-2d63-4d34-97d1-a144a6cbbc36">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2236,11 +2256,11 @@ systemctl status nfs-server</value>
           <isPersisted>true</isPersisted>
           <inputSymbol>command</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>systemctl status nfs-server
-showmount -e</value>
+          <value>sudo -u postgres psql -c &quot;CREATE USER replica --replication WITH PASSWORD &apos;${pgPostgresUserPwd}&apos;&quot;;
+</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="c251f6ff-9aa1-4b4e-9d0c-dc1932f1360b">
+        <staticBinding id="76032c2d-c20b-4ccc-87a4-74a801ab8302">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2253,7 +2273,7 @@ showmount -e</value>
           <value>UTF-8</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="b5cd48f3-70e0-44e4-a58c-0e73d539c9d2">
+        <staticBinding id="1309a830-9812-474e-a926-87b5c2c9fd7b">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2266,7 +2286,7 @@ showmount -e</value>
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="01851dda-0788-475b-b165-026653caa262">
+        <staticBinding id="e062b5f4-1d88-49e0-9cdf-1c24ae89702a">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2279,7 +2299,7 @@ showmount -e</value>
           <value>90000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="f33f559a-8075-499b-84a0-3d55e0f0622a">
+        <staticBinding id="c2c371a2-8d9b-4cdc-8611-528f183caadb">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2292,7 +2312,7 @@ showmount -e</value>
           <value>10000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="0a47a97b-27a6-45e8-89e4-5c31af805857">
+        <staticBinding id="4b85b520-4da7-4aa5-930b-6c6d7c16a48b">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2305,7 +2325,7 @@ showmount -e</value>
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="981a002f-56aa-429f-9567-be5ea3701264">
+        <staticBinding id="7af5e7b0-f5e4-482c-bcad-5f3919bf7a1e">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2318,7 +2338,7 @@ showmount -e</value>
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="deffabb0-ced3-47be-a6cf-42b4244ee17d">
+        <staticBinding id="2f6a86ec-ae88-477b-8a26-28bd169f6fbd">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -2333,7 +2353,7 @@ showmount -e</value>
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="4dee2cb3-5d0b-4649-9c66-aa998da348b1">
+        <transition id="487c231c-3d67-413d-b966-89c4d19e20e7">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -2342,19 +2362,19 @@ showmount -e</value>
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>f24c55ba-d313-469c-a0ba-460af88ea1f5</refId>
+            <refId>2d90d669-d2f6-40eb-8556-3a02a75438f3</refId>
           </destination>
           <source>
-            <refId>9b5f6baa-3145-41b8-aced-c9186b120b1d</refId>
+            <refId>fb393f57-d6c1-4383-9817-8ad6bce7e823</refId>
           </source>
           <positions>
             <point>
-              <x>808.0</x>
-              <y>753.0</y>
+              <x>744.0</x>
+              <y>301.0</y>
             </point>
             <point>
-              <x>100.0</x>
-              <y>295.0</y>
+              <x>274.0</x>
+              <y>235.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -2362,7 +2382,7 @@ showmount -e</value>
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="39721b12-4c87-4be3-b1bc-077f25fbfff2">
+        <transition id="426e8fd0-1b34-4da2-964c-757a0562d19b">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -2374,387 +2394,16 @@ showmount -e</value>
             <refId>24a7760d-0260-4215-b783-667f4c42ab4e</refId>
           </destination>
           <source>
-            <refId>9b5f6baa-3145-41b8-aced-c9186b120b1d</refId>
+            <refId>fb393f57-d6c1-4383-9817-8ad6bce7e823</refId>
           </source>
           <positions>
             <point>
-              <x>395.0</x>
-              <y>756.0</y>
+              <x>762.0</x>
+              <y>48.0</y>
             </point>
             <point>
-              <x>233.0</x>
-              <y>749.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-      </transitions>
-      <properties/>
-      <opRef>
-        <refId>0b066b79-d65c-4da9-8ed4-edf50f378950</refId>
-      </opRef>
-      <assignments>
-        <flowVariableAssignment id="dd3aa1d9-d3cb-4a70-bf24-d12e0d89ac3b">
-          <annotation></annotation>
-          <name>assignment</name>
-          <action>OVERWRITE</action>
-          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
-          <contextKey>returnCode</contextKey>
-          <expression id="b17cad02-39b7-4f12-b09c-e23908c98b51">
-            <annotation></annotation>
-            <name>Result Field: returnCode</name>
-            <fieldName>returnCode</fieldName>
-            <sourceType>RAWRESULT</sourceType>
-            <filters/>
-          </expression>
-        </flowVariableAssignment>
-      </assignments>
-      <throttleSize>0</throttleSize>
-    </step>
-    <step id="383f4f15-9744-4466-bc9c-ca2809cb3429">
-      <annotation>cfb83ca1-4d17-4b38-94e7-9b2bc73bbd48.383f4f15-9744-4466-bc9c-ca2809cb3429.description</annotation>
-      <name>disable firewalld</name>
-      <bounds>
-        <x>909.0</x>
-        <y>21.0</y>
-      </bounds>
-      <layer>-1</layer>
-      <hideInbound>false</hideInbound>
-      <iconSpec id="c353a904-5603-45d7-b7e8-6cc3cf679ab9">
-        <baseIcon>workstation_network.png</baseIcon>
-        <basePath>/Others/</basePath>
-        <readOnly>false</readOnly>
-        <layers/>
-      </iconSpec>
-      <addResultToRunContext>false</addResultToRunContext>
-      <isCriticalStep>false</isCriticalStep>
-      <isNonBlocking>false</isNonBlocking>
-      <isParallelStep>false</isParallelStep>
-      <isSingleResponse>false</isSingleResponse>
-      <recordInHistory>false</recordInHistory>
-      <recordRawOutput>true</recordRawOutput>
-      <recordPrimaryOutput>true</recordPrimaryOutput>
-      <checkPointStep>true</checkPointStep>
-      <historyCheckPointStep>true</historyCheckPointStep>
-      <scriptResultStep>false</scriptResultStep>
-      <userPrompt></userPrompt>
-      <bindings>
-        <userInputBinding id="ef9e368b-f318-4df8-8e38-9266ae6c064b">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>host</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
-        <staticBinding id="c7692deb-97b8-44d0-b0ff-511ce3fba977">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>port</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>22</value>
-          <record>false</record>
-        </staticBinding>
-        <userInputBinding id="ded78262-6824-4373-b8ac-3b1a7c2c03b9">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>username</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
-        <userInputBinding id="06501d74-20de-46f5-9283-998fa4e3e5a7">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>ENCRYPTED</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>password</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
-        <staticBinding id="1df10727-0961-42c5-bee0-636380cfe060">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>proxyHost</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="b145199b-9085-4e0b-82f8-2fbbf09798d6">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>proxyPort</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="d455dd29-d362-4d4e-9acd-4423f4861d80">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>proxyUsername</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="f521e84c-9de5-492f-a21f-6a3d13325b5b">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>ENCRYPTED</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>proxyPassword</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="021c51ab-3e72-4a85-bf91-7fcb965a4036">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>privateKeyFile</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="09000ec8-1506-4ca9-9e05-3b2d1c456230">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>ENCRYPTED</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>privateKeyData</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="e8baf05b-ea44-4f11-bac1-9f13e83b7da3">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>knownHostsPolicy</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>allow</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="e238399a-0d54-4aba-8d00-b6d11bc3de66">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>allowedCiphers</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="bc76772b-f41f-4181-b3a6-1163fedf101c">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>command</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>systemctl disable firewalld; systemctl stop firewalld
-</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="8f7c1a76-548d-463e-9979-de93e0806fc0">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>characterSet</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>UTF-8</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="d7433e2f-8488-49ca-975f-d2f352f1fb79">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>pty</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>false</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="9edda70e-2cb5-49ff-a01c-10548cb9ee90">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>timeout</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>90000</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="27f5d644-3683-4a4f-85d7-545cf5285468">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>connectTimeout</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>10000</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="c8319a34-6ff5-4b4b-a2f9-706143a2bcfa">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>keepAlive</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>0</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="1a02c91e-8d94-4728-8f90-609ff62d118d">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>closeSession</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>false</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="ac9a87cf-7a95-4405-b724-c4c56eaad65b">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>useGlobalContext</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>false</value>
-          <record>false</record>
-        </staticBinding>
-      </bindings>
-      <transitions>
-        <transition id="be7576aa-c997-418c-9596-c5a4cfc9e4d0">
-          <annotation></annotation>
-          <name>success</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>success</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>9b5f6baa-3145-41b8-aced-c9186b120b1d</refId>
-          </destination>
-          <source>
-            <refId>383f4f15-9744-4466-bc9c-ca2809cb3429</refId>
-          </source>
-          <positions>
-            <point>
-              <x>502.0</x>
-              <y>814.0</y>
-            </point>
-            <point>
-              <x>395.0</x>
-              <y>756.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-        <transition id="5cbceb23-8f14-4f45-a918-0d1eff2c4c58">
-          <annotation></annotation>
-          <name>failure</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>failure</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>f24c55ba-d313-469c-a0ba-460af88ea1f5</refId>
-          </destination>
-          <source>
-            <refId>383f4f15-9744-4466-bc9c-ca2809cb3429</refId>
-          </source>
-          <positions>
-            <point>
-              <x>502.0</x>
-              <y>814.0</y>
-            </point>
-            <point>
-              <x>100.0</x>
-              <y>295.0</y>
+              <x>971.0</x>
+              <y>56.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -2771,5 +2420,5 @@ showmount -e</value>
       <throttleSize>0</throttleSize>
     </step>
   </steps>
-  <startSteps>0ce76f3c-1d0a-4ceb-9a06-e5fcb5037472</startSteps>
+  <startSteps>d32d7f2e-0d3f-4377-9ad3-42ed8b76e496</startSteps>
 </flow>
