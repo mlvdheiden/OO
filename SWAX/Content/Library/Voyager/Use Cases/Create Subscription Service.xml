@@ -431,8 +431,7 @@
       <bindings>
         <identityBinding id="a2f2cc50-40ff-461b-8afc-657d0ea90db6">
           <annotation></annotation>
-          <fromContextKey>hcmUser</fromContextKey>
-          <assignFromContext>false</assignFromContext>
+          <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
           <inputType>STRING</inputType>
           <isList>false</isList>
@@ -449,7 +448,7 @@
         </identityBinding>
         <identityBinding id="9085de8c-fa8e-4566-b8e9-12a2bcbddf0c">
           <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
+          <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
           <inputType>ENCRYPTED</inputType>
           <isList>false</isList>
@@ -543,7 +542,7 @@
           <isPersisted>true</isPersisted>
           <inputSymbol>trustAllRoots</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>false</value>
+          <value>true</value>
           <record>false</record>
         </staticBinding>
         <staticBinding id="ccee2e95-d270-4887-a70f-dc255456d7a3">
@@ -556,7 +555,7 @@
           <isPersisted>true</isPersisted>
           <inputSymbol>x509HostnameVerifier</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>strict</value>
+          <value>allow_all</value>
           <record>false</record>
         </staticBinding>
         <staticBinding id="723db50b-ccab-4ee3-a8c9-b54c6b882187">
@@ -2056,12 +2055,6 @@
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="30401bd3-5c0f-47f3-8879-dc57e69982ac">
-        <baseIcon>return_failure.png</baseIcon>
-        <basePath>System</basePath>
-        <readOnly>true</readOnly>
-        <layers/>
-      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>
