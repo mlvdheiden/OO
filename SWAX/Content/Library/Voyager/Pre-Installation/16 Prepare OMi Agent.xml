@@ -758,12 +758,21 @@ a04ad031-797c-481c-80ee-902b8cb19165.description=Prepares the Master server to u
           <inputSymbol>command</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <value>yum -y update;
-yum -y install libstdc++ libncurses m4 net-snmp;
-cd /opt/microfocus/installers/OMI/OpsAgent/
+yum -y install libstdc++ libncurses m4 net-snmp nfs-utils;
+mkdir -p /opt/microfocus/installers/OMI/OpsAgent;
+rm -f check.sh;
+grep -i -c /opt/microfocus/installers /etc/fstab &gt;&gt;count.txt;
+echo &apos;check=$(cat count.txt)&apos; &gt; check.sh
+echo &apos;if&apos; &gt;&gt; check.sh;
+echo &apos;	[ $check -lt 1 ]&apos; &gt;&gt; check.sh;
+echo &apos;	then&apos; &gt;&gt; check.sh;
+echo &apos;	echo &apos;16.32.12.129:/opt/microfocus/installers /opt/microfocus/installers nfs defaults 0 0&apos; &gt;&gt; /etc/fstab&apos; &gt;&gt; check.sh;
+echo &apos;fi&apos; &gt;&gt; check.sh;
+chmod 755 check.sh;
+./check.sh;
+mount -a;
+cd /opt/microfocus/installers/OMI/OpsAgent;
 ./oainstall.sh -i -a -s pso-12-132.sac.swinfra.net;
-
-
-
 </value>
           <record>false</record>
         </staticBinding>
