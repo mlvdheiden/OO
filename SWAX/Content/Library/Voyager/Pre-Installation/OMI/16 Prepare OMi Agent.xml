@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<flow id="bf00dcb9-3696-45ac-a299-1a68983f8886">
-  <descriptionCdata><![CDATA[bf00dcb9-3696-45ac-a299-1a68983f8886.a2e94b1e-b7ae-4b72-b4d9-20b82fc37e93.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
-bf00dcb9-3696-45ac-a299-1a68983f8886.bed20ffa-ac36-45a7-89b7-79789c7531a7.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
-bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for Installation
+<flow id="a04ad031-797c-481c-80ee-902b8cb19165">
+  <descriptionCdata><![CDATA[a04ad031-797c-481c-80ee-902b8cb19165.7e844c9f-45b4-4be2-b379-ec1e52516654.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
+a04ad031-797c-481c-80ee-902b8cb19165.b806fa58-2ee0-4860-80f0-07fd047982e5.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
+a04ad031-797c-481c-80ee-902b8cb19165.da043058-d5a2-49ab-8963-27ed294dbe3c.description=<pre>\nExecutes a Shell command(s) on the remote machine using the SSH protocol.\n\nInputs\:\n    host - The hostname/IP address of the remote machine.\n    port - The port number for SSH protocol.\nDefault value\: 22\n    username - Name of the account on the remote machine.\n    password - The password for the username. When using a private key file or a private key string, this input will be used as the passphrase for the file or string. For security reasons it is recommend to provide this input and protect the private key when using the 'privateKeyData' and the 'privateKeyFile' inputs.\n    proxyHost - The proxy server used to access the remote machine.\n    proxyPort - The proxy server port. Default\: 8080. Valid values\: -1 and numbers greater than 0.\n    proxyUsername - The user name used when connecting to the proxy.\n    proxyPassword - The proxy server password associated with the proxyUsername input value.\n    privateKeyFile - Path to private key file (OpenSSH type) on the machine where is the worker. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    privateKeyData \u2013 A string representing the private key (OpenSSH type) used for authenticating the user. This string is usually the content of a private key file. The 'privateKeyData' and the 'privateKeyFile' inputs are mutually exclusive. For security reasons it is recommend that the private key be protected by a passphrase that should be provided through the 'password' input.\n    knownHostsPolicy - The policy used for managing known_hosts file. We recommend to use a "strict" policy so as to verify the host key against a local file containing known, trustworthy machines. If you choose "allow" policy then you will connect to the server without any verification. If you choose "add" policy then if you don't have the host key in the 'knownHostsPath' it will be added and you will connect to the server; if you have the key, the key will be validated. Using 'allow' (or 'add' for the first time), if there is a Man-In-The-Middle attack then you will be connected to a fake server and the SSH commands that you send will go through that fake server. \nValid values\:  \nallow\=It will permit the connection to any hosts. \nstrict\=It will permit the connection only to the hosts specified in known_hosts file. \nadd\=It will permit the connection to any hosts and add it into known_hosts file if you do not have the key in the known_hosts file. If the host is already in the known_hosts file, it will permit the connection only if the host key is valid (will perform strict validation). \nDefault value\: strict\n    allowedCiphers - A comma separated list of ciphers that will be used in the client-server handshake mechanism when the connection is created. Check the notes section for security concerns regarding your choice of ciphers. The default value will be used even if the input is not added to the operation.\nDefault value\: aes128-ctr,aes128-cbc,aes192-ctr,aes192-cbc,aes256-ctr,aes256-cbc\n    command - The command(s) to execute.\n    characterSet - The characterSet name for input stream encoding from the remote machine.\nExamples\: SJIS, EUC-JP, UTF-8\nDefault value\: UTF-8\n    pty - Whether to use a pseudo-terminal (PTY) session.\nValid values\: false, true \nDefault value\: false\n    timeout - Time in milliseconds to wait for the command to complete.\nDefault value\: 90000\n    connectTimeout - Time in milliseconds to wait for the connection to be made.\nDefault value\: 10000\n    keepAlive - Time in milliseconds to wait between keep alive packets that are sent to the server. If the value of this input is 0, no keep alive packets will be sent during the execution.\nValid values\: 0, any value between 1000 and 86400000\nDefault value\: 0\n    closeSession - If true it closes the SSH session at completion of this operation. If false the SSH session will be cached for future calls of this operation during the life of the flow.\nValid values\: false, true \nDefault value\: false\n    useGlobalContext -  Specifies whether to enable the session sharing into the subflows.\nValid values\: false, true \nDefault value\: false\n\nResults\:\n    returnResult - The result of the command (STDOUT is success, otherwise STDERR).\n    STDERR - The standard error of the command.\n    STDOUT - The standard output of the command.\n    exitStatus - The exit status of the remote command corresponding to the SSH channel. The exit status is only available for certain types of channels, and only after the channel was closed (more exactly, just before the channel is closed).\nExamples\: 0 for a successful command, -1 if the command was not yet terminated (or this channel type has no command), 126 if the command cannot execute.\n    TimedOut - Is set to "true" if the value set in the "timeout" input has elapsed and the command timed out.\n\nResponses\:\n    success - The command was executed successfully.\n    failure - The command could not be executed or if the command was not yet terminated.\n\nNotes\:\n1. If the SSH session is cached then only the connection is kept and not the context (variables) represented by SSH channel.\n2. Hidden inputs\:\n    knownHostsPath -  Specifies the path to the known_hots file on the running server.\nDefault value\: <user.home>/.ssh/known_hosts\nExamples\: /home/admin/.ssh/known_hosts\n   allowExpectCommands - Specifies whether to allow the execution of expect like commands. Some protocols ( like OGFS ) do not work for regular commands if this behavior is enabled. The recommended operation to use for expect like commands is SSH Shell.\nDefault value\: false\n3. In order to use private keys with different encryption types (ex.\: aes256-cbc) needs to be updated the <OO_Home>/java/lib/security/local_policy.jar JAR file with one that accept all security policies (ex.\: http\://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html). After update you must restart the Studio or Central service.\n4. The "timeout" input refers only to the command timeout and it's not linked with any kind of connection timeout. The "commandTimedOut" output shows if the command timed out and doesn't interfere with the returnResult, STDERR or STDOUT outputs, so even if the command times out these outputs will still be populated accordingly.\n5. The operation supports connections through HTTP proxy with username and password authentication.\n6. When pty is true, the desired command must be appended with an exit command in order to close the channel, e.g. "echo something\\n exit\\n", otherwise the operation will timeout.\n7. For security reasons, HPE does not recommend the use of outdated or vulnerable ciphers. Therefore "arcfour" cihpers should be avoided because they do not provide confidentiality for data in transit and using them can lead to information leakage.\nArcfour is vulnerable to the following attacks\: Fluhrer, Mantin and Shamir attack, Klein's attack, Royal Holloway attack, Bar-mitzvah attack and NOMORE attack.\n</pre>
+a04ad031-797c-481c-80ee-902b8cb19165.description=Prepares the Master server to use central NFS
 ]]></descriptionCdata>
-  <annotation>bf00dcb9-3696-45ac-a299-1a68983f8886.description</annotation>
-  <name>Create openEMR App</name>
+  <annotation>a04ad031-797c-481c-80ee-902b8cb19165.description</annotation>
+  <name>16 Prepare OMi Agent</name>
   <categories/>
   <inputs>
-    <staticBinding id="57acb4a3-78e3-4e23-882a-faf695b69a8c">
+    <staticBinding id="e6b42315-f8df-4344-a897-bc59db5c0685">
       <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
+      <assignFromContext>true</assignFromContext>
       <assignToContext>true</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -18,181 +19,12 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
       <isPersisted>true</isPersisted>
       <inputSymbol>host</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>${smaxMasterIp}</value>
+      <value>${omiAgentIp}</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="266923fb-d3f7-45b8-b628-2ab1a914fb56">
+    <staticBinding id="d0798be8-87c9-4923-80c0-74f031123b24">
       <annotation></annotation>
       <assignFromContext>true</assignFromContext>
-      <assignToContext>false</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>ntpIp</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>${ntpIp}</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="910da3bc-2dd1-4968-9056-40d5769ade8e">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>true</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>kubernetesNet</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>${smaxDockerNet}</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="3071419c-9aac-4ab7-840c-64556920f6d3">
-      <annotation></annotation>
-      <assignFromContext>true</assignFromContext>
-      <assignToContext>true</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>remoteNfs</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>true</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="4ae5f038-859a-4ec6-86e8-64442205af01">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>false</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>smaxProxy</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>${httpProxy}</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="f91f2424-13f4-4035-aec5-4a0a58df414d">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>false</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>smaxNoProxy</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>${httpNoProxy}</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="adfa65ef-9213-4264-8907-759d02e84cce">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>false</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>smaxInstallerZip</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>${smaxInstallerZip}</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="5eb981ea-c8c4-4a81-8bd0-2121bbfdbe09">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>true</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>smaxInstallZip</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>${smaxInstallZip}</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="1ace43c9-e357-4f6b-a41d-96044a2b09e0">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>false</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>smaxMetaZip</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>${smaxMetaZip}</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="8a8596eb-f6d8-4c29-911b-dc4070b4509c">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>true</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>k8Path</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>${cdfPath}</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="630d5456-8696-41e3-a6c1-0275c0d2adb9">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>true</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>installersPath</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>${smaxInstallerPath}</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="415fb27a-96c4-471b-9b7a-e123b33119d4">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>true</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>nfsIp</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>${nfsIp}</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="6cc4e01a-c04f-4501-a9d6-6ad03ba9cd8f">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>true</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>rasIp</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>15.122.104.139</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="41815c87-7fe6-4420-b874-834cfa409683">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
-      <assignToContext>true</assignToContext>
-      <inputType>STRING</inputType>
-      <isList>false</isList>
-      <required>false</required>
-      <isPersisted>true</isPersisted>
-      <inputSymbol>remoteAdmin</inputSymbol>
-      <listDelimiter>,</listDelimiter>
-      <value>root.itinvent</value>
-      <record>false</record>
-    </staticBinding>
-    <staticBinding id="039a2e1a-648d-42ed-8868-5f343b3e8dbc">
-      <annotation></annotation>
-      <assignFromContext>false</assignFromContext>
       <assignToContext>true</assignToContext>
       <inputType>STRING</inputType>
       <isList>false</isList>
@@ -200,10 +32,10 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
       <isPersisted>true</isPersisted>
       <inputSymbol>privateKeyFile</inputSymbol>
       <listDelimiter>,</listDelimiter>
-      <value>${vmKeyFilePath}</value>
+      <value>${omiKeyFilePath}</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="530b8446-5abe-4d5f-93a4-cedcddfc137e">
+    <staticBinding id="73bc37c2-95d4-48a2-83fe-fb20d65c3a9b">
       <annotation></annotation>
       <assignFromContext>false</assignFromContext>
       <assignToContext>true</assignToContext>
@@ -216,7 +48,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
       <value>root</value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="0a3b7071-151e-4596-a6ce-a2d92bd0971c">
+    <staticBinding id="488e7ca7-97b1-4399-b0af-320587fb4784">
       <annotation></annotation>
       <assignFromContext>false</assignFromContext>
       <assignToContext>true</assignToContext>
@@ -229,7 +61,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
       <value> </value>
       <record>false</record>
     </staticBinding>
-    <staticBinding id="9a5c169f-5234-4d43-a5e4-5933aaa216cc">
+    <staticBinding id="91df80fd-a16b-462a-8135-d2dee384006c">
       <annotation></annotation>
       <assignFromContext>false</assignFromContext>
       <assignToContext>true</assignToContext>
@@ -244,15 +76,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
     </staticBinding>
   </inputs>
   <possibleResponses>
-    <opResponse id="dab5399a-b99b-47ad-968e-756fea1d6b69">
-      <annotation></annotation>
-      <name>success</name>
-      <isDefault>true</isDefault>
-      <onFailure>false</onFailure>
-      <type>RESOLVED</type>
-      <matchRules/>
-    </opResponse>
-    <opResponse id="2afb4b03-756a-4927-a862-f36c881d2dce">
+    <opResponse id="53c10925-9cf4-43c2-a26a-aafa9c4b7bc8">
       <annotation></annotation>
       <name>failure</name>
       <isDefault>false</isDefault>
@@ -260,16 +84,24 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
       <type>ERROR</type>
       <matchRules/>
     </opResponse>
+    <opResponse id="70aad0e4-1120-4aca-9c40-096acd9fc8c8">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
   </possibleResponses>
   <availableResultExpressions/>
-  <resultExpression id="d7f7034b-f0bf-4170-9731-2dc971398ef0">
+  <resultExpression id="23310d9d-a370-4516-8b82-b1d5d87f8cca">
     <annotation></annotation>
     <name>FailureMessage</name>
     <fieldName>FailureMessage</fieldName>
     <sourceType>RAWRESULT</sourceType>
     <filters/>
   </resultExpression>
-  <iconSpec id="082c4a83-bd1f-4a90-a8c9-51ccd4d60afa">
+  <iconSpec id="0a5236d6-09f2-402b-a967-73591fbc5ae0">
     <baseIcon>flow.png</baseIcon>
     <basePath>System</basePath>
     <readOnly>false</readOnly>
@@ -280,354 +112,16 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
   <compatibleRuntimeContext>false</compatibleRuntimeContext>
   <historyCheckPointFlow>true</historyCheckPointFlow>
   <steps>
-    <step id="6b59a448-c317-4e2c-a0e6-510d699efb07">
-      <annotation></annotation>
-      <name>Check Requirements</name>
+    <step id="da043058-d5a2-49ab-8963-27ed294dbe3c">
+      <annotation>a04ad031-797c-481c-80ee-902b8cb19165.da043058-d5a2-49ab-8963-27ed294dbe3c.description</annotation>
+      <name>create directories</name>
       <bounds>
-        <x>1.0</x>
-        <y>26.0</y>
+        <x>49.0</x>
+        <y>271.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <addResultToRunContext>false</addResultToRunContext>
-      <isCriticalStep>false</isCriticalStep>
-      <isNonBlocking>false</isNonBlocking>
-      <isParallelStep>false</isParallelStep>
-      <isSingleResponse>false</isSingleResponse>
-      <recordInHistory>false</recordInHistory>
-      <recordRawOutput>true</recordRawOutput>
-      <recordPrimaryOutput>true</recordPrimaryOutput>
-      <checkPointStep>true</checkPointStep>
-      <historyCheckPointStep>true</historyCheckPointStep>
-      <scriptResultStep>false</scriptResultStep>
-      <userPrompt></userPrompt>
-      <bindings>
-        <userInputBinding id="37d6337d-17b9-404b-a39c-a6aef7f3e636">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>host</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-          <prompt></prompt>
-          <isMultiSelect>false</isMultiSelect>
-          <sourceDelimiter>|</sourceDelimiter>
-        </userInputBinding>
-        <staticBinding id="10fcb8cc-8b00-4580-afd8-10c89ad8e23e">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>neededSize</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>200</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="1d3f3468-985b-4ec3-a5f1-ed91dc37a298">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>kubernetesNet</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>172.19.17.0/24</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="741351aa-c393-489c-8e03-12e45bd12b06">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>remoteNfs</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>false</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="9e3f0e92-9592-4558-9d52-72bb107468cf">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>smaxProxy</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>web-proxy.houston.softwaregrp.net:8080</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="6c0fa6c4-d213-4969-a164-8b58ce50bc33">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>smaxNoProxy</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>localhost,.swinfra.net</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="acb421d7-75f0-47ce-a3b6-b575d8e68f10">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>smaxInstallerZip</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>Micro_Focus_Container_Deployment_Foundation_for_ITOM_Install_CDF1905-00131-15001-installer.zip</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="7fdc4219-13a6-45ec-aaff-d4b9a03dc952">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>smaxInstallZip</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>ITOM_Suite_Foundation_2019.05.00131.zip</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="5d3ecda9-650a-46a0-ae17-d153eb29f2a8">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>smaxMetaZip</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>itsma-suite-metadata-2019.05-b62.tgz</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="fb9db1c1-98f6-4e13-8c71-bdd61e23ac7f">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>k8Path</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>/opt/kubernetes</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="cbdc9eb7-1db4-4bf9-bc92-cbb6f43c4d62">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>imagesPath</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>${installersPath}/images</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="36a0ea95-76f7-4610-878f-d7c80e870bea">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>installersPath</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>/opt/microfocus/installers</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="71a06f69-25c8-4ff8-9195-d8c94e6b4f1c">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>nfsIp</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>16.32.12.129</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="ffb36365-9fd4-4093-b922-6d293c38c8c5">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>rasIp</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>15.122.104.139</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="c1959171-d7bd-4142-a41f-9d5a1bd116f8">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>remoteAdmin</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>root.itinvent</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="3d11802f-adb0-47a8-8669-23f42cd75bda">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>privateKeyFile</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>${vmKeyFilePath}</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="70182729-3b7b-4473-9bbb-c4334a00a688">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>username</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>root</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="77535896-1fac-4ee2-a091-0103279a3687">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>password</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="aa004d4c-63f6-44ae-8543-f77c88103f8c">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>port</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>22</value>
-          <record>false</record>
-        </staticBinding>
-      </bindings>
-      <transitions>
-        <transition id="a2581ce2-0727-4515-8eb9-4d0fd2af064a">
-          <annotation></annotation>
-          <name>success</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>success</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>a2e94b1e-b7ae-4b72-b4d9-20b82fc37e93</refId>
-          </destination>
-          <source>
-            <refId>6b59a448-c317-4e2c-a0e6-510d699efb07</refId>
-          </source>
-          <positions>
-            <point>
-              <x>184.0</x>
-              <y>306.0</y>
-            </point>
-            <point>
-              <x>351.0</x>
-              <y>319.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-        <transition id="2b14e43e-9ad8-42fe-a507-ecb628f07e69">
-          <annotation></annotation>
-          <name>failure</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>failure</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>bed20ffa-ac36-45a7-89b7-79789c7531a7</refId>
-          </destination>
-          <source>
-            <refId>6b59a448-c317-4e2c-a0e6-510d699efb07</refId>
-          </source>
-          <positions>
-            <point>
-              <x>74.0</x>
-              <y>318.0</y>
-            </point>
-            <point>
-              <x>230.0</x>
-              <y>492.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-      </transitions>
-      <properties/>
-      <opRef>
-        <refId>387db607-14ad-4c58-85f3-91d6c38d01a6</refId>
-      </opRef>
-      <assignments/>
-      <throttleSize>0</throttleSize>
-    </step>
-    <step id="a2e94b1e-b7ae-4b72-b4d9-20b82fc37e93">
-      <annotation>bf00dcb9-3696-45ac-a299-1a68983f8886.a2e94b1e-b7ae-4b72-b4d9-20b82fc37e93.description</annotation>
-      <name>Create Container Image</name>
-      <bounds>
-        <x>153.0</x>
-        <y>26.0</y>
-      </bounds>
-      <layer>-1</layer>
-      <hideInbound>false</hideInbound>
-      <iconSpec id="bb65e45d-2d9d-462f-bd84-4bdbacb9f597">
+      <iconSpec id="9050ba72-524c-4c7c-b016-9560c5b23394">
         <baseIcon>workstation_network.png</baseIcon>
         <basePath>/Others/</basePath>
         <readOnly>false</readOnly>
@@ -646,7 +140,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="bdd4de21-8e6b-46d1-9f03-c5b89544c7a1">
+        <userInputBinding id="1a8f3abe-69e7-49a8-a5c3-18469bf051d2">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -661,7 +155,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="6320aad1-2c9a-4c15-8965-336d55ff7670">
+        <staticBinding id="861905a0-b488-47ee-b0aa-475ead8cfbbb">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -674,7 +168,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <value>22</value>
           <record>false</record>
         </staticBinding>
-        <userInputBinding id="2d2b8ac6-ecf7-4061-8a36-b1acdd8f3804">
+        <userInputBinding id="4e8649be-54a2-4066-a4e9-01f07a9bc8b5">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -689,7 +183,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="0b5263ab-da2e-4c77-86ae-0669498d63a3">
+        <userInputBinding id="b5c98fdb-855d-4385-bef2-e92b49a84e54">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -704,7 +198,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="389cc623-4cd0-48bb-a23d-22f9d018d0bf">
+        <staticBinding id="22031a92-3d70-4af6-92d8-3e2e9b8dd59c">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -716,7 +210,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="3708efb0-5bc7-4886-b992-9cf7e6b907d1">
+        <staticBinding id="a43c10c5-9d7f-43fc-bd52-32f2dab764a6">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -728,7 +222,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="ff2126ef-3447-4e76-9d55-62ec70bbf21e">
+        <staticBinding id="94f3dcc8-e6c6-4874-ac72-34d9dca0bfc9">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -740,7 +234,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="33df8539-a365-422a-8a4f-9797e9262780">
+        <staticBinding id="aca9e35f-e02a-455f-9328-1aef547597e2">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -752,7 +246,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="ead7bc92-168a-45bf-81e5-f8bcef3320e2">
+        <staticBinding id="f90bdae7-ee69-499d-8a60-da8d78d06db1">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -764,7 +258,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="d434afea-3441-4c12-b945-3ecc33df84cd">
+        <staticBinding id="1b4950e2-ee56-4d9d-9e50-b7df0ac44767">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -776,7 +270,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="baf4ceb5-0130-4420-9cd1-71d1d04a5dfa">
+        <staticBinding id="64890541-7388-4e7a-9aa9-253747a5eff6">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -789,7 +283,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <value>allow</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="091c53af-2987-433d-a1a6-a75852942772">
+        <staticBinding id="2a819a40-05a6-477e-bbca-672166a0352e">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -801,7 +295,7 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="c8228d42-054c-4590-b606-a3030641e47e">
+        <staticBinding id="b2f16c6f-d627-4e21-aa2b-2a1a7b164b0d">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -811,13 +305,11 @@ bf00dcb9-3696-45ac-a299-1a68983f8886.description=Prepares the Master node for In
           <isPersisted>true</isPersisted>
           <inputSymbol>command</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>cd /root
-mkdir -p openEMR
-echo ${openEMRDockerfile} &gt; /root/openEMR/DockerFile
-docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${httpsProxy}</value>
+          <value>mkdir -p /opt/OV /opt/perf /var/opt/OV /var/opt/perf:
+</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="549ead65-6c5c-4ddf-b1ac-ce7170e637ff">
+        <staticBinding id="24e7a520-cb06-473d-a74c-9d7ff6d9558e">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -830,7 +322,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>UTF-8</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="283ac136-35a6-42ee-9f16-29ce756d3eed">
+        <staticBinding id="2f0a98fd-85dc-4c5b-9283-156f832b2bbd">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -843,7 +335,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="81e01430-0d04-4fa7-93bf-f9b602526a5a">
+        <staticBinding id="c74feb56-6800-4b14-8895-86fae2328e6f">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -856,7 +348,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>90000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="dc91ba33-8f50-4c82-9c8a-e715a1583fec">
+        <staticBinding id="5d047f63-a3e4-4827-89ff-abbbfb5b0c43">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -869,7 +361,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>10000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="9c169a60-57b8-426d-b83d-84b7be085788">
+        <staticBinding id="2a4550f6-c123-4778-bd68-8a3dd8218afa">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -882,7 +374,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="06419189-2cb7-42f1-befd-16737de2914e">
+        <staticBinding id="7a2e117d-2737-418e-af7c-9f603a82701a">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -895,7 +387,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="e0e374e7-73cd-4be2-beb2-2cf216f21b0b">
+        <staticBinding id="de2fd2d0-43b1-4f19-af46-894a63876275">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -910,7 +402,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="0befb144-a0e7-41f2-95cc-febca643cc78">
+        <transition id="b793c6e2-2c40-474b-8fff-025ca52ab675">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -919,19 +411,19 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>bed20ffa-ac36-45a7-89b7-79789c7531a7</refId>
+            <refId>b806fa58-2ee0-4860-80f0-07fd047982e5</refId>
           </destination>
           <source>
-            <refId>a2e94b1e-b7ae-4b72-b4d9-20b82fc37e93</refId>
+            <refId>da043058-d5a2-49ab-8963-27ed294dbe3c</refId>
           </source>
           <positions>
             <point>
-              <x>226.0</x>
-              <y>318.0</y>
+              <x>98.0</x>
+              <y>76.0</y>
             </point>
             <point>
-              <x>230.0</x>
-              <y>492.0</y>
+              <x>209.0</x>
+              <y>436.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -939,7 +431,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="7c2c50ed-33b9-4f7a-93a8-683275ec875c">
+        <transition id="dd0d6f71-b3b1-4ba2-a957-7144763c135b">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -948,19 +440,19 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>65873d0d-21cd-4dcb-8d98-272959366c44</refId>
+            <refId>7e844c9f-45b4-4be2-b379-ec1e52516654</refId>
           </destination>
           <source>
-            <refId>a2e94b1e-b7ae-4b72-b4d9-20b82fc37e93</refId>
+            <refId>da043058-d5a2-49ab-8963-27ed294dbe3c</refId>
           </source>
           <positions>
             <point>
-              <x>203.0</x>
-              <y>60.0</y>
+              <x>99.0</x>
+              <y>305.0</y>
             </point>
             <point>
-              <x>1158.0</x>
-              <y>61.0</y>
+              <x>209.0</x>
+              <y>385.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -976,12 +468,12 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
       <assignments/>
       <throttleSize>0</throttleSize>
     </step>
-    <returnStep id="65873d0d-21cd-4dcb-8d98-272959366c44">
+    <returnStep id="441e8444-82a7-46e7-81bb-889be37ca3b0">
       <annotation></annotation>
-      <name>Resolved : success</name>
+      <name>Error : failure</name>
       <bounds>
-        <x>1108.0</x>
-        <y>27.0</y>
+        <x>208.0</x>
+        <y>5.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
@@ -999,37 +491,37 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
       <userPrompt></userPrompt>
       <bindings/>
       <transitions>
-        <transition id="0f97f8ad-9f61-40a0-aa84-b714ce3e41b5">
+        <transition id="420ca58d-1459-4adc-ac2a-bf5b1ebebd76">
           <annotation></annotation>
           <name>return</name>
           <command>NEXT</command>
           <linkMode>false</linkMode>
-          <responseSymbol>success</responseSymbol>
+          <responseSymbol>failure</responseSymbol>
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>65873d0d-21cd-4dcb-8d98-272959366c44</refId>
+            <refId>441e8444-82a7-46e7-81bb-889be37ca3b0</refId>
           </destination>
           <source>
-            <refId>65873d0d-21cd-4dcb-8d98-272959366c44</refId>
+            <refId>441e8444-82a7-46e7-81bb-889be37ca3b0</refId>
           </source>
           <positions/>
         </transition>
       </transitions>
       <properties/>
-      <returnStepType>RESOLVED</returnStepType>
+      <returnStepType>ERROR</returnStepType>
       <assignments/>
     </returnStep>
-    <step id="bed20ffa-ac36-45a7-89b7-79789c7531a7">
-      <annotation>bf00dcb9-3696-45ac-a299-1a68983f8886.bed20ffa-ac36-45a7-89b7-79789c7531a7.description</annotation>
-      <name>restore</name>
+    <step id="7e844c9f-45b4-4be2-b379-ec1e52516654">
+      <annotation>a04ad031-797c-481c-80ee-902b8cb19165.7e844c9f-45b4-4be2-b379-ec1e52516654.description</annotation>
+      <name>install packages</name>
       <bounds>
-        <x>157.0</x>
-        <y>200.0</y>
+        <x>210.0</x>
+        <y>262.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="87499419-31f2-4bbd-9524-3957a727ad06">
+      <iconSpec id="49a8acad-c794-4e87-be9a-74057fb4121b">
         <baseIcon>workstation_network.png</baseIcon>
         <basePath>/Others/</basePath>
         <readOnly>false</readOnly>
@@ -1048,7 +540,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <userInputBinding id="4acb6609-6bc0-4b68-958c-c86cf04e9153">
+        <userInputBinding id="4b8e7348-879f-416e-84c2-891c2b5abacf">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1063,7 +555,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="77339c77-84bc-43da-9bcd-e14b322b1fec">
+        <staticBinding id="49c3f22b-f1b9-402a-a672-78fbc8c2dd0b">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1076,7 +568,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>22</value>
           <record>false</record>
         </staticBinding>
-        <userInputBinding id="9c96c828-266f-4fe1-ad82-f835d1781f16">
+        <userInputBinding id="fb75d29a-f99b-4df1-a05c-22d01dcade7d">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1091,7 +583,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <userInputBinding id="aa79a1b4-da4b-4756-b89d-87e625d61c93">
+        <userInputBinding id="ed66f3e6-9248-4d16-9423-8a451b2bdc2f">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1106,7 +598,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <isMultiSelect>false</isMultiSelect>
           <sourceDelimiter>|</sourceDelimiter>
         </userInputBinding>
-        <staticBinding id="3dfb3385-4d34-452f-9166-2ed7c9607755">
+        <staticBinding id="132db0cb-302a-48e3-9774-7eba5b9aa6a7">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1118,7 +610,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="5d1bd323-3e7e-4c5e-a8af-087c6376c921">
+        <staticBinding id="6940fb05-f83a-4fea-808e-5aefa6abe8e1">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1130,7 +622,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="cd7d05f3-2fd2-4704-982a-55dd3eec89f1">
+        <staticBinding id="2f80d010-bd21-4400-a44a-9575d261c5db">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1142,7 +634,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="c2ec3004-93ad-408e-a544-67ec15dce983">
+        <staticBinding id="11f1c9d0-5a21-4803-9359-9462f6779c30">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1154,7 +646,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="1af01233-0491-44f7-ac67-2fb2cc6d5464">
+        <staticBinding id="cad26d79-08ae-48f8-91ae-94f5dd92b10d">
           <annotation></annotation>
           <assignFromContext>true</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1166,7 +658,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="acff3329-8395-441c-9201-6ab5f6f0114b">
+        <staticBinding id="a9985c4b-2802-44f4-a248-0f650d698375">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1178,7 +670,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="94fdc5a8-909f-4575-a2cd-63b76dee4e44">
+        <staticBinding id="f8bf6913-8c2a-4ba2-ad35-3c373e91b7b6">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1191,7 +683,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>allow</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="2fa7b3b6-6e1c-4634-b568-48485666f725">
+        <staticBinding id="fab58887-f0b3-413d-aef5-b6255bce9a56">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1203,7 +695,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="904e8862-3a87-486f-bfe6-559a8a2d28d3">
+        <staticBinding id="a5a29d3f-3102-4f89-9f1c-61eb5c31bda6">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1213,10 +705,26 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <isPersisted>true</isPersisted>
           <inputSymbol>command</inputSymbol>
           <listDelimiter>,</listDelimiter>
-          <value>rm -rf ${k8Path};</value>
+          <value>yum -y update;
+yum -y install libstdc++ libncurses m4 net-snmp nfs-utils;
+mkdir -p /opt/microfocus/installers/OMI/OpsAgent;
+rm -f check.sh;
+grep -i -c /opt/microfocus/installers /etc/fstab &gt;&gt;count.txt;
+echo &apos;check=$(cat count.txt)&apos; &gt; check.sh
+echo &apos;if&apos; &gt;&gt; check.sh;
+echo &apos;	[ $check -lt 1 ]&apos; &gt;&gt; check.sh;
+echo &apos;	then&apos; &gt;&gt; check.sh;
+echo &apos;	echo &apos;16.32.12.129:/opt/microfocus/installers /opt/microfocus/installers nfs defaults 0 0&apos; &gt;&gt; /etc/fstab&apos; &gt;&gt; check.sh;
+echo &apos;fi&apos; &gt;&gt; check.sh;
+chmod 755 check.sh;
+./check.sh;
+mount -a;
+cd /opt/microfocus/installers/OMI/OpsAgent;
+./oainstall.sh -i -a -s pso-12-132.sac.swinfra.net;
+</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="091508d6-926a-462a-83a2-e732bda28edf">
+        <staticBinding id="5f5e9c8a-a431-491c-a956-cb891021d762">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1229,7 +737,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>UTF-8</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="5fffb2fa-4250-42c4-b411-038d4abbdb43">
+        <staticBinding id="67f86900-4beb-41f0-b520-956657cea998">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1242,7 +750,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="b2a7bcb6-9780-4b2e-b009-984d747358b8">
+        <staticBinding id="e0b30be5-e5d8-4d21-b0b0-edcbe36f3924">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1255,7 +763,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>900000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="22701322-2097-4732-bf39-c074b5eecac8">
+        <staticBinding id="fc5fbf64-c0fd-4231-9d84-500fff078d47">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1268,7 +776,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>10000</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="c86cb6a1-a751-41be-8850-cf94cc440dd7">
+        <staticBinding id="8b2c0dae-4d5a-47cb-8eb2-2972eec4f70e">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1281,7 +789,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>0</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="8c5de7f7-1170-4bb4-86de-750a01d31ab1">
+        <staticBinding id="e6eefb35-ff88-451f-89cd-87e2577bccd7">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1294,7 +802,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <value>false</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="08694367-bab4-44f6-a818-1235df3c17f7">
+        <staticBinding id="a5c22f24-1c64-4d7d-9a04-46e6e8fe9ecf">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -1309,7 +817,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="1bd66d2d-909b-40de-a167-89c54163f8e2">
+        <transition id="2c4ba029-0c32-4467-933a-9f980a43c5ef">
           <annotation></annotation>
           <name>failure</name>
           <command>NEXT</command>
@@ -1318,19 +826,19 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>94044a24-a8a8-4f20-b5a9-7eb52a0bb5bc</refId>
+            <refId>b806fa58-2ee0-4860-80f0-07fd047982e5</refId>
           </destination>
           <source>
-            <refId>bed20ffa-ac36-45a7-89b7-79789c7531a7</refId>
+            <refId>7e844c9f-45b4-4be2-b379-ec1e52516654</refId>
           </source>
           <positions>
             <point>
-              <x>230.0</x>
-              <y>492.0</y>
+              <x>260.0</x>
+              <y>296.0</y>
             </point>
             <point>
-              <x>228.0</x>
-              <y>627.0</y>
+              <x>258.0</x>
+              <y>145.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -1338,7 +846,7 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
             <y>0.0</y>
           </labelPosition>
         </transition>
-        <transition id="237184e2-cfc8-4a6d-b149-3f6815dd2ec7">
+        <transition id="f6f17cea-5f1b-452d-9bf4-065b51d00a2b">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -1347,27 +855,19 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>94044a24-a8a8-4f20-b5a9-7eb52a0bb5bc</refId>
+            <refId>aed9e390-f46d-45a4-8562-58c937ea1af1</refId>
           </destination>
           <source>
-            <refId>bed20ffa-ac36-45a7-89b7-79789c7531a7</refId>
+            <refId>7e844c9f-45b4-4be2-b379-ec1e52516654</refId>
           </source>
           <positions>
             <point>
-              <x>230.0</x>
-              <y>492.0</y>
+              <x>260.0</x>
+              <y>296.0</y>
             </point>
             <point>
-              <x>231.10846560845764</x>
-              <y>294.3637464543564</y>
-            </point>
-            <point>
-              <x>230.88604832613194</x>
-              <y>309.37691301134134</y>
-            </point>
-            <point>
-              <x>228.0</x>
-              <y>627.0</y>
+              <x>767.0</x>
+              <y>296.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -1383,12 +883,373 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
       <assignments/>
       <throttleSize>0</throttleSize>
     </step>
-    <returnStep id="94044a24-a8a8-4f20-b5a9-7eb52a0bb5bc">
-      <annotation></annotation>
-      <name>Error : failure</name>
+    <step id="b806fa58-2ee0-4860-80f0-07fd047982e5">
+      <annotation>a04ad031-797c-481c-80ee-902b8cb19165.b806fa58-2ee0-4860-80f0-07fd047982e5.description</annotation>
+      <name>restore</name>
       <bounds>
-        <x>155.0</x>
-        <y>335.0</y>
+        <x>208.0</x>
+        <y>111.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <iconSpec id="9c893ba7-a455-4df8-b729-ce59ed1a3c15">
+        <baseIcon>workstation_network.png</baseIcon>
+        <basePath>/Others/</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <userInputBinding id="6116e99f-4b69-4d92-bc4b-9f63bb748235">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>host</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
+        <staticBinding id="16f2fcba-092f-4cac-b379-ab074e519afa">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>port</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>22</value>
+          <record>false</record>
+        </staticBinding>
+        <userInputBinding id="d53705a1-a3c8-442b-b22d-40e99e7a0e55">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>username</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
+        <userInputBinding id="8edca713-df93-4277-b298-b98f3e1aca51">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>password</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+          <prompt></prompt>
+          <isMultiSelect>false</isMultiSelect>
+          <sourceDelimiter>|</sourceDelimiter>
+        </userInputBinding>
+        <staticBinding id="2f248432-323f-423b-82cd-156fcfe7f59b">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>proxyHost</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="01c1c839-1c2d-4279-ad5b-83cd2f196ffc">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>proxyPort</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7108686c-128d-404e-a851-4ba8cc45d01b">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>proxyUsername</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3be536e0-b8b9-4c73-917e-26eb53295536">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>proxyPassword</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c80dcb7f-fc86-4220-85c2-56c42bdcf7a7">
+          <annotation></annotation>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>privateKeyFile</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b28a812f-7474-48e7-b781-5a1222a0debc">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>ENCRYPTED</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>privateKeyData</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5978ebf9-219e-4420-825a-b666f9b29873">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>knownHostsPolicy</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>allow</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c7dc5f70-65bc-4877-bddd-f5e7b4967ecc">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>allowedCiphers</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b536323f-967f-467b-ba78-92f04286ad43">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>command</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>rm -rf /var/vols/itom;
+rm -rf /var/opt/kubernetes;
+rm -rf /opt/microfocus/installers;</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="e86f02cd-ae92-47ea-8a72-5659fa9e856c">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>characterSet</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>UTF-8</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="387e1146-5207-455d-b1d3-e193220ae623">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>pty</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f0d364ad-da3c-4ba6-aaef-b4baa59f8e84">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>timeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>90000</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9b357eb7-96dd-4d06-b908-e6aea4afa1fa">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>connectTimeout</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>10000</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="48b7433f-a1a8-4c68-b7ea-cd1420d4f818">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>keepAlive</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>0</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5fe39cbe-5c7f-4a58-8d31-9dc8e2b06a2a">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>closeSession</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="05c61a30-bfe0-4eaa-a113-fa2564baa754">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>useGlobalContext</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>false</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="c1c6d503-9a00-4975-a252-31403cf6c415">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>441e8444-82a7-46e7-81bb-889be37ca3b0</refId>
+          </destination>
+          <source>
+            <refId>b806fa58-2ee0-4860-80f0-07fd047982e5</refId>
+          </source>
+          <positions>
+            <point>
+              <x>193.0</x>
+              <y>216.0</y>
+            </point>
+            <point>
+              <x>190.0</x>
+              <y>405.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="c8b220ec-5fff-4abc-ac9a-6236dffd99ff">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>441e8444-82a7-46e7-81bb-889be37ca3b0</refId>
+          </destination>
+          <source>
+            <refId>b806fa58-2ee0-4860-80f0-07fd047982e5</refId>
+          </source>
+          <positions>
+            <point>
+              <x>258.0</x>
+              <y>145.0</y>
+            </point>
+            <point>
+              <x>283.0</x>
+              <y>92.0</y>
+            </point>
+            <point>
+              <x>258.0</x>
+              <y>39.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>0b066b79-d65c-4da9-8ed4-edf50f378950</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="aed9e390-f46d-45a4-8562-58c937ea1af1">
+      <annotation></annotation>
+      <name>Resolved : success</name>
+      <bounds>
+        <x>717.0</x>
+        <y>262.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
@@ -1406,27 +1267,27 @@ docker build . --build-arg http_proxy=${httpProxy} --build-arg https_proxy=${htt
       <userPrompt></userPrompt>
       <bindings/>
       <transitions>
-        <transition id="09fef2ad-bce9-4128-9a2d-3c6ccc70448a">
+        <transition id="6ef4d544-7b81-4606-82b3-0d2afdbecb01">
           <annotation></annotation>
           <name>return</name>
           <command>NEXT</command>
           <linkMode>false</linkMode>
-          <responseSymbol>failure</responseSymbol>
+          <responseSymbol>success</responseSymbol>
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>94044a24-a8a8-4f20-b5a9-7eb52a0bb5bc</refId>
+            <refId>aed9e390-f46d-45a4-8562-58c937ea1af1</refId>
           </destination>
           <source>
-            <refId>94044a24-a8a8-4f20-b5a9-7eb52a0bb5bc</refId>
+            <refId>aed9e390-f46d-45a4-8562-58c937ea1af1</refId>
           </source>
           <positions/>
         </transition>
       </transitions>
       <properties/>
-      <returnStepType>ERROR</returnStepType>
+      <returnStepType>RESOLVED</returnStepType>
       <assignments/>
     </returnStep>
   </steps>
-  <startSteps>6b59a448-c317-4e2c-a0e6-510d699efb07</startSteps>
+  <startSteps>da043058-d5a2-49ab-8963-27ed294dbe3c</startSteps>
 </flow>

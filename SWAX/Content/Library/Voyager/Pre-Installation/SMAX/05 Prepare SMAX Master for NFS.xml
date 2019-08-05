@@ -21,7 +21,7 @@ d16f973c-0631-44d9-810e-656e15570ef0.eb82160d-77d5-4c0b-b77a-bf2f247bbc95.descri
 d16f973c-0631-44d9-810e-656e15570ef0.f5e76303-dce4-481e-97cd-ca95041aacc6.description=<pre>\nCompares two strings, returning a true response if and only if they contain the same sequence of characters. A null string is considered to be equal to an empty string.\n\nInputs\:\n    string1 - The first string. \nDefault value\: "" (empty)\n    string2 - The second string.\nDefault value\: "" (empty)\n    ignoreCase - If set to 'true', then the comparison ignores case considerations. The two strings are considered equal ignoring case if they are of the same length and corresponding characters in the two strings are equal ignoring case. If set to any value other than 'true', then the strings must match exactly to be considered equal.\n\nResponses\:\n    true - If the two strings are equal.\n    false - If the two strings are not equal.\n\n</pre>
 ]]></descriptionCdata>
   <annotation>d16f973c-0631-44d9-810e-656e15570ef0.description</annotation>
-  <name>5 Prepare SMAX Master for NFS</name>
+  <name>05 Prepare SMAX Master for NFS</name>
   <categories/>
   <inputs>
     <staticBinding id="6da62b98-ce96-40ca-973e-177590a2aa5a">
